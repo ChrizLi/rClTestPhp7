@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>cXltStringTest.php</title>
+    <title>cXltFileTest.php</title>
 </head>
 <body>
 <?php
@@ -8,8 +8,6 @@
     require_once("C:/inetpub/rClTestPhp7Dev8721/php/class/cXltString.php");
     require_once("C:/inetpub/rClTestPhp7Dev8721/php/class/cXltFile.php");
     CXltFile::FnInit();
-    //$oXltString = new CXltString();
-    //$oXltFile   = new CXltFile($oXltString);
     $sRowEnd    = "|<br>";
     
     echo "FnDelimiterGet():"                    . CXltFile::FnDelimiterGet()   .                                "|Slash".           $sRowEnd;//fg

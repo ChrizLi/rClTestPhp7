@@ -1,13 +1,19 @@
 <?php
 class CXltString
 {
+/*--------------------------------------
+---- 20180225V1.0.0, ListlChr, init
+---- 
+----------------------------------------
+---- What this code does:
+---- provides basic string functions like FnLeft() and FnRight()
+---- 
+----------------------------------------
+---- known Errors/missing features:
+---- 
+---------------------------------------*/
     private static $_sDel = ","; // default delimiter for all listFunctions
 
-    function __construct()
-    {
-        
-    }
-    
     public static function FnRight(string $s, int $n): string
     {   // emulates classic string right()
         $nLen = strlen($s);

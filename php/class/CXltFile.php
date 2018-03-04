@@ -42,39 +42,11 @@
         public static function fnFileFullNameGet(string $sFqFileName): string
         {
             // return Filename of the FqPath c:\folder\filename.txt -> filename.txt
-            /*
-            $sOut       = "";
-            $nExtLen    = 0;
             
             // normalize given Path
             $sOut = self::FnNormalize($sFqFileName);
-    
-            // cut Path, if path only is given right(1)=Delimiter then output Len(0)-string
-            if (oXltString::FnRight($sOut, 1) == $sDelimiter)
-            {
-                $sOut = "";// path without file was given, so output emptyString
-            }
-            else
-            {
-                $sOut = oXltString::FnListLast($sOut, $sDelimiter);
-            }
-        
-            $sOut = oXltString::FnListLast($sOut, $sDelimiter);
-      
-            return $sOut;
-            */
-            //
-            $sFqFileName    = self::fnNormalize($sFqFileName);
-            $nDelPos        = strrPos($sFqFileName, self::fnDelimiterGet());
-            if     ($nDelPos== 0)
-            {
-                    $sOut = $sFqFileName;
-            }
-            else
-            {
-                    $sOut = subStr($sFqFileName, $nDelPos);
-            }
-            return  $sOut;
+            
+            return basename($sFqFilename);
         }
         
         public static function fnFileExtensionGet(string $sFqFileName): string
@@ -82,6 +54,7 @@
             // returns the filename extension (right string of the rightest "." (dot)
             // if file has no extension an empty string is returned
             return substr($sFqFileName, 0, strrpos($sFqFileName, '.'));
+            return pathInfo($sFqFileName)["extension"];
         }
         
         public static function fnFileNameGet(string $sFqFileName): string
@@ -97,6 +70,9 @@
             if($nExtLen > 0)
                 $sOut = oXltString::FnLeft($sOut, strLen($sOut)-$nExtLen-1);
             return  $sOut;
+            
+            $ar = pathInfo('$sFqFileName');
+            return left($ar['baseName'],len($ar['baseName']-$ar['extension'])
         }
         
         public static function fnFilePathGet(string $sFqFileName): string
@@ -106,8 +82,8 @@
             // how we do it:
             // - get fnFileFileNameGet()
             // - cut off from given FqFileName
-            $sOut = oXltString::fnFileFullNameGet($sFqFileName);
-            return oXltString::FnLeft($sFqFileName, strLen($sFqFileName)-strLen($sOut));
+            
+            return dirName($sFqFilename);
         }
         
         public static function fnFileExtensionUpd(string $sFqFileName, string $sExtNew): string

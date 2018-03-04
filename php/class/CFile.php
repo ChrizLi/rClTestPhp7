@@ -62,15 +62,20 @@
         
         public static function fnFolderListGet(string $sPath): array
         {
-            
+            is_dir()
         }
         
         public static function fnFileListGet(string $sPath): array
         {
+            is_file()
         }
         
         /*public static function fnFileAttributeSel()
         {
+            filePerms();
+            fileSize();
+            
+            
         }
         
         public static function fnFileAttributeSet()
@@ -78,5 +83,24 @@
         }
         */
         
+        public static function fnFileCreateGet()
+        {
+            return fileCTime()
+        }
+        
+        public static function fnFileLastAccessGet()
+        {
+            return fileATime()
+        }
+        
+        public static function fnFileLastModifyGet()
+        {
+            return fileMTime()
+        }
+        
+        public static function fnTempFileGet(string $sPathFq, $sPrefix)
+        {
+            return tempNam($sPathFq, $sPrefix);
+        }
     }
 ?>

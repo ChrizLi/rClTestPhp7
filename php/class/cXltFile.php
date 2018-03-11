@@ -16,42 +16,46 @@ class CXltFile
 
     private static $sSlash         = "/";
     private static $sBackSlash     = "\\";
-    private static $sDelimiter     = "";
     private static $sDelimiterRev  = "";
 
-    public static function FnInit()
+    public  static function fnInit()
     {
-        //require_once("C:/inetpub/rClTestPhp7Dev8721/php/class/cXltString.php");
-        //$oXltString = new CXltString();
+        require_once($_SERVER['DOCUMENT_ROOT']."\php\class\cXltString.php");
         
-        self::$sDelimiter     = self::$sSlash;
-        self::$sDelimiterRev  = self::$sBackSlash;
+        if (DIRECTORY_SEPARATOR == self::$sSlash)
+        {
+            self::$sDelimiterRev = self::$sBackSlash;
+        }
+        else
+        {
+            self::$sDelimiterRev = self::$sSlash;
+        }
     }
     
-    static public function fnDelimiterGet(): string
+    static  public function fnDelimiterGet(): string
     {
-        return self::$sDelimiter;
+            return DIRECTORY_SEPARATOR;
     }
     
-    static public function fnDelimiterRevGet(): string
+    static  public function fnDelimiterRevGet(): string
     {
-        return self::$sDelimiterRev;
+            return self::$sDelimiterRev;
     }
     
-    static public function fnNormalize($s, $bSuffixAdd=false): string
+    static  public function fnNormalize($s, $bSuffixAdd=false): string
     {
-        $sOut = str_replace(self::$sDelimiterRev, self::$sDelimiter, $s);
+        $sOut = str_replace(self::$sDelimiterRev, DIRECTORY_SEPARATOR, $s);
         
         // add suffix
-        if ($bSuffixAdd and CXltString::FnRight($sOut,1) != $sDelimiter)
+        if ($bSuffixAdd and (subStr($sOut, -1) != DIRECTORY_SEPARATOR))
         {
-            $sOut += self::$sDelimiter;
+            $sOut .= DIRECTORY_SEPARATOR;
         }
         
         // drop suffix
-        if (!$bSuffixAdd and CXltString::FnRight($sOut,1) == self::$sDelimiter)
+        if (!$bSuffixAdd and (subStr($sOut, -1) == DIRECTORY_SEPARATOR))
         {
-            $sOut = CXltString::FnLeft($sOut, len($sOut)-1);
+            $sOut = subStr($sOut, 0, strLen($sOut)-1);
         }
         return $sOut;
     }
@@ -59,22 +63,20 @@ class CXltFile
     static public function FnFileNameFullGet($sFileNameFq): string
     {
         // return filename of the FqPath C:\folder\filename.txt -> filename.txt
-        $sOut       = "";
         $nExtLen    = 0;
-        // normalize given path
-        $sOut = self::FnNormalize($sFileNameFq);
-
-        // cut path, if path only is given right(1)=delimiter then output len(0)
-        if (CXltString::FnRight($sOut,1) == self::$sDelimiter)
+        $sOut       = self::FnNormalize($sFileNameFq);
+        
+        // cut path, if path only is given => (right(1)=delimiter) then output len(0)
+        if (subStr($sOut, -1) == DIRECTORY_SEPARATOR)
         {
             $sOut = ""; // path without file was given, so output=""
         }
         else
         {
-            $sOut = CXltString::FnListLastGet($sOut, self::$sDelimiter);
+            $sOut = CXltString::FnListLastGet($sOut, DIRECTORY_SEPARATOR);
         }
         
-        $sOut = CXltString::FnListLastGet($sOut, self::$sDelimiter);
+        //$sOut = CXltString::FnListLastGet($sOut, DIRECTORY_SEPARATOR);
         
         return  $sOut;
     }
@@ -97,7 +99,7 @@ class CXltFile
     {
         // return path only, e.g. \\host\share\folder\filename.ext -> \\host\share\folder\
         $oAr    = pathInfo(self::FnNormalize($sFileNameFq));
-        $sOut   = $oAr['dirname'].self::$sDelimiter;
+        $sOut   = $oAr['dirname'].DIRECTORY_SEPARATOR;
         return  $sOut;
     }
     
@@ -113,9 +115,9 @@ class CXltFile
         return self::FnFilePathGet($sFileNameFq).$sPrefix.self::FnFileNameGet($sFileNameFq).$sSuffix.".".self::FnFileExtensionGet($sFileNameFq);
     }
     
-    static public function fnScriptFileNameFqGet(): string
+    static public function fnSiteRootGet():string
     {
-        return __FILE__;
+        return $_SERVER['DOCUMENT_ROOT'];
     }
 }
 ?>

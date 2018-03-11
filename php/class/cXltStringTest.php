@@ -5,7 +5,7 @@
 <body>
 <?php
     //declare(strict_types=1);
-    require_once("C:/inetpub/rClTestPhp7Dev8721/php/class/cXltString.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."\php\class\cXltString.php");
     $sRowEnd = "|<br>";
     
     echo "FnRight():"                   . CXltString::FnRight                  ("abcdefg", 2) .            $sRowEnd;//fg

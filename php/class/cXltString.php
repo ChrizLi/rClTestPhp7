@@ -2,8 +2,9 @@
 class CXltString
 {
 /*--------------------------------------
----- 20180225V1.0.0, ListlChr, init
----- 
+---- 20180225V1.0.0,    ListlChr, init
+---- 20180311V1.0.1,    ListlChr,   drop fnRight and fnLeft usage within class
+----
 ----------------------------------------
 ---- What this code does:
 ---- provides basic string functions like FnLeft() and FnRight()
@@ -208,13 +209,13 @@ class CXltString
         $sDel   = self::FnDelGet($sDel);
         if (strLen($sList)!=0)
         {
-            if (self::FnLeft($sList,1) == $sDel)
+            if (subStr($sList, 0, 1) == $sDel)
             {
-                $sList = self::FnRight($sList, strLen($sList)-1);
+                $sList = subStr($sList, strLen($sList)-1);
             }
-            if (self::FnRight($sList,1) == $sDel)
+            if (subStr($sList, -1) == $sDel)
             {
-                $sList = self::FnLeft($sList, strLen($sList)-1);
+                $sList = subStr($sList, -1);
             }
         }
         return $sList;
@@ -328,7 +329,7 @@ class CXltString
     {   // deletes $nCnt items in $sList beginning at $nPos
         $sDel   = self::FnDelGet($sDel);
         if ($nCnt < 1) throw new \Exception("ArgumentNotValidException1");
-        if ($nPos < 1 or $nPos > self::FnListLen($sList, $sDel)) self:FnErrorThrow("ArgumentNotValidException2");
+        if ($nPos < 1 or $nPos > self::FnListLen($sList, $sDel)) self::FnErrorThrow("ArgumentNotValidException2");
         
         if($nPos == 1 and $nCnt==1)
         {   // del at first pos
@@ -364,7 +365,7 @@ class CXltString
     
     private static function fnErrorThrow($s)
     {   // throw exception
-        throw new\exception($s);
+        throw new \exception($s);
     }
 }
 ?>

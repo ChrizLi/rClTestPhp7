@@ -15,6 +15,11 @@ class CXltString
 ---------------------------------------*/
     private static $_sDel = ","; // default delimiter for all listFunctions
 
+    function __construct()
+    {
+        
+    }
+    
     public static function FnRight(string $s, int $n): string
     {   // emulates classic string right()
         $nLen = strlen($s);
@@ -209,13 +214,13 @@ class CXltString
         $sDel   = self::FnDelGet($sDel);
         if (strLen($sList)!=0)
         {
-            if (subStr($sList, 0, 1) == $sDel)
+            if (self::FnLeft($sList,1) == $sDel)
             {
-                $sList = subStr($sList, strLen($sList)-1);
+                $sList = self::FnRight($sList, strLen($sList)-1);
             }
-            if (subStr($sList, -1) == $sDel)
+            if (self::FnRight($sList,1) == $sDel)
             {
-                $sList = subStr($sList, -1);
+                $sList = self::FnLeft($sList, strLen($sList)-1);
             }
         }
         return $sList;

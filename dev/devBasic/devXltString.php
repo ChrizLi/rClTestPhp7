@@ -26,7 +26,7 @@
         return $_SERVER['DOCUMENT_ROOT'];
     }
 
-    define('__ROOT__', dirname(dirname(__FILE__)));
+    define('__ROOT__', $_SERVER['DOCUMENT_ROOT']);
     echo "root: ". __ROOT__."<br>";
     echo "server:".$_SERVER['DOCUMENT_ROOT']."<br>";
     echo "fnSite:".fnSiteRootGet()."<br>";
@@ -39,13 +39,11 @@
     echo "normalize:".fnNormalize($sPathWinTest, false)."<br>";
     */
     
-    //require_once("..\php\class\cXltString.php");//ok
-    //require_once(__ROOT__."\php\class\cXltString.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."\php\class\cXltString.php");
+    require_once(__ROOT__."\chrizli\basic\cXltString.php");
     echo cXltString::fnRight("abc",2).'<br>';
     
     $sPathWinTest='\\my\\sub\\folder';
-    require_once(__ROOT__."\php\class\cXltFile.php");
+    require_once(__ROOT__."\chrizli\basic\cXltFile.php");
     echo cXltFile::fnNormalize($sPathWinTest).'<br>';
     $sPathWinTest='\\my\\sub\\folder\\';
     echo cXltFile::fnNormalize($sPathWinTest).'<br>';

@@ -41,7 +41,7 @@
     
     //require_once("..\php\class\cXltString.php");//ok
     //require_once(__ROOT__."\php\class\cXltString.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."\php\class\cXltString.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."\chrizli\basic\cXltString.php");
     echo cXltString::fnRight("abc",2).'<br>';
     
     $sPathWinTest='\\my\\sub\\folder';

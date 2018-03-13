@@ -7,7 +7,7 @@
     echo "server:".$_SERVER['DOCUMENT_ROOT']."<br>";
     //echo "fnSite:".fnSiteRootGet()."<br>";
     
-    require_once(__ROOT__."\php\class\cXltFile.php");
+    require_once(__ROOT__."\chrizli\basic\cXltFile.php");
     cXltFile::fnInit();
     
     echo "Delimter:".cXltFile::fnDelimiterGet().'|\\<br>';

@@ -20,7 +20,7 @@ class CXltFile
 
     public  static function fnInit()
     {
-        require_once($_SERVER['DOCUMENT_ROOT']."\php\class\cXltString.php");
+        require_once($_SERVER['DOCUMENT_ROOT']."\chrizli\basic\cXltString.php");
         
         if (DIRECTORY_SEPARATOR == self::$sSlash)
         {

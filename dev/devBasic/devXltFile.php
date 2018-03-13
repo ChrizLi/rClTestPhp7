@@ -2,9 +2,8 @@
 <head>
 
 <?php
-    define('__ROOT__', dirname(dirname(__FILE__)));
+    define('__ROOT__', $_SERVER['DOCUMENT_ROOT']);
     echo "root: ". __ROOT__."<br>";
-    echo "server:".$_SERVER['DOCUMENT_ROOT']."<br>";
     //echo "fnSite:".fnSiteRootGet()."<br>";
     
     require_once(__ROOT__."\chrizli\basic\cXltFile.php");

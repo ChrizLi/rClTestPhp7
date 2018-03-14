@@ -1,0 +1,10 @@
+<html>
+<head>
+<?php
+    require_once("devV3shadow.php");
+?>
+</head>
+<body>
+devAutoLoad\devV1.php<br>
+</body>
+</html>

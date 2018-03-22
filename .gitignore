@@ -1,0 +1,7 @@
+vendor/
+.DS_Store
+Thumbs.db
+npm-debug.log
+/bower_components
+/node_modules
+Monolog/

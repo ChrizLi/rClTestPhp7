@@ -1,0 +1,67 @@
+<!doctype html>
+<!------------------------------------
+---- 20160712v1.0, ListlChr, Init
+----
+----------------------------------------
+---- what this code does:
+---- 
+----------------------------------------
+---- missing code/known errors:
+----
+---------------------------------------->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="jQuery"></script>
+    <script src="Bootstrap"></script>
+    <script>
+        var nP=1;
+        
+        function fnMain(){
+            var e = fnAddHandler();
+        }
+        
+        function fnAddHandler(){
+            //document.getElementById("body").onload = fnX;
+            document.getElementById("p1").onClick=fnSetP("p1")
+            document.getElementById("p2").onClick=fnSetP("p2")
+            document.getElementById("p3").onClick=fnSetP("p3")
+            document.getElementById("p4").onClick=fnSetP("p4")
+            document.getElementById("btnUp").onClick=fnUp();
+            document.getElementById("btnDown").onClick=fnDown();
+        }
+        
+        function fnUp(){
+            // get current p
+            // get vertical pos of that p
+            // determine new vertical pos
+            // set new vertical pos
+            
+            // get vertical pos of p
+            
+        
+        function fnSetP(eP){
+            showP.innerHtml=eP;
+            nP=eP;//global Var
+        }
+        
+        var e = fnMain();
+    </script>
+</head>
+<body>
+    <header></header>
+    <main>
+        <p id="p1">p1</p>
+        <p id="p2">p2</p>
+        <p id="p3">p3</p>
+        <p id="p4">p4</p>
+        <p id="showP"></p>
+        <button type="button" id="btnUp">up</button>
+        <button type="button" id="brnDown">down</button>
+    </main>
+    <footer></footer>
+</body>
+</html>
+

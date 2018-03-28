@@ -1,0 +1,108 @@
+<!doctype html>
+<!------------------------------------
+---- 20160709v1.0, ListlChr, Init
+----
+----------------------------------------
+---- what this code does:
+---- 
+---- tagging:
+---- class: levels
+---- id: per product
+----------------------------------------
+---- missing code/known errors:
+----
+---------------------------------------->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="jQuery"></script>
+    <script src="Bootstrap"></script>
+    <script>
+        function fnMain(){
+            var e = fnAddHandler();
+        }
+        
+        function fnAddHandler(){
+            document.getElementById("body").onload = fnX;
+        }
+        
+        function fnCountCheckboxes(){
+            // we collect:
+            // ProductGroups,ProductLevels,ProductsPerGroup
+            var nProductGrpCnt=$("#productTable tr").length
+               ,nLoop
+               
+            for(nLoop=1;nLoop<nProductGrpCnt;nLoop++){
+                var nLevelCnt(nLoop)=$("#top"+nLoop.toString+" td").length;
+            };
+            
+        function fnAddCheckboxes(){
+            //we add checkboxes to: levels and products
+            var nProductGrpCnt
+               ,nLevelCnt
+               
+            var e=fnCountCheckboxes()
+            var e=fnAddCheckboxes2ProductLevels();
+            var e=fnAddCheckboxes2Products();
+        }
+        
+        function fnAddCheckboxes2ProductLevels(){
+            //we add checkboxes to all ProductLevels in all ProductGroups
+            $("tl^").add("Checkbox").add("Click");
+        }
+        
+        function fnAddCheckboxes2Products(){
+            //we add checkboxes to all products in all productGroups
+            $("product^").add("Checkbox").add("Click");
+        }
+        
+        var e = fnMain();
+    </script>
+</head>
+<body>
+    <header></header>
+    <main></main>
+        <table id="tblProduct">
+            <th>
+                <td id="Head_L1">TopLevel</td>
+                <td id="Head_L2">Level2</td>
+                <td id="Head_L3">Level3</td>
+                <td id="Head_L4">Level4</td>
+                <td id="Head_L5">products</td>
+            </th>
+            <tr id="tr1">
+                <td id="Tl1_1">TopL1_1</td>
+                <td id="Tl2_1">L1_2</td>
+                <td id="Tl3_1">L1_3</td>
+                <td id="Tl4_1">L1_4</td>
+                <td id="Tl5_1">
+                    <table id="top1_p">
+                        <tr><th>pList1</th></tr>
+                        <tr><td id="product1_01">product1_01</td></tr>
+                        <tr><td id="product1_02">product1_02</td></tr>
+                        <tr><td id="product1_03">product1_03</td></tr>
+                        <tr><td id="product1_04">product1_04</td></tr>
+                    </table>
+                </td>
+            </tr>
+            <tr id="tr2">
+                <td id="Tl1_2">TopL2_1</td>
+                <td id="Tl2_2">L2_2</td>
+                <td id="Tl3_2">L2_3</td>
+                <td id="Tl4_2">L2_4</td>
+                <td id="Tl5_2">
+                    <table id="top2_p">
+                        <tr><th>pList2</th></tr>
+                        <tr><td id="product2_11">product2_11</td></tr>
+                        <tr><td id="product2_12">product2_12</td></tr>
+                        <tr><td id="product2_13">product2_13</td></tr>
+                        <tr><td id="product2_14">product2_14</td></tr>
+                    </table>
+                </td>
+            </tr>
+    <footer></footer>
+</body>
+</html>
+

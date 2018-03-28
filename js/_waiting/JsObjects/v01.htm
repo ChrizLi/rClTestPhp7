@@ -1,0 +1,38 @@
+<!doctype html>
+<!------------------------------------
+---- 20160310v1.0, ListlChr, Init
+----
+----------------------------------------
+---- what this code does:
+---- 
+----------------------------------------
+---- missing code/known errors:
+----
+---------------------------------------->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>v01</title>
+    <script>
+        function fnOnload(){
+            alert("fnOnload");
+        }
+        
+        function fnCreateObject(){
+            var oo = {"Name1":"Var1","Name2":"Var2"};
+            var oo = {  Name1:"var1",  Name2:"var2"};
+            fnAlert(oo);
+            fnAlert(oo.Name1);
+            fnAlert(oo.["Name2"]);
+            
+        }
+        
+        function fnAlert(s){
+            alert(s);
+        }
+    </script>
+</head>
+<body onload="fnOnload()">
+</body>
+</html>
+

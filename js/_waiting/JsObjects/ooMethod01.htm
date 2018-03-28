@@ -1,0 +1,35 @@
+<!doctype html>
+<!------------------------------------
+---- 20160310v1.0, ListlChr, Init
+----
+----------------------------------------
+---- what this code does:
+---- 
+----------------------------------------
+---- missing code/known errors:
+----
+---------------------------------------->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+        var oo = {
+            name1:"var1", 
+            name2:"var2", 
+            name3:function(){return (name1+"-"+name2)}
+        };
+        
+        function fnAlert(s){alert(s)};
+        
+        function fnOo(){
+            fnAlert(oo.name1);
+            fnAlert(oo.name2);
+            fnAlert(oo.name3());
+        }
+        var e = fnOo();
+    </script>
+</head>
+<body>
+</body>
+</html>

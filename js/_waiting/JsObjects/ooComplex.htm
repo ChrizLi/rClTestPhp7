@@ -1,0 +1,35 @@
+<!doctype html>
+<!------------------------------------
+---- 20160310v1.0, ListlChr, Init
+----
+----------------------------------------
+---- what this code does:
+---- 
+----------------------------------------
+---- missing code/known errors:
+----
+---------------------------------------->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+        var oo = {
+            Panel:"PanelTitle1",
+            Items:[
+                {Item:"Titel11", Url:"Url11"},
+                {Item:"Titel12", Url:"Url12"}
+                {Item:"Titel13", Url:"Url13"}
+            ]
+        };
+        
+        function fnAlert(s){alert(s)};
+        
+        if (typeof(oo) == "object"){fnAlert("IsObject")};
+        fnAlert(oo.Panel);
+        if (oo.Panel == "object"){fnAlert("IsObject:Panel")};
+    </script>
+</head>
+<body>
+</body>
+</html>

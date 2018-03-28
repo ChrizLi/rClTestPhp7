@@ -1,0 +1,18 @@
+* {margin:0;padding:0;}
+
+body
+{
+    background-color: white;
+}
+
+h1, h2, h3, h4, h5, h6, p, table, tr, td, thead, tfoot, ul, li
+{
+    font-family: tahoma;
+}
+
+.txtLft     { text-align:   left;}
+.txtRgt     { text-align:   right;}
+.floatLft   { float:        left;}
+.floatRgt   { float:        right;}
+
+th, td { padding: 1px 1px 1px 1px;}

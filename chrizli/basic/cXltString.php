@@ -1,4 +1,7 @@
 <?php
+
+namespace ChrizLi/basic;
+
 class CXltString
 {
 /*--------------------------------------
@@ -16,10 +19,7 @@ class CXltString
 
     private static $_sDel = ","; // default delimiter for all listFunctions
 
-    function __construct()
-    {
-        
-    }
+    function __construct(){}
     
     public static function FnRight(string $s, int $n): string
     {   // emulates classic string right()
@@ -91,7 +91,7 @@ class CXltString
         $nMaxOccure = self::FnOccurrenceCountGet($s, $sSearch);
         if ($nMaxOccure > 0 and $nMaxOccure >= $nOccureToFind)
         {
-            $nPos = 0;
+            $nPos   = 0;
             while($nCurOccure < $nOccureToFind)
             {
                 $nCurOccure++;
@@ -370,7 +370,7 @@ class CXltString
     }
     
     private static function fnErrorThrow($s)
-    {   // throw exception
+    {   
         throw new \exception($s);
     }
 }

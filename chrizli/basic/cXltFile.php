@@ -1,4 +1,7 @@
 <?php
+
+namespace ChrizLi/basic;
+
 class CXltFile
 {
 /*--------------------------------------
@@ -14,9 +17,15 @@ class CXltFile
 ---- 
 ---------------------------------------*/
 
-    private static $sSlash         = "/";
-    private static $sBackSlash     = "\\";
-    private static $sDelimiterRev  = "";
+    private static $sSlash          = "/";
+    private static $sBackSlash      = "\\";
+    private static $sDelimiterRev   = "";
+    
+    public  statuc function __construct()
+    {
+        require_once("CObjectAdmin");
+        require_once("CXltString");
+    }
 
     public  static function fnInit()
     {
@@ -60,7 +69,7 @@ class CXltFile
         return $sOut;
     }
     
-    static public function FnFileNameFullGet($sFileNameFq): string
+    static public function fnFileNameFullGet($sFileNameFq): string
     {
         // return filename of the FqPath C:\folder\filename.txt -> filename.txt
         $nExtLen    = 0;

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src=""></script>
+    <script>
+        function fnMain()
+        {
+            var nCandidateQtyTotal = fnClassTotalGet("sCandidate nQty");
+            var nCandidateAmtTotal = fnClassTotalGet("sCandidate nNet");
+            document.getElementById("nCandidateQtyTotal").innerHTML=nCandidateQtyTotal;
+            document.getElementById("nCandidateAmtTotal").innerHTML=nCandidateAmtTotal;
+            
+            var nElectedQtyTotal = fnClassTotalGet("sElected nQty");
+            var nElectedAmtTotal = fnClassTotalGet("sElected nNet");
+            document.getElementById("nElectedQtyTotal").innerHTML=nElectedQtyTotal;
+            document.getElementById("nElectedAmtTotal").innerHTML=nElectedAmtTotal;
+            
+            fnClassRowTotalSet("sCandidate nQty",   "sCandidate nNet",  "sCandidate nTotal");
+            fnClassRowTotalSet("sElected nQty",     "sElected nNet",    "sElected nTotal");
+        }
+        
+        function fnClassTotalGet(sClassName)
+        {
+            var ar      = document.getElementsByClassName(sClassName);
+            var nTotal  = 0;
+            for(var n   = 0; n<ar.length; n++)
+            {
+                nTotal +=parseInt(ar[n].innerHTML);
+            }
+            return nTotal;
+        }
+        
+        function fnClassRowTotalSet(sClassQty, sClassAmt, sClassTotal)
+        {
+            var arQty   = document.getElementsByClassName(sClassQty);
+            var arAmt   = document.getElementsByClassName(sClassAmt);
+            var arTotal = document.getElementsByClassName(sClassTotal);
+            var nTotal  = 0;
+            for(var n   = 0; n<arQty.length; n++)
+            {
+                nTotal  = parseInt(arQty[n].innerHTML) * parseInt(arAmt[n].innerHTML);
+                arTotal[n].innerHTML=nTotal;
+            }
+            //return void;
+        }
+        
+    </script>
+</head>
+<body onLoad="fnMain()">
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Amt</th>
+            <th>Total</th>
+        </tr>
+        <tr>
+            <td>abc</td>
+            <td id="" class="sCandidate nQty">2</td>
+            <td id="" class="sCandidate nNet">11</td>
+            <td id="" class="sCandidate nTotal"></td>
+        </tr>
+        <tr>
+            <td>def</td>
+            <td id="" class="sCandidate nQty">3</td>
+            <td id="" class="sCandidate nNet">12</td>
+            <td id="" class="sCandidate nTotal"></td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td id="nCandidateQtyTotal"></td>
+            <td id="nCandidateAmtTotal"></td>
+            <td id="nCandidate"></td>
+        </tr>
+    </table>
+    <hr>
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Amt</th>
+            <th>Total</th>
+        </tr>
+        <tr>
+            <td>abc</td>
+            <td id="" class="sElected nQty">4</td>
+            <td id="" class="sElected nNet">14</td>
+            <td id="" class="sElected nTotal"></td>
+        </tr>
+        <tr>
+            <td>def</td>
+            <td id="" class="sElected nQty">5</td>
+            <td id="" class="sElected nNet">15</td>
+            <td id="" class="sElected nTotal"></td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td id="nElectedQtyTotal"></td>
+            <td id="nElectedAmtTotal"></td>
+            <td id="nElected"></td>
+        </tr>
+    </table>
+    <hr>
+</body>
+</html>
+     

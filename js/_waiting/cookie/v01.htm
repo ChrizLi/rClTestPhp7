@@ -1,0 +1,63 @@
+<!doctype html>
+<!------------------------------------
+---- 20160308v1.0, ListlChr, Init
+----
+----------------------------------------
+---- what this code does:
+---- 
+----------------------------------------
+---- missing code/known errors:
+----
+---------------------------------------->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Cookie01</title>
+    <script src="jsCookies.js"></script>
+    <script>
+        function fnMain(){
+            var e = fnAddHandler();
+        }
+        
+        function fnAddHandler(){
+            // this code adds all handler to all elements on startup of pageload
+            document.getElementById("btnSetCookieX").onclick = fnSetCookieX();
+            document.getElementById("btnSetCookieY").onclick = fnSetCookieY();
+            document.getElementById("btnGetCookie" ).onclick = fnGetCookie();
+            document.getElementById("btnSetCookieZ").onclick = fnSetCookieZ();
+            document.getElementById("btnGetCookieZ").onclick = fnGetCookieZ();
+        }
+    
+        function fnSetCookieX(){
+            setCookie("Test","x");
+        }
+        
+        function fnSetCookieY(){
+            setCookie("Test","y");
+        }
+        
+        function fnSetCookieZ(){
+            setCookie("TzzT","Z");
+        }
+        
+        function fnGetCookie(){
+            var sOut = getCookie("Test");
+            alert("/"+sOut+"/");
+        }
+        
+        function fnGetCookieZ(){
+            var sOut = SelCookie();
+            alert("/"+sOut+"/");
+        }
+        
+        var e = fnMain();
+    </script>
+</head>
+<body>
+    <button type="button" id="btnSetCookieX">SetCookieX</button>
+    <button type="button" id="btnSetCookieY">SetCookieY</button>
+    <button type="button" id="btnGetCookie" >GetCookie </button>
+    <button type="button" id="btnSetCookieZ">SetCookieZ</button>
+    <button type="button" id="btnGetCookieZ">GetCookieZ</button>
+</body>
+</html>

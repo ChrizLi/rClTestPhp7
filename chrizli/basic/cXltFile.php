@@ -21,7 +21,7 @@ class CXltFile
     private static $sBackSlash      = "\\";
     private static $sDelimiterRev   = "";
     
-    public  statuc function __construct()
+    public  static function __construct()
     {
         require_once("CObjectAdmin");
         require_once("CXltString");

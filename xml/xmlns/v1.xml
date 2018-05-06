@@ -1,0 +1,25 @@
+<root xmlns="http://git.com/chrizli/xmlns/prod/person">
+
+<person id="1" language="en">
+    <gender ></gender>
+    <titleprefix></titleprefix>
+    <firstname></firstname>
+    <middlename></middlename>
+    <lastname></lastname>
+    <titlesuffix></titlesuffix>
+    <birthyear></birthyear>
+    <birthmonth></birthmonth>
+    <birthday></birthday>
+</person>
+
+<person id="2" language="en">
+    <gender></gender>
+    <titleprefix></titleprefix>
+    <firstname></firstname>
+    <middlename></middlename>
+    <lastname></lastname>
+    <titlesuffix></titlesuffix>
+    <birthyear></birthyear>
+    <birthmonth></birthmonth>
+    <birthday></birthday>
+</person>

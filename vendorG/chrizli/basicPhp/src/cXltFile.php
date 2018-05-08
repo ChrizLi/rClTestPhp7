@@ -1,6 +1,6 @@
 <?php
 
-namespace ChrizLi/basic;
+//namespace ChrizLi/basic;
 
 class CXltFile
 {
@@ -21,11 +21,11 @@ class CXltFile
     private static $sBackSlash      = "\\";
     private static $sDelimiterRev   = "";
     
-    public  static function __construct()
+    /*public  static function __construct()
     {
         require_once("CObjectAdmin");
         require_once("CXltString");
-    }
+    }*/
 
     public  static function fnInit()
     {

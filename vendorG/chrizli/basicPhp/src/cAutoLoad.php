@@ -1,6 +1,6 @@
 <?php
 
-namespace ChrizLi/basic;
+//namespace ChrizLi/basic;
 
 /**
  * An example of a general-purpose implementation that includes the optional
@@ -77,7 +77,7 @@ class CPsr4Autoloader
         }
 
         // retain the base directory for the namespace prefix
-        if ($prepend) 
+        if ($prepend)
         {
             array_unshift($this->prefixes[$prefix], $base_dir);
         } 

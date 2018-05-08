@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-/*------------------------------------
+<!-------------------------------------
 ---- 20180326V1.0.0, ListlChr, Init
 ----
 ----------------------------------------
@@ -12,7 +12,7 @@
 ----------------------------------------
 ---- missing code/known errors:
 ----
-----------------------------------------*/
+----------------------------------------->
     <meta charset="utf-8">
     <?php
         function    fnMain()
@@ -22,10 +22,11 @@
 
         function    fnAutoLoadInit()
         {
-                    $sBasicFolder   ='/chrizli/basic/';
-                    $sNameSpace     ='ChrizLi'
-                    require_once(   $sBasicFolder.'cAutoLoad.php');
-                    $oAutoLoad=new  $sBasicFolder.'cAutoLoad';
+                    //$sBasicFolder   ='/vendorG/chrizli/basicPhp/src/';
+                    $sBasicFolder   ='/inetpub/p8721rClTestPhp7dev/vendorG/chrizli/basicPhp/src/';
+                    $sNameSpace     ='ChrizLi';
+                    require_once $sBasicFolder.'cAutoLoad.php';
+                    $oAutoLoad=new  CPsr4Autoloader();
                     $oAutoLoad->register();
                     $oAutoLoad->addNamespace($sNameSpace, $sBasicFolder);
                     $oAutoLoad->addNamespace($sNameSpace, $sBasicFolder.'src');
@@ -45,4 +46,3 @@
 </body>
 <?php fnMain();?>
 </html>
-

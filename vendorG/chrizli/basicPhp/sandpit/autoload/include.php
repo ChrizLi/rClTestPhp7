@@ -2,10 +2,10 @@
 <head>
 <?php
     function fnMain() {
-        include '../src/AutoLoad02Sub.php';
+        include '../../src/AutoLoad02Sub.php';
         print CXltString::fnLeft("abc",1);
         //print CXltString::fnRight("abc",1);
-        //print CXltFile::fnFileExtensionGet("file.ext");
+        //print CXltFile::fnFile    ExtensionGet("file.ext");
     }
 ?>
 </head>

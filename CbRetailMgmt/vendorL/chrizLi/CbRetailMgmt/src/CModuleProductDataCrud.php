@@ -1,41 +1,65 @@
 <?php
-
-class   CModuleProductDataCrud 
-        implements ifModule {
+class       CModuleProductDataCrud
+extends     CModuleAbstract
+implements  ifModule {
+    protected
+        $oOutput,
+        $oModel;
     
-    var $oOutput,
-        $oModel,
-        $oRxArg;
-    
-    public static function __construct($_oOutput) {
-        $oOutput = $_oOutput;
+    public function __construct(
+        $_oObjectAdmin, 
+        $_oRxArg        =null, 
+        $_oOutput       =null, 
+        $_oModel        =null
+    ) {
+        parent::__construct($_oObjectAdmin, $_oRxArg);
+        if ($_oOutput        ==null) {
+            $this->oOutput  = new COutput();
+        }   else {
+            $this->oOutput  = $_oOutput;
+        }
+        if ($_oModel         ==null) {
+            $this->oModel   = new CProductModel();
+        }   else {
+            $this->oModel   = $_oModel;
+        }
+        $this->fnInit();
     }
     
-    public static function fnGet($_oRxArg) {
-        var $oData = $oModel->fnSet($_oRxArg);
-        $oOutput->fnHeadAppend  (self::fnHeadGet    ($_oRxArg, $oData));
-        $oOutput->fnRedirect    (self::fnRedirectGet($_oRxArg, $oData));
-        $oOutput->fnBodyAppend  (self::fnHtmlGet    ($_oRxArg, $oData));
+    public function fnInit() {}
+    
+    public function fnRun($_oRxArg): void {
+        $oData = $this->oModel->fnGet($_oRxArg);
+        $this->oOutput->fnHeadAppend  ($this->fnHeadGet    ($_oRxArg, $oData));
+        $this->oOutput->fnRedirect    ($this->fnRedirectGet($_oRxArg, $oData));
+        $this->oOutput->fnBodyAppend  ($this->fnBodyGet    ($_oRxArg, $oData));
     }
     
-    private static function fnHeadGet() {}
+    private function fnHeadGet(): string {}
     
-    private static function fnRedirectGet() {}
-    
-    private static function fnBodyGet() {
-        return self::fnTableHeadGet($oData).self::fnTableBodyGet($oData).self::fnTableFootGet($oData);
+    private function fnRedirectGet(): string {
+        return '?1=1';
     }
     
-    private static function fnTableHeadGet($oData) {
+    private function fnBodyGet(): string {
+        //return self::fnTableHeadGet($oData).self::fnTableBodyGet($oData).self::fnTableFootGet($oData);
+        return 'body';
+    }
+    
+    private function fnTableHeadGet($oData): string {
         return "<tr><th>Id</th><th>Name</th>";
     }
-    private static function fnTableBodyGet($oData) {
-        var $s="";
-        for(var n=0;n<$oData.length;n++) {
-            $s .= "<tr><td>".$oData[n]["sId"]."</td><td>".$oData[n]["sName"]."</td></tr>";
-        }
+    
+    private function fnTableBodyGet($oData): string {
+        $s='';
+        //for(var n=0;n<$oData.length;n++) {
+        //    $s .= "<tr><td>".$oData[n]["sId"]."</td><td>".$oData[n]["sName"]."</td></tr>";
+        //}
+        return $s;
     }
-    private static function fnTableFootGet($oData) {}
+    private function fnTableFootGet($oData): string {
+        return 's';
+    }
 }
 
 ?>

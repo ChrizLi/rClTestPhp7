@@ -1,41 +1,68 @@
 <?php
-
-class   CModuleCampaignDataCrud 
-        implements ifModule {
+class       CModuleCampaignDataCrud 
+extends     CModuleAbstract
+implements  ifModule {
+    protected
+        $oOutput,
+        $oModel;
+    protected
+        $oData = array();
     
-    var $oOutput,
-        $oModel,
-        $oRxArg;
-    
-    public static __construct() {
-        $oOutput = $_oOutput;
-    }
-    
-    public static fnGet($_oRxArg) {
-        var $oData = $oModel->fnSet($_oRxArg);
-        $oOutput->fnHeadAppend  (self::fnHeadGet    ($_oRxArg, $oData));
-        $oOutput->fnRedirect    (self::fnRedirectGet($_oRxArg, $oData));
-        $oOutput->fnBodyAppend  (self::fnHtmlGet    ($_oRxArg, $oData));
-    }
-    
-    private static fnHeadGet() {}
-    
-    private static fnRedirectGet() {}
-    
-    private static fnBodyGet() {
-        return self::fnTableHeadGet($oData).self::fnTableBodyGet($oData).self::fnTableFootGet($oData);
-    }
-    
-    private static fnTableHeadGet($oData) {
-        return "<tr><th>Id</th><th>Name</th>";
-    }
-    private static fnTableBodyGet($oData) {
-        var $s="";
-        for(var n=0;n<$oData.length;n++) {
-            $s .= "<tr><td>".$oData[n]["sId"]."</td><td>".$oData[n]["sName"]."</td></tr>";
+    public function __construct(
+        $_oObjectAdmin, 
+        $_oRxArg        =null, 
+        $_oOutput       =null, 
+        $_oModel        =null
+    ) {
+        parent::__construct($_oObjectAdmin, $_oRxArg);
+        if ($_oOutput       ==null) {
+            $this->oOutput  = new COutput();
+        }   else {
+            $this->oOutput  = $_oOutput;
         }
+        if ($_oModel        ==null) {
+            $this->oModel   = new CCampaignModel();
+        }   else {
+            $this->oModel   = $_oModel;
+        }
+        $this->fnInit();
     }
-    private static fnTableFootGet($oData) {}
+    
+    public function fnInit() {}
+    
+    public function fnRun($_oRxArg): void {
+        $oData = $this->oModel->fnGet($_oRxArg);
+        $this->oOutput->fnHeadAppend  ($this->fnHeadGet    ());
+        $this->oOutput->fnRedirect    ($this->fnRedirectGet());
+        $this->oOutput->fnBodyAppend  ($this->fnBodyGet    ());
+    }
+    
+    private function fnHeadGet(): string {
+        return 'head';
+    }
+    
+    private function fnRedirectGet(): string {
+        return '?1=1';
+    }
+    
+    private function fnBodyGet(): string {
+        return $this->fnTableHeadGet().$this->fnTableBodyGet().$this->fnTableFootGet();
+    }
+    
+    private function fnTableHeadGet(): string {
+        //return "<tr><th>Id</th><th>Name</th>";
+        return 'tableHead';
+    }
+    private function fnTableBodyGet(): string {
+        $s="";
+        //for(n=0;n<$oData.length;n++) {
+        //    $s .= "<tr><td>".$this.oData[n]["sId"]."</td><td>".$this.oData[n]["sName"]."</td></tr>";
+        //}
+        return 'tableBody';
+    }
+    private function fnTableFootGet(): string {
+        return 'tableFoot';
+    }
 }
 
 ?>

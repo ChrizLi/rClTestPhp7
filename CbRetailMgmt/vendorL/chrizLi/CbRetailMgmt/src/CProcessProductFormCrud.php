@@ -1,24 +1,38 @@
 <?php
+class       CProcessProductFormCrud
+extends     CProcessAbstract 
+implements  ifProcess {
+    protected
+        $oOutput,
+        $oModel;
 
-class   CProcessProductFormCrud
-        extends CProcessAbstract {
-    
-    var 
-        $oModel,
-        $oOutput;
-
-    public static __construct($_oObjectAdmin, $_oRxArg, $_oModel, ifOutput $_oOutput) {
+    public function __construct($_oObjectAdmin, $_oRxArg, $_oModel, ifOutput $_oOutput) {
         parent::__constrcut($_oObjectAdmin, $_oRxArg);
         $oModel         = $_oModel;
         $oOutput        = $_oOutput;
-        self::fnInit();
+        $this->fnInit();
     }
     
-    private static fnInit() {
-        oModuleProductFormCrud = new CModuleProductFormCrud();
-        self:fnModuleAdd(oModuleProductFormCrud);
+    private function fnInit() {
+        $oModuleProductFormCrud = new CModuleProductFormCrud();
+        $this->fnModuleAdd($oModuleProductFormCrud);
     }
     
+    public function fnRunable($_oRxArg): bool {
+        if($_oRxArg->aaUrl->sProcess=="ProcessProductFormCrud") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public static function fnRun($_oRxArg): void {
+        if($this->fnRunable($_oRxArg) {
+            
+        } else {
+            throw new Error("noRun");
+        }
+    }
 }
 
 ?>

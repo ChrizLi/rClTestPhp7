@@ -1,6 +1,7 @@
 <?php
-class CCampaignModel {
-    protected $a = array();
+class CProductModel {
+    protected 
+        $a = array();
 
     public function __construct() {
         $this->fnInit();
@@ -12,17 +13,17 @@ class CCampaignModel {
     
     public function fnSel() {
         if ($this->a['oSel'] == undefined) {
-            $this->a['oSel'] = $this->fnCampaignListSel();
+            $this->a['oSel'] = $this->fnProductListSel();
         }
         return $this->a['oSel'];
     }
     
-    private function fnCampaignListSel() {
+    private function fnProductListSel() {
         // return array of arrays
         return array(
-            array('nId'=>1, 'sName'=>'s1', 'bActive'=>false),
-            array('nId'=>2, 'sName'=>'s2', 'bActive'=>true),
-            array('nId'=>3, 'sName'=>'s3', 'bActive'=>true),
+            array('nId'=>1, 'sProductId'=>'p11','sName'=>'s1', 'bActive'=>false),
+            array('nId'=>2, 'sProductId'=>'p12','sName'=>'s2', 'bActive'=>true),
+            array('nId'=>3, 'sProductId'=>'p13','sName'=>'s3', 'bActive'=>true),
         );
     }
     

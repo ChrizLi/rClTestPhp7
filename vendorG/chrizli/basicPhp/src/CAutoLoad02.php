@@ -42,7 +42,7 @@ class CAutoLoad{
     public function fnClassLoad($oClass):bool {
         // e.g. fnClassLoad("CXltString") loads \vendor\chrizli\basicPhp\src\CXltString
         forEach($this->aPath as $sPath) {
-            $sClassFileFq = $this->fnSiteRootGet().$this->fnDirSepAdd($sPath).$oClass.$this->sExtension;
+            $sClassFileFq = $this->fnClassRootGet().$this->fnDirSepAdd($sPath).$oClass.$this->sExtension;
             if($this->fnFileRequire($sClassFileFq)) {
                 return true;
             }
@@ -61,7 +61,7 @@ class CAutoLoad{
         }
     }
     
-    protected function fnSiteRootGet():string {
+    protected function fnClassRootGet():string {
         return $_SERVER['DOCUMENT_ROOT'];
     }
     

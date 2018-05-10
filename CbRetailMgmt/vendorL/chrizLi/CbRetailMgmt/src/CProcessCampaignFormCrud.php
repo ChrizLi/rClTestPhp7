@@ -1,33 +1,50 @@
 <?php
-
-class   CProcessCampaignFormIns 
-        extends CProcessAbstract
-        implements ifProcess {
-
-    var
+class       CProcessCampaignFormCrud
+extends     CProcessAbstract
+implements  ifProcess {
+    protected
         $oOutput,
         $oModel;
 
-    public static __construct($_oObjectAdmin, $_oRxArg, $_oOutput, $_oModel) {
+    public function __construct(
+        $_oObjectAdmin, 
+        $_oRxArg        =null, 
+        $_oOutput       =null, 
+        $_oModel        =null
+    ) {
         parent::__construct($_oObjectAdmin, $_oRxArg);
-        $oOutput        = $_oOutput;
-        $oModel         = $_oModel;
-        self::fnInit();
+        if ($_oOutput        ==null) {
+            $this->oOutput  = new COutput();
+        }   else {
+            $this->oOutput  = $_oOutput;
+        }
+        if ($_oModel         ==null) {
+            $this->oModel   = new CCampaignModel();
+        }   else {
+            $this->oModel   = $_oModel;
+        }
+        $this->fnInit();
     }
     
-    private static fnInit() {
-        oModuleCampaignFormCrud = new CModuleCampaignFormCrud();
-        self::fnModuleAdd(oModuleCampaignFormCrud);
-        oModuleProductFormCrud  = new CModuleProductFormCrud();
-        self::fnModuleAdd(oModuleProductFormCrud);
-        oModuleProductList      = new CModuleProductList();
-        self::fnModuleAdd(oModuleProductList);
+    protected function fnInit() {
+        $oModuleCampaignFormCrud = 
+            new CModuleCampaignFormCrud ($this->oObjectAdmin, $this->oRxArg, $this->oOutput, $this->oModel);
+        $this->fnModuleAdd($oModuleCampaignFormCrud);
+        $oModuleProductFormCrud  = 
+            new CModuleProductFormCrud  ($this->oObjectAdmin, $this->oRxArg, $this->oOutput, $this->oModel);
+        $this->fnModuleAdd($oModuleProductFormCrud);
+        $oModuleProductList      = 
+            new CModuleProductList      ($this->oObjectAdmin, $this->oRxArg, $this->oOutput, $this->oModel);
+        $this->fnModuleAdd($oModuleProductList);
     }
     
-    abstract public static fnRunable($_oRxArg) {
-        return true //default process
+    public function fnRunable($_oRxArg): bool {
+        return true;
     }
     
+    public function fnRun($_oRxArg): void {
+        
+    }
 }
 
 ?>

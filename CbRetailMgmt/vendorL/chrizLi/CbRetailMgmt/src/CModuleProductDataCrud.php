@@ -1,5 +1,5 @@
 <?php
-class       CModuleProductList 
+class       CModuleProductDataCrud
 extends     CModuleAbstract
 implements  ifModule {
     protected
@@ -25,24 +25,41 @@ implements  ifModule {
         }
         $this->fnInit();
     }
-
-    protected function fnInit() {}
+    
+    public function fnInit() {}
     
     public function fnRun($_oRxArg): void {
         $oData = $this->oModel->fnGet($_oRxArg);
         $this->oOutput->fnHeadAppend  ($this->fnHeadGet    ($_oRxArg, $oData));
         $this->oOutput->fnRedirect    ($this->fnRedirectGet($_oRxArg, $oData));
-        $this->oOutput->fnBodyAppend  ($this->fnHtmlGet    ($_oRxArg, $oData));
+        $this->oOutput->fnBodyAppend  ($this->fnBodyGet    ($_oRxArg, $oData));
     }
     
-    private function fnHeadAppend(): void {
+    private function fnHeadGet(): string {}
     
-    }
-    private function fnRedirect  () {}
-    private function fnBodyAppend(): string {
-        return "?1=1&sProcess=sProcessCampaignDataCrud";
+    private function fnRedirectGet(): string {
+        return '?1=1';
     }
     
+    private function fnBodyGet(): string {
+        //return self::fnTableHeadGet($oData).self::fnTableBodyGet($oData).self::fnTableFootGet($oData);
+        return 'body';
+    }
+    
+    private function fnTableHeadGet($oData): string {
+        return "<tr><th>Id</th><th>Name</th>";
+    }
+    
+    private function fnTableBodyGet($oData): string {
+        $s='';
+        //for(var n=0;n<$oData.length;n++) {
+        //    $s .= "<tr><td>".$oData[n]["sId"]."</td><td>".$oData[n]["sName"]."</td></tr>";
+        //}
+        return $s;
+    }
+    private function fnTableFootGet($oData): string {
+        return 's';
+    }
 }
 
 ?>

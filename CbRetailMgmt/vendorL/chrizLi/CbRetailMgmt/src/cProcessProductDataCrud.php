@@ -1,5 +1,5 @@
 <?php
-class       CProcessCampaignDataCrud 
+class       CProcessProductDataCrud 
 extends     CProcessAbstract
 implements  ifProcess {
     protected
@@ -19,7 +19,7 @@ implements  ifProcess {
             $this->oOutput  = $_oOutput;
         }
         if($_oModel         ==null) {
-            $this->oModel   = new CCampaignModel();
+            $this->oModel   = new CProductModel();
         }   else {
             $this->oModel   = $_oModel;
         }
@@ -27,8 +27,8 @@ implements  ifProcess {
     }
     
     protected function fnInit() {
-        $oModuleCampaignDataCrud = new CModuleCampaignDataCrud($this->oObjectAdmin);
-        $this->fnModuleAdd($oModuleCampaignDataCrud);
+        $oModuleProductDataCrud = new CModuleProductDataCrud($this->oObjectAdmin);
+        $this->fnModuleAdd($oModuleProductDataCrud);
     }
     
     public function fnRunable($_oRxArg): bool {
@@ -37,8 +37,7 @@ implements  ifProcess {
     
     public function fnRun($_oRxArg): void {
         
-    }
-    
+    }    
 }
 
 ?>

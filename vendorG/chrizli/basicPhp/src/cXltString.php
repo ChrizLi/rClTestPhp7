@@ -1,6 +1,6 @@
 <?php
 
-namespace ChrizLi/basic;
+//namespace ChrizLi/basic;
 
 class CXltString
 {
@@ -19,7 +19,7 @@ class CXltString
 
     private static $_sDel = ","; // default delimiter for all listFunctions
 
-    //function __construct(){}
+    //public static function __construct(){}
     
     public static function FnRight(string $s, int $n): string
     {   // emulates classic string right()

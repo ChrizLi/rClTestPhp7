@@ -1,22 +1,38 @@
 <?php
+class       CProcessCampaignList
+extends     CProcessAbstract
+implements  ifProcess {
+    protected
+        $oOutput        = null,
+        $oModel         = null;
 
-class   CProcessCampaignList
-        extends     CProcessAbstract {
-
-    var 
-        $oModel,
-        $oOutput;
-
-    public static __construct($_oObjectAdmin, $_oRxArg, $_oModel, ifOutput $_oOutput) {
-        parent::__constrcut($_oObjectAdmin, $_oRxArg);
-        $oModel         = $_oModel;
-        $oOutput        = $_oOutput;
-        self::fnInit();
+    public function __construct(
+        $_oObjectAdmin, 
+        $_oRxArg        = null, 
+        $_oOutput       = null, 
+        $_oModel        = null
+    ) {
+        parent::__construct($_oObjectAdmin, $_oRxArg);
+        if($_oOutput    ==null) {
+            $oOutput    = new COutput();
+        }   else {
+            $oOutput    = $_oOutput;
+        }
+        if($_oModel     ==null) {
+            $oModel     = new CCampaignModel();
+        }   else {
+            $oModel     = $_oModel;
+        }
+        $this->fnInit();
     }
     
-    private static fnInit() {
-        oModuleCampaignList = new CModuleCampaignList();
-        self:fnModuleAdd(oModuleCampaignList);
+    protected function fnInit() {
+        $oModuleCampaignList = new CModuleCampaignList($this->oObjectAdmin, $this->oOutput);
+        $this->fnModuleAdd($oModuleCampaignList);
+    }
+    
+    public function fnRunable($_oRxArg): bool{
+        
     }
 }
 

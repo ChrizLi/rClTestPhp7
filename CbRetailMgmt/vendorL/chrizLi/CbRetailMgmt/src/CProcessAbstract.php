@@ -1,52 +1,52 @@
 <?php
 
-class   CProcessAbstract 
-        implements ifProcess {
-    
-    var
+abstract    class       CProcessAbstract 
+            implements  ifProcess {
+    protected
         $oObjectAdmin,
         $oRxArg;
-    
-    var
-        $aaModule       = array(),
+    protected
+        $aModule        = array(),
         $oModuleDefault;
     
-    public static __construct($_oObjectAdmin, $_oRxArg=undefined) {
+    public function __construct(
+        $_oObjectAdmin, 
+        $_oRxArg        =null
+    ) {
         $oObjectAdmin = $_oObjectAdmin;
         if($_oRxArg) {
-            $oRxArg = $_oRxArg;
+            $this->oRxArg = $_oRxArg;
         }   else {
-            $oRxArg = new CRxArg;
+            $this->oRxArg = new CRxArg;
         }
-        self::fnInit();
+        $this->fnInit();
     }
     
-    private static fnInit() {}
+    abstract protected function fnInit();
     
-    abstracted public static fnRunable($_oRxArg) {
-        return true;
-    }
+    abstract public function fnRunable($_oRxArg): bool;
     
-    public static fnRun($_oRxArg) {
-        var $oModule,
-            $bRan   = false;
+    public function fnRun($_oRxArg): void {
+        //private
+            //$oModule    = null,
+            $bRan       = false;
         
-        forEach($oModule in $aaModule) {
-            if($oModule->fnRunable($_oRxArg)) {
+        forEach($oModule as $this->aModule) {
+            if ($oModule->$this->fnRunable($_oRxArg)) {
                 $oModule->fnRun($_oRxArg);
                 $bRan = true;
             }
         }
         if(!$bRan) {
-            $oModuleDefault->fnRun($_oRxArg);
+            $this->oModuleDefault->fnRun($_oRxArg);
         }
     }
     
-    public static fnModuleAdd(ifModule $_oModule, $_bDefault=false) {
+    public function fnModuleAdd(ifModule $_oModule, $_bDefault=false) {
         if($_bDefault) {
-            $oModuleDefault = $_oModule;
+            $this->oModuleDefault = $_oModule;
         }   else {
-            array_push($aaModule, $_oModule);
+            array_push($this->aModule, $_oModule);
         }
     }
 }

@@ -1,22 +1,21 @@
 <?php
+class   CCampaignTypeModel {
+    protected
+        $aaType = array();
 
-class CCampaignTypeModel {
-
-    var $aaType = array();
-
-    public static __construct() {
-        self::fnInit();
+    public function __construct() {
+        $this->fnInit();
     }
     
-    private static fnInit() {
+    private function fnInit() {
     }
     
-    public static fnSel() {
+    public function fnSel() {
         // fetch from persistent storage
         return $aaType;
     }
     
-    public static fnValid($_sId) {
+    public function fnValid($_sId) {
         if(array_key_exists($aaType, $_sId) {
             return true;
         } else {
@@ -24,10 +23,9 @@ class CCampaignTypeModel {
         }
     }
     
-    public static fnIns(CCampaignType oCampaignType) {
+    public function fnIns(CCampaignType oCampaignType) {
         // save to persistent storage
     }
-
 }
 
 ?>

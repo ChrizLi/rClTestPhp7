@@ -1,7 +1,7 @@
 <?php
 
-interface {
-    public static fnGet($_oRxArg){}
+interface ifModule{
+    public function fnRun($_oRxArg): void;
 }
 
 ?>

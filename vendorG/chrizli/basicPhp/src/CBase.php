@@ -1,18 +1,13 @@
 <?php
-    class CBase
-    {   // baseClass for all classes
-        public function __construct ()
-        {
-            return this;
-        }
-        
-        private function fnErrorThrow(string $sType, string $sMsg='')
-        {
-            $sTypeOut   = '';
-            $sMsgOut    = '';
-            
-            switch($sType)
-            {
+class       CBase {   
+    // baseClass for all classes
+    protected function fnErrorThrow(
+            string $_sType  = '', 
+            string $_sMsg   = ''
+    ): void {
+            $sTypeOut       = '';
+            $sMsgOut        = '';
+            switch($_sType) {
                 case 'ArgNotValid':
                     $sTypeOut='ArgumentNotValidException';
                     break;
@@ -20,7 +15,7 @@
                     $sTypeOut='UndefinedException';
                     break;
              }   
-             throw new\Exception($sTypeOut;);  
-        }
+             throw new\Exception($sTypeOut, $_sMsg);  
     }
+}
 ?>

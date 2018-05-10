@@ -13,6 +13,7 @@
 ---- known errors /missing features:
 ---- 
 ----------------------------------------------------------//
+class  CObjectFactory {
 
     private static $_aaClass=array();
     private static $_oObjectAdmin="";
@@ -90,10 +91,5 @@
         }
         return $bOut;
     }
-        
-    <cfFunction     name="fnErrorThrow"     output="false"  access="private"    returnType="void">
-        <cfArgument name="sType"            type="string"   required="false"    default="">
-        <cfArgument name="sMsg"             type="string"   required="false"    default="">
-        <cfThrow    type="#arguments.sType#" message="#arguments.sMsg#">
-    </cfFunction>
-</cfComponent>
+}
+?>

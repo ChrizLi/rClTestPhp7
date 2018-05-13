@@ -7,7 +7,7 @@ extends     CBase {
             $oUserSource,
             $aUser          = array();
         
-    public  function __construct(
+    public  function    __construct(
                             $_oObjectAdmin,
             string          $_sUserAccountId,
             ifUserAccount   $_oUserSource       = null
@@ -25,28 +25,28 @@ extends     CBase {
             $this->fnInit();
     }
     
-    private function fnInit(): void {
+    private function    fnInit(): void {
         
     }
     
-    public  function fnUserAccountIdGet(): string {
-            return $this->a['sAccountId'];
+    public  function    fnUserAccountIdGet(): string {
+            return      $this->a['sAccountId'];
     }
     
-    public  function fnNameGet(): string {
-            return $this->a['sNameFirst'].' '.$this->a['sNameLast'];
+    public  function    fnNameGet(): string {
+            return      $this->a['sNameFirst'].' '.$this->a['sNameLast'];
     }
     
-    public  function fnNameSortGet(): string {
-            return $this->a['sNameLast'].', '.$this->a['sNameFirst'];
+    public  function    fnNameSortGet(): string {
+            return      $this->a['sNameLast'].', '.$this->a['sNameFirst'];
     }
     
-    public  function fnNameFirstGet(): string {
-            return $this->a['sNameFirst'];
+    public  function    fnNameFirstGet(): string {
+            return      $this->a['sNameFirst'];
     }
     
-    public  function fnNameLastGet(): string {
-            return $this->a['sNameLast'];
+    public  function    fnNameLastGet(): string {
+            return      $this->a['sNameLast'];
     }
 }
 

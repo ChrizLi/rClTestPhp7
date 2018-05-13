@@ -4,7 +4,7 @@ class       CBase {
     protected function fnErrorThrow(
             string $_sType  = '', 
             string $_sMsg   = ''
-    ): void {
+            ): void {
             $sTypeOut       = '';
             $sMsgOut        = '';
             switch($_sType) {

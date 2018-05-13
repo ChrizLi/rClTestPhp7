@@ -15,83 +15,81 @@
 ---- known errors/missing features:
 ---- 
 ----------------------------------------------------------*/
-class CAutoLoad{
+class   CAutoLoad
+extend  CBase   {
+    protected   $aPath      = array(),
+                $sSource    = 'src',
+                $sExtension = '.php';
     
-    protected   $aPath      = array();  //folder array to search for ClassFiles
-    protected   $sSource    = 'src';
-    protected   $sExtension = '.php';
-    
-    public function __construct() {
+    public  function    __construct(): void {
     }
     
-    public function fnRegister() {
-        spl_autoload_register(array($this, 'fnClassLoad'));
+    public  function    fnRegister(): void {
+            spl_autoload_register(array($this, 'fnClassLoad'));
     }
     
-    public function fnFolderAdd(string $_sPathFq, bool $_bPrepend=false):string {
-        $_sPathFq = $this->fnPathValid($_sPathFq);
-        if($_bPrepend) {
+    public  function    fnFolderAdd(
+            string  $_sPathFq, 
+            bool    $_bPrepend=false
+        ):  string   {
+        $_sPathFq   = $this->fnPathValid($_sPathFq);
+        if ($_bPrepend) {
             array_unshift($this->aPath, $_sPathFq);
-        } else {
+        }   else {
             array_push($this->aPath, $_sPathFq);
         }
         $this->aPath = array_unique($this->aPath);
-        return $_sPathFq;
+        return  $_sPathFq;
     }
     
-    public function fnClassLoad($oClass):bool {
-        // e.g. fnClassLoad("CXltString") loads \vendor\chrizli\basicPhp\src\CXltString
-        forEach($this->aPath as $sPath) {
-            $sClassFileFq = $this->fnClassRootGet().$this->fnDirSepAdd($sPath).$oClass.$this->sExtension;
-            if($this->fnFileRequire($sClassFileFq)) {
-                return true;
+    public  function    fnClassLoad(object $oClass): bool {
+            // e.g. fnClassLoad("CXltString") loads \vendor\chrizli\basicPhp\src\CXltString
+            forEach($this->aPath as $sPath) {
+                $sClassFileFq = $this->fnClassRootGet().$this->fnDirSepAdd($sPath).$oClass.$this->sExtension;
+                if($this->fnFileRequire($sClassFileFq)) {
+                    return true;
+                }
             }
-        }
-        return false;
+            return  false;
     }
     
-    protected function fnFileRequire(string $sFile):bool {
-        if(file_exists($sFile)) {
+    protected function  fnFileRequire(string $sFile):bool {
+        if (file_exists($sFile)) {
             //echo 'try to require|'.$sFile.'|';
             require $sFile;
-            return true;
-        } else {
-            //echo 'file does not exist|'.$sFile.'|';
-            return false;
-        }
-    }
-    
-    protected function fnClassRootGet():string {
-        return $_SERVER['DOCUMENT_ROOT'];
-    }
-    
-    public function fnGet():array {
-        return $this->aPath;
-    }
-    
-    protected function fnPathValid(string $_sPathFq):string {
-        $_sPathFq = $this->fnSrcFolderValid($_sPathFq);
-        $_sPathFq = $this->fnDirSepAdd($_sPathFq);
-        return $_sPathFq;
-    }
-    
-    protected function fnSrcFolderValid(string $_sPathFq):string {
-        //add source folder if missing -> path/to/class.php -> path/to/SRC/class.php
-        $aFolderPart    = explode(DIRECTORY_SEPARATOR, $_sPathFq);
-        $sFolderLast    = array_pop($aFolderPart);
-        if($sFolderLast ==$this->sSource) {
-            $sOut = $_sPathFq;
+            return  true;
         }   else {
-            $sOut = $_sPathFq.DIRECTORY_SEPARATOR.$this->sSource;
+            //echo 'file does not exist|'.$sFile.'|';
+            return  false;
         }
-        return $sOut;
     }
     
-    private function fnDirSepAdd(string $s):string {
-        if(subStr($s, -1) != DIRECTORY_SEPARATOR) {
-            $s .= DIRECTORY_SEPARATOR;
-        }
-        return $s;
+    protected function  fnClassRootGet(): string {
+            return $_SERVER['DOCUMENT_ROOT'];
+    }
+    
+    public  function    fnGet(): array {
+            return  $this->aPath;
+    }
+    
+    protected function  fnPathValid(string $_sPathFq): string {
+            return $this->fnDirSepAdd($this->fnSrcFolderValid($_sPathFq));
+    }
+    
+    protected function fnSrcFolderValid(string $_sPathFq): string {
+            //add source folder if missing -> path/to/class.php -> path/to/SRC/class.php
+            $aFolderPart    =  explode(DIRECTORY_SEPARATOR, $_sPathFq);
+            $sFolderLast    =  array_pop($aFolderPart);
+            if($sFolderLast == $this->sSource) {
+                $sOut   = $_sPathFq;
+            }   else    {
+                $sOut   = $_sPathFq.DIRECTORY_SEPARATOR.$this->sSource;
+            }
+            return  $sOut;
+    }
+    
+    private function    fnDirSepAdd(string $s): string {
+        return (subStr($s, -1) != DIRECTORY_SEPARATOR)? $s.=DIRECTORY_SEPARATOR: $s;
     }
     
     /*private function fnDirSepDrop(string $s):string {
@@ -100,7 +98,7 @@ class CAutoLoad{
         }
         return $s;
     }*/
-       
+
 }
 
 ?>

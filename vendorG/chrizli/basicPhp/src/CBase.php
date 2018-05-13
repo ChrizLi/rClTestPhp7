@@ -14,8 +14,8 @@ class       CBase {
                 default:
                     $sTypeOut='UndefinedException';
                     break;
-             }   
-             throw new\Exception($sTypeOut, $_sMsg);  
+            }   
+            throw new\Exception($sTypeOut, $_sMsg);  
     }
 }
 ?>

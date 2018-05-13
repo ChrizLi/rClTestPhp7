@@ -16,9 +16,9 @@ class       CObjectFactory02
 extends     CBase {
     private
             object  $oObjectAdmin,
-            strint  $sObjectAdminName   = 'oObjectAdmin';
+            string  $sObjectAdminName   = 'oObjectAdmin';
 
-    public  function    __construct($_oObjectAdmin): void {
+    public  function    __construct(object $_oObjectAdmin): void {
             $oObjectAdmin = $_oObjectAdmin;
             $this->fnInit();
     }

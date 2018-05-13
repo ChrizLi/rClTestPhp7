@@ -17,7 +17,7 @@
 static class    CXltString
 extends         CBase       {
     private 
-            static $_sDel = ","; // default delimiter for all listFunctions
+                static $_sDel = ","; // default delimiter for all listFunctions
 
     //public  function    __construct(){}
     

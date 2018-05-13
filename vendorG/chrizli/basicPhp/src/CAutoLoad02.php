@@ -16,10 +16,11 @@
 ---- 
 ----------------------------------------------------------*/
 class   CAutoLoad
-extend  CBase   {
-    protected   $aPath      = array(),
-                $sSource    = 'src',
-                $sExtension = '.php';
+extends CBase   {
+        protected   
+            array   $aPath      = array(),
+            string  $sSource    = 'src',
+            string  $sExtension = '.php';
     
     public  function    __construct(): void {
     }
@@ -31,15 +32,15 @@ extend  CBase   {
     public  function    fnFolderAdd(
             string  $_sPathFq, 
             bool    $_bPrepend=false
-        ):  string   {
-        $_sPathFq   = $this->fnPathValid($_sPathFq);
-        if ($_bPrepend) {
-            array_unshift($this->aPath, $_sPathFq);
-        }   else {
-            array_push($this->aPath, $_sPathFq);
-        }
-        $this->aPath = array_unique($this->aPath);
-        return  $_sPathFq;
+            ):  string   {
+            $_sPathFq   = $this->fnPathValid($_sPathFq);
+            if ($_bPrepend) {
+                array_unshift($this->aPath, $_sPathFq);
+            }   else {
+                array_push($this->aPath, $_sPathFq);
+            }
+            $this->aPath = array_unique($this->aPath);
+            return  $_sPathFq;
     }
     
     public  function    fnClassLoad(object $oClass): bool {
@@ -53,15 +54,15 @@ extend  CBase   {
             return  false;
     }
     
-    protected function  fnFileRequire(string $sFile):bool {
-        if (file_exists($sFile)) {
-            //echo 'try to require|'.$sFile.'|';
-            require $sFile;
-            return  true;
-        }   else {
-            //echo 'file does not exist|'.$sFile.'|';
-            return  false;
-        }
+    protected function  fnFileRequire(string $sFile): bool {
+            if (file_exists($sFile)) {
+                //echo 'try to require|'.$sFile.'|';
+                require $sFile;
+                return  true;
+            }   else {
+                //echo 'file does not exist|'.$sFile.'|';
+                return  false;
+            }
     }
     
     protected function  fnClassRootGet(): string {
@@ -89,7 +90,7 @@ extend  CBase   {
     }
     
     private function    fnDirSepAdd(string $s): string {
-        return (subStr($s, -1) != DIRECTORY_SEPARATOR)? $s.=DIRECTORY_SEPARATOR: $s;
+            return (subStr($s, -1) != DIRECTORY_SEPARATOR)? $s.=DIRECTORY_SEPARATOR: $s;
     }
     
     /*private function fnDirSepDrop(string $s):string {

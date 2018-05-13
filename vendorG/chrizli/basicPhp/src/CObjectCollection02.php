@@ -38,10 +38,10 @@ extends     CBase {
             return      array_key_exists($this->aObject, $_sId)? true: false;
     }
     
-    private function    fnClassNameGet($_oObject): string {
+    private function    fnClassNameGet(object $_oObject): string {
             return      array_popr(explode(getPathToClass($_oObject), '/'));
     }
-    public  function    fnObjectExists($_o): bool {
+    public  function    fnObjectExists(object $_o): bool {
             return      array_search($_o, $this->aObject)==false? false: true; 
     }
 

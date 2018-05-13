@@ -13,14 +13,14 @@
 ---- known Errors/missing features:
 ---- 
 ---------------------------------------*/
-class       CXltFile
-extends     CBase   {
+static      class   CXltFile
+extends             CBase   {
     private 
             $sSlash         = "/",
             $sBackSlash     = "\\",
             $sDelimiterRev  = "";
     
-    public  function    __construct(
+    public  static  function    __construct(
             object      $_oObjectAdmin, 
             object      $_oXltString     = null
             ): void {
@@ -28,7 +28,7 @@ extends     CBase   {
             require_once("CXltString");
     }
     
-    static  public  function fnInit(): void {
+    public  static  function    fnInit(): void {
             require_once( $_SERVER['DOCUMENT_ROOT']."\chrizli\basic\cXltString.php");
             if (DIRECTORY_SEPARATOR == self::$sSlash) {
                 self::$sDelimiterRev = self::$sBackSlash;
@@ -37,7 +37,7 @@ extends     CBase   {
             }
     }
     
-    static  public  function fnDelimiterGet(): string {
+    public  static  function fnDelimiterGet(): string {
             return  DIRECTORY_SEPARATOR;
     }
     

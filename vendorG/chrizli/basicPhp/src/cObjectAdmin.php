@@ -14,7 +14,7 @@ extends     CBase           {
             any         $_o, 
             string      $_sId        = "",
             bool        $_bOverwrite = false
-    ):      void {
+            ): void {
             $sId        =  "";
             if( $_sId   == "") {
                 $sId    =  $_o.sName;
@@ -35,7 +35,7 @@ extends     CBase           {
             bool        $_bGlobal   = true,
             string      $_sId       = '',
             array       $_aaArg     = array()
-    ):      any {
+            ): any {
             $o      =  '';
             if ($_o == "") {
                 $this->fnCreate($_sClass, $_bGlobal, $_aaArg);
@@ -49,7 +49,7 @@ extends     CBase           {
             string      $_sClass,
             bool        $_bGlobal   = true,
             array       $_aaArg     = array()
-    ) {
+            ): void {
             $aaArg = array();
             if( $_aaArg.length() == 0 ) {
                 array_push($aaArg, "oObjectAdmin", this);

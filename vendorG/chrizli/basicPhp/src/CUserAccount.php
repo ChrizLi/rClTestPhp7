@@ -8,11 +8,10 @@ extends     CBase {
             $aUser          = array();
         
     public  function    __construct(
-                            $_oObjectAdmin,
+            object          $_oObjectAdmin,
             string          $_sUserAccountId,
             ifUserAccount   $_oUserSource       = null
-            
-    ):      void {
+            ): void {
             $oObjectAdmin       =  $_oObjectAdmin;
             if ($_oUserSource   == null) {
                 $oUserSource    =  new CActiveDirectory;

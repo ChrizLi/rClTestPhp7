@@ -1,13 +1,14 @@
 <?php
+
 abstract class   CPageAbstract {
     protected
-        $oObjectAdmin,
-        $oRxArg;
+            object  $oObjectAdmin,
+            object  $oRxArg;
     protected
-        $aProcess           = array(),
-        $oProcessDefault;
+            $aProcess           = array(),
+            $oProcessDefault;
 
-    public  function __construct($_oObjectAdmin, $_oRxArg=null) { 
+    public  function    __construct(object $_oObjectAdmin, object $_oRxArg=null): void { 
             $this->oObjectAdmin = $_oObjectAdmin;
             if (!$_oRxArg) {
                 $this->oRxArg = $_oRxArg;
@@ -19,7 +20,7 @@ abstract class   CPageAbstract {
     
     abstract protected function fnInit();
         
-    public  function fnRun() {
+    public  function    fnRun() {
             $bRan=false;
             forEach($this->aProcess as $oProcess) {
                 if ($oProcess->fnRunable($this->oRxArg)) {
@@ -32,7 +33,7 @@ abstract class   CPageAbstract {
             }
     }
     
-    protected function fnProcessAdd($_oProcess, $_bDefault=false) {
+    protected   function fnProcessAdd($_oProcess, $_bDefault=false): void {
             if ($_bDefault) {
                 $this->oProcessDefault = $_oProcess;
             }   else {

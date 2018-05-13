@@ -58,15 +58,15 @@ extends     CBase {
             }
     }
     
-    private function    fnValidateAndGet($_sClass,  $_aArg) {
-        if ($this->oObjectCollection->fnIdExists(   $_sClass) {
-            return  $this->oObjectCollection->fnGet($_sClass);
-        }   else {
-            return  $this->fnCreateAndAdd($_sClass, $_aArg);
-        }
+    private function    fnValidateAndGet($_sClass,  $_aArg): object {
+            if ($this->oObjectCollection->fnIdExists(   $_sClass) {
+                return  $this->oObjectCollection->fnGet($_sClass);
+            }   else {
+                return  $this->fnCreateAndAdd($_sClass, $_aArg);
+            }
     }
 
-    private function    fnCreateAndAdd($_sClass, $_aArg) {
+    private function    fnCreateAndAdd($_sClass, $_aArg): object {
             $o = $this->oObjectFactory->fnCreate($_sClass, $_aArg);
             $this->oObjectCollection->fnAdd($o, $_sClass);
             return  $o;

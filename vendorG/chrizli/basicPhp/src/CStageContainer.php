@@ -1,6 +1,5 @@
 <?php
 
-
 class       CStageContainer
 extends     CBase       {
     private 

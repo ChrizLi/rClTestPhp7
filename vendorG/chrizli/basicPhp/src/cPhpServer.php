@@ -1,4 +1,6 @@
-class CPhpServer
+<?php
+class   CPhpServer
+extends CBase
 {
     $sStageCandidateDi = fnStageCandidateInit();   
 
@@ -146,3 +148,4 @@ class CPhpServer
         return $_SERVER['PHP_SELF'];
     }
 }
+?>

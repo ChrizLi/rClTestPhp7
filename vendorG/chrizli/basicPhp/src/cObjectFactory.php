@@ -13,15 +13,15 @@
 ---- known errors /missing features:
 ---- 
 ----------------------------------------------------------//
+class   CObjectFactory 
+extends CBase   {
+    private static 
+            $aClass         = array();
+            $oObjectAdmin   = null;
 
-    private static $_aaClass=array();
-    private static $_oObjectAdmin="";
-
-    function __construct(oObjectAdmin)//object
-    {
-        self::fnInit();
-        self::fnObjectAdminSet(oObjectAdmin);
-        return this;
+    static  function    __construct(object $_oObjectAdmin): void {
+            self::fnInit();
+            self::fnObjectAdminSet($_oObjectAdmin);
     }
 
     private static function fnCreate($sId, $aaArg)//object
@@ -90,10 +90,5 @@
         }
         return $bOut;
     }
-        
-    <cfFunction     name="fnErrorThrow"     output="false"  access="private"    returnType="void">
-        <cfArgument name="sType"            type="string"   required="false"    default="">
-        <cfArgument name="sMsg"             type="string"   required="false"    default="">
-        <cfThrow    type="#arguments.sType#" message="#arguments.sMsg#">
-    </cfFunction>
-</cfComponent>
+}
+?>

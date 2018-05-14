@@ -14,8 +14,9 @@
 ---- known Errors/missing features:
 ---- 
 ---------------------------------------*/
-static class    CXltString
-extends         CBase       {
+class       CXltString
+//extends         CBase       
+{
     private 
                 static $_sDel = ","; // default delimiter for all listFunctions
 
@@ -166,54 +167,12 @@ extends         CBase       {
             if     ($nOut != false)$nOut++;
             return  $nOut;
     }
-    
-    public  static  function    fnListFindNoCase(
-            string  $sList, 
-            string  $sItem,
-            string  $sDel=null
-            ):      int {   
-            //      returns Pos of $sItem if found, if not found: 0
-            $sDel   = self::fnDelGet($sDel);
-            $oAr    = self::fnListToArray($sList, $sDel); 
-            $nOut   = array_search($sItem, $oAr);
-            if     ($nOut != false)$nOut++;
-            return  $nOut;
-    }
    
     public  static  function    fnListFirstGet(string $sList, string $sDel=null): string {   
             //      returns first item in list
             $sDel   = self::fnDelGet($sDel);
-            return  = array_shift(self::fnListToArray($sList, $sDel));
+            return  array_shift(self::fnListToArray($sList, $sDel));
     }
-    
-    public  static  function    fnListIns(
-            string  $sList, 
-            string  $sItem, 
-            int     $nPos   = 0,
-            string  $sDel   = null
-            ):      string {   
-            //      insert $sItem int $sList at $nPos
-            $sDel   = self::fnDelGet($sDel);
-            if ($nPos == 1) {   
-                //  add at first pos
-                $sOut = self::fnListPrepend($sList, $sItem, $sDel);
-            }   else    {
-                if($nPos > self::fnListLen($sList, $sDel)) {   
-                    // add at last pos
-                    $sOut       = self::fnListAppend($sList, $sItem, $sDel);
-                }   else    {   
-                    // add in between
-                    $oItemAr    = array($sItem);
-                    $oAr        = self::fnListToArray($sList, $sDel);
-                    $oPre       = array_slice($oAr,  0,       $nPos-1);
-                    $oSuf       = array_slice($oAr,  $nPos-1);
-                    $oAr        = array_merge($oPre, $oItemAr, $oSuf);
-                    $sOut       = self::fnArrayToList($oAr, $sDel);
-                }
-            }
-            return  $sOut;
-    }
-    
     
     public  static  function    fnListItemEmptyDel(string $sList, string $sDel=null): string {
             //      deletes empty List entries

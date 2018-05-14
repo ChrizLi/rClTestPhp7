@@ -1,8 +1,5 @@
 <?php
-
-namespace chrizli\basicPhp;
-
-class C1 {
+class C2 {
         
     public function __construct() {}
     

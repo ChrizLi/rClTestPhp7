@@ -1,17 +1,16 @@
-<? php
+<?php
     // 20180401,    ListlChr,   init
     // class holds collection of all provided objects (no object will be created)
     // provides option to easily get list of same instances
     // provides option to return singletons
         
-class   CObjectCollection
-extends CBase   {
-        private
+class       CObjectCollection
+extends     CBase   {
+    private
             $aObject=array();
 
-    public  function    __construct() {
-            fnAdd(this);
-            return this;
+    public  function    __construct(): void {
+            $this->fnAdd(this);
     }
 
     public  function    fnAdd(object $oObject, string $sId) {
@@ -22,8 +21,7 @@ extends CBase   {
             return $bOut;
     }    
      
-    private function    fnObjectAdd(object $oObject, string $sId)
-    {
+    private function    fnObjectAdd(object $oObject, string $sId) {
             $bOut=true;
             if($sId=='') {
                 $sId=$this->fnClassNameGet($oObject)
@@ -68,11 +66,10 @@ extends CBase   {
             $sOut=getPathToClass($oObject);
             $aa=explode($sOut, '/');
             return array_popr($aa);
-    }
 
-    protected function getDir(): string {
+    protected function  fnDirGet(): string {
             $reflector = new ReflectionClass(get_class($this));
             return dirname($reflector->getFileName());
     }
-
+}
 ?>

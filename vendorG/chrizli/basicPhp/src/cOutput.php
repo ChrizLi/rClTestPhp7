@@ -15,8 +15,8 @@ extends     CBase   {
             $sHead           = "",
             $sBody           = "",
             $sUrlRedirect    = "",
-            $aaType          = "",
-            $aaNote          = "";
+            array $aType     = array(),
+            array $aNote     = array();
 
     public  function    __construct(): void {
             $this->fnTypeInit();
@@ -78,7 +78,7 @@ extends     CBase   {
     }
     
     private function    fnTypeAdd(string $sTypeId, string $sClass): void {
-            if(!self::fnTypeIdValid($sTypeId) {
+            if(!$this->fnTypeIdValid($sTypeId) {
                 var $aa = array(sTypeId->$sTypeId, sClass->$sClass);
                 array_push($aaType, $aa);
             }
@@ -100,7 +100,7 @@ extends     CBase   {
             string  $sId, 
             string  $sSeverity
             ): void {
-            if (self::fnTypeIdValid($sTypeId) {
+            if ($this->fnTypeIdValid($sTypeId) {
                 var $aa=array("sTypeId"->$sTypeId, "sDesc"->$sDesc, "sId"->$sId, "sSeverity"->$sSeverity);
                 array_push($aaNote, $aa);
             }
@@ -108,29 +108,26 @@ extends     CBase   {
         
     private function    fnNoteExists(string $sTypeId): bool {
             $bOut=false;
-            if (self::fnNoteSel($sTypeId).length>0) {
+            if ($this->fnNoteSel($sTypeId).length>0) {
                 $bOut=true;
             }
             return $bOut;
     }
     
-    private function    fnNoteSel(string $sTypeId): array {
-            if(self::fnTypeIdValid($sTypeId)) {
-                var $aa=array();
-                for(var $n=0;$n<$aaNote.length;$n++) {
-                    if($aaNote[$n]['sTypeId']==$sTypeId) {
-                        array_push($aa, $aaNote[$n]['sTypeId']);
-                    }
+    public  function    fnNoteSel($_sTypeId): array {
+        if ($this->fnTypeIdValid($_sTypeId)) {
+            $a=array();
+            for($n=0;$n<$this->aNote.length;$n++) {
+                if($this->aNote[$n]['sTypeId']==$_sTypeId) {
+                    array_push($a, $this->aNote[$n]['sTypeId']);
                 }
-            }   else    {
-                throw \new error("invalid arg");
             }
             return $aa;
     }
     
     private function    fnNoteTableHtmlGet(string $sTypeId, array $aa): string {
-            if (self::fnTypeIdValid($sTypeId) {
-                $aaa = self::fnNoteSel($sTypeId);
+            if ($this->fnTypeIdValid($sTypeId) {
+                $aaa = $this->fnNoteSel($sTypeId);
                 if($aa.length==0) {
                     $aa=();//list of all cols of aaNote
                 }
@@ -144,29 +141,27 @@ extends     CBase   {
                     }
                     $sOut .='<tr>';
                 }
-                $sOut.='</table>';
             }
-            return $sOut;
     }
-        
+    
     private function    fnBodyAllGet(): string {   
             // output for all body data (or urlRedirect)
             // priority if redirect exists (do redirect and nothing else)
             $sOut="";
-            if(self::fnUrlRedirectExists()) {
+            if($this->fnUrlRedirectExists()) {
                 sOut="<meta='' redirect='".sUrlRedirect."'";
             }   else    {
                 for(var $nType=0; $nType< $aaType.length; $nType++) {
                     for(var $nNote=0; $nNote< $aaNote.length; $nNote++) {
                         if($aaNote[$nNote]==$aaType[$nType] {
-                            $sOut.='<div class='.$aaNote[$nNote]['sClass'].'>'.self::fnNoteTableHtmlGet($aaNote[$nNote]['sTypeId']);
+                            $sOut.='<div class='.$aaNote[$nNote]['sClass'].'>'.$this->fnNoteTableHtmlGet($aaNote[$nNote]['sTypeId']);
                         }
                         $sOut.='<br>';
                     }
                 }
-                $sOut.=self::fnBodyGet();
             }
-            return $sOut;
     }
-    
+
+}
+   
 ?>

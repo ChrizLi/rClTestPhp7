@@ -1,4 +1,5 @@
 <?php
+<<<<<<< Updated upstream
 
 class       CRxArg 
 extends     CBase {
@@ -10,10 +11,11 @@ extends     CBase {
     public  function    __construct(
             array   $_aUrl    = array(), 
             array   $_aForm   = array(), 
-            array   $_aRest   = array()): void {
-            $aUrl   = $_aUrl;
-            $aForm  = $_aForm;
-            $aRest  = $_aRest;
+            array   $_aRest   = array()
+            ): void {
+            $this->aUrl     = $_aUrl;
+            $this->aForm    = $_aForm;
+            $this->aRest    = $_aRest;
     }
     
     public  function    fnUrlKeyExists(string $_sKey): bool {
@@ -61,9 +63,7 @@ extends     CBase {
                 } else {
                     return false;
                 }
-            }
-    }
-    
+    /*
     public  function    fnUrlUpd(string $_sKey, string $_sValue): void {
             $this->aUrl[$_sKey] = $_sValue;
     }
@@ -86,7 +86,17 @@ extends     CBase {
     
     public  function    fnRestDel(string $_sKey): void {
             unset($this->aRest[$_sKey]);
+    */
+            
+    /*
+    private static function fnUrlValid(string $sKey) {
+        if(array_key_exists(self::$aUrl, $sKey)) {
+            return true;
+        } else {
+            return false;
+        }
     }
+    */
 }
 
 ?>

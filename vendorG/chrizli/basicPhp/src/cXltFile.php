@@ -12,24 +12,20 @@
 ----------------------------------------
 ---- known Errors/missing features:
 ---- 
+
 ---------------------------------------*/
-static      class   CXltFile
-extends             CBase   {
-    private 
+
+namespace   chrizli\basicPhp;
+
+class       CXltFile
+extends     CBase   
+{
+    private static
             $sSlash         = "/",
             $sBackSlash     = "\\",
             $sDelimiterRev  = "";
     
-    public  static  function    __construct(
-            object      $_oObjectAdmin, 
-            object      $_oXltString     = null
-            ): void {
-            require_once("CObjectAdmin");
-            require_once("CXltString");
-    }
-    
-    public  static  function    fnInit(): void {
-            require_once( $_SERVER['DOCUMENT_ROOT']."\chrizli\basic\cXltString.php");
+    private static  function    fnDelimiterInit(): void {
             if (DIRECTORY_SEPARATOR == self::$sSlash) {
                 self::$sDelimiterRev = self::$sBackSlash;
             }   else    {
@@ -37,55 +33,55 @@ extends             CBase   {
             }
     }
     
-    public  static  function fnDelimiterGet(): string {
+    static  public  function    fnDelimiterGet(): string {
             return  DIRECTORY_SEPARATOR;
     }
     
-    static  public  function fnDelimiterRevGet(): string {
+    static  public  function    fnDelimiterRevGet(): string {
+            self::fnDelimiterInit();
             return  self::$sDelimiterRev;
     }
     
-    static  public  function fnNormalize(
-            string  $s, 
-            bool    $bSuffixAdd = false
+    static  public  function    fnNormalize(
+            string  $s,
+            bool    $bSuffixUpd = false,    // should suffix be updated?
+            bool    $bSuffixAdd = false     // if $bSuffixUpd=true then drop existing or add missing DIRECTORY_SEPARATOR ?
             ):      string {
             $sOut = str_replace(self::$sDelimiterRev, DIRECTORY_SEPARATOR, $s);
-            //      add suffix
-            if ($bSuffixAdd and (subStr($sOut, -1) != DIRECTORY_SEPARATOR)) {
-                $sOut .= DIRECTORY_SEPARATOR;
-            }
-            //      drop suffix
-            if (!$bSuffixAdd and (subStr($sOut, -1) == DIRECTORY_SEPARATOR)) {
-                $sOut = subStr($sOut, 0, strLen($sOut)-1);
+            if     ($bSuffixUpd) {
+                if ($bSuffixAdd) {
+                    if (subStr($sOut,-1)!=DIRECTORY_SEPARATOR) {
+                        $sOut .=DIRECTORY_SEPARATOR;
+                    }
+                }   else {
+                    if (subStr($sOut,-1)==DIRECTORY_SEPARATOR) {
+                        $sOut = subStr($sOut, 0, strLen($sOut)-1);
+                    }
+                }
             }
             return  $sOut;
     }
     
-    static  public  function fnFileNameFullGet(string $sFileNameFq): string {
+    static  public  function    fnFileNameFullGet(string $sFileNameFq): string {
             //      return filename of the FqPath C:\folder\filename.txt -> filename.txt
-            int     $nExtLen    = 0;
-            string  $sOut       = self::fnNormalize($sFileNameFq);
+                    $nExtLen    = 0;
+                    $sOut       = self::fnNormalize($sFileNameFq);
             //      cut path, if path only is given => (right(1)=delimiter) then output len(0)
             if     (subStr($sOut, -1) == DIRECTORY_SEPARATOR) {
                     $sOut = ""; // path without file was given, so output=""
             }       else    {
-                    $sOut = CXltString::FnListLastGet($sOut, DIRECTORY_SEPARATOR);
+                    $sOut = CXltString::fnListLastGet($sOut, DIRECTORY_SEPARATOR);
             }
             return  $sOut;
-    }
-    
-    public  function fnFilePrefixUpd(
-            string  $sFileNameFq, 
-            string  $sPrefix, 
-            string  $sSuffix
-            ):      string {
-            //      we add prefix before filename and suffix behind filename
-            return  self::fnFilePathGet($sFileNameFq) .$sPrefix .self::fnFileNameGet($sFileNameFq).$sSuffix. ".". self::fnFileExtensionGet($sFileNameFq);
     }
 
     static  public  function fnFileExtensionGet(string $sFileNameFq): string {
             //      return fileExtension, e.g. //host/share/folder/filename.ext -> ext
-            $oAr    = pathInfo(self::fnNormalize($sFileNameFq));
+            if     (striPos($sFileNameFq, '.',0)> 0) {
+                    $oAr    = pathInfo(self::fnNormalize($sFileNameFq));
+            }       else {
+                    $oAr['extension']='';
+            }
             return  $oAr['extension'];
     }
     
@@ -96,23 +92,32 @@ extends             CBase   {
     }
     
     static  public  function fnFilePathGet(string $sFileNameFq): string {
-            //      return path only, e.g. \\host\share\folder\filename.ext -> \\host\share\folder\
-            $oAr    = pathInfo(self::fnNormalize($sFileNameFq));
-            return  $oAr['dirname'].DIRECTORY_SEPARATOR;
+                    // return path only, e.g. \\host\share\folder\filename.ext -> \\host\share\folder\
+                    // fixes issue if last char is delimiter (pathInfo drops last folder then)
+                    $sFileNameFq = self::fnNormalize($sFileNameFq);
+                    $a      = pathInfo(self::fnNormalize($sFileNameFq));
+                    $sOut   = $a['dirname'];
+            if     (subStr($sFileNameFq,-1)==DIRECTORY_SEPARATOR) {
+                    $sOut .= DIRECTORY_SEPARATOR . $a['filename'];
+            }
+            return  $sOut.DIRECTORY_SEPARATOR;
     }
     
     static  public  function fnFileExtensionUpd(string $sFileNameFq, string $sNew): string {
             //      return given path while extension replace. E.g  /folder/filename.ext -> /folder/filename.new
-            return  self::fnFilePathGet($sFileNameFq).self::fnFileNameGet($sFileNameFq) .".". $sNew;
+            return  self::fnFilePathGet($sFileNameFq).
+                    self::fnFileNameGet($sFileNameFq).".". $sNew;
     }
     
     static  public  function fnFilePrefixUpd(
-            string  $sFileNameFq, 
+            string  $sFileNameFq,
             string  $sPrefix     = '', 
             string  $sSuffix     = ''
             ):      string {
             //      we add prefix before filename and suffix behind filename
-            return  self::fnFilePathGet($sFileNameFq).$sPrefix.self::fnFileNameGet($sFileNameFq).$sSuffix.".".self::fnFileExtensionGet($sFileNameFq);
+            return               self::fnFilePathGet($sFileNameFq).
+                    $sPrefix.    self::fnFileNameGet($sFileNameFq).
+                    $sSuffix.".".self::fnFileExtensionGet($sFileNameFq);
     }
     
     static  public  function fnSiteRootGet(): string {

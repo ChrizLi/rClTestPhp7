@@ -14,11 +14,13 @@
 ---- known Errors/missing features:
 ---- 
 ---------------------------------------*/
+namespace   chrizli\basicPhp;
+
 class       CXltString
-//extends         CBase       
+extends     CBase
 {
     private 
-                static $_sDel = ","; // default delimiter for all listFunctions
+            static $_sDel = ","; // default delimiter for all listFunctions
 
     //public  function    __construct(){}
     
@@ -30,15 +32,15 @@ class       CXltString
             return  substr($s,  0, $n);
     }
     
-    public  static  function    fnOccurrenceCountGet(string $sList, string $sSearch): int {   
-            //      return count of occurrence for given $sSearch in $sList, returns 0 if not existing
-            $sOut   = str_replace($sSearch, '', $sList);
-            return  strLen($sList) - strLen($sOut);
+    public  static  function    fnOccurrenceCountGet(string $sNeedle, string $sHayStack): int {
+            //      return count of occurrence for given $sNeedle in $sHayStack, returns 0 if not existing
+            $sOut   = str_replace($sNeedle, '', $sHayStack);
+            return  strLen($sHayStack) - strLen($sOut);
     }
 
     public  static  function    fnOccurrencePositionGet(
-            string  $s, 
-            string  $sSearch, 
+            string  $sNeedle,
+            string  $sHaystack,
             int     $nOccureToFind, 
             bool    $bErrorThrow    =true
             ):      int {   
@@ -46,14 +48,14 @@ class       CXltString
             $nMaxOccure = 0;
             $nPos       = 0;
             $nCurOccure = 0;
-            $nMaxOccure = self::fnOccurrenceCountGet($s, $sSearch);
+            $nMaxOccure = self::fnOccurrenceCountGet($sNeedle, $sHaystack);
             if ($nMaxOccure > 0 and $nMaxOccure >= $nOccureToFind) {
                 $nPos   = 0;
                 while($nCurOccure < $nOccureToFind) {
                     $nCurOccure++;
-                    $nPos = striPos($s, $sSearch, $nPos+1);
+                    $nPos = striPos($sHaystack, $sNeedle, $nPos);
+                    $nPos++;
                 }
-                $nPos++;
             }
             elseIf ($nMaxOccure < $nOccureToFind and $bErrorThrow) {
                     self::fnErrorThrow("ArgumentNotValidException");
@@ -210,7 +212,8 @@ class       CXltString
     public  static  function    fnListLastGet(string $sList, string $sDel=null): string {
             //      returns last item in list
             $sDel   = self::fnDelGet($sDel);
-            return  array_pop(self::fnListToArray($sList, $sDel));
+            $a      = self::fnListToArray($sList, $sDel);
+            return  array_pop($a);
     }
     
     public  static  function    fnListLen(string $sList, string $sDel=null): int {

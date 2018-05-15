@@ -1,5 +1,9 @@
 <?php
-class       CBase {   
+
+namespace   chrizli\basicPhp;
+
+class       CBase 
+{
     // baseClass for all classes
     protected function fnErrorThrow(
             string $_sType  = '', 

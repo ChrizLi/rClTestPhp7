@@ -7,7 +7,12 @@ extends     CBase       {   // single Stage item
             string      $a['sStageId'],
             string      $a['sStageBaseId'];
             
-    public  function    __construct(array $_a) {
+    public  function    __construct(array $_a, $_oStageBase=null) {
+            if ( $_oStageBase==null) {
+                $this->oStageBase   = new CStageBase();
+            } else {
+                $this->oStageBase   = $_oStageBase;
+            }
             $this->fnStageIdSet     ($_a[0]);
             $this->fnStageBaseIdSet ($_a[1]);
     }
@@ -20,11 +25,13 @@ extends     CBase       {   // single Stage item
     }
     
     public  function    fnStageBaseIdGet(): string { 
-            return    $this->a['sStageBaseId'];
+            return      $this->a['sStageBaseId'];
     }
     
     public  function    fnStageBaseIdSet($_sId): string {
-            $this->a['sStageBaseId']    = $_sId;
+            if ($this->oStageBase->fnIdValid($_sId)) {
+                $this->a['sStageBaseId']    = $_sId;
+            }
     }
     
     public  function    fnGet($_sId): array {

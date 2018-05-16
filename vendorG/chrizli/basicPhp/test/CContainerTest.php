@@ -110,7 +110,6 @@ final class CContainerTest extends TestCase
                 $oCut->fnValid('Not')
             );
     }
-    
 }
 
 ?>

@@ -5,7 +5,7 @@ namespace   chrizli\basicPhp;
 class       CContainer
 extends     CBase
 {
-    private 
+    protected
             $aItem      = array(),
             $bTypeAssoc;
 

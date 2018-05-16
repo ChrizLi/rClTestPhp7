@@ -1,21 +1,59 @@
 <?php
-<<<<<<< Updated upstream
+
+namespace   chrizli\basicPhp;
 
 class       CRxArg 
-extends     CBase {
+extends     CBase
+{
     private
-            array   $aUrl,
-            array   $aForm,
-            array   $aRest;
+            $aUrl   = array(),
+            $aForm  = array(),
+            $aRest  = array();
         
     public  function    __construct(
-            array   $_aUrl    = array(), 
-            array   $_aForm   = array(), 
-            array   $_aRest   = array()
-            ): void {
+            array $_aUrl    = null, 
+            array $_aForm   = null, 
+            array $_aRest   = null
+            ) {
             $this->aUrl     = $_aUrl;
             $this->aForm    = $_aForm;
             $this->aRest    = $_aRest;
+    }
+    
+    public  function    fnUrlSet($_o, string $_sId=null): void {
+            if (is_array($_o)) {
+                $this->aUrl = $_o;
+            }   else {
+                if($_sId!=null && is_string($_sId)) {
+                    $this->aUrl[$_sId] = $_o;
+                }   else {
+                    $this->fnErrorThrow('ArgNotValid');
+                }
+            }
+    }
+    
+    public  function    fnFormSet($_o, string $_sId=null): void {
+            if (is_array($_o)) {
+                $this->aForm = $_o;
+            }   else {
+                if($_sId!=null && is_string($_sId)) {
+                    $this->aForm[$_sId] = $_o;
+                }   else {
+                    $this->fnErrorThrow('ArgNotValid');
+                }
+            }
+    }
+    
+    public  function    fnRestSet($_o, string $_sId=null): void {
+            if (is_array($_o)) {
+                $this->aRest = $_o;
+            }   else {
+                if($_sId!=null && is_string($_sId)) {
+                    $this->aRest[$_sId] = $_o;
+                }   else {
+                    $this->fnErrorThrow('ArgNotValid');
+                }
+            }
     }
     
     public  function    fnUrlKeyExists(string $_sKey): bool {
@@ -30,50 +68,28 @@ extends     CBase {
             return array_key_exists($_sKey, $this->aRest)? true: false;
     }
     
-    public  function    fnUrlGet(string $_sKey='', bool $_bErrorThrow=true) {
-            if ($this-fnUrlKeyExists($_sKey)) {
+    public  function    fnUrlGet(string $_sKey='') {
+            if ($this->fnUrlKeyExists($_sKey)) {
                 return $this->aUrl[$_sKey];
             }   else {
-                if($_bErrorThrow) {
-                    $this->fnErrorThrow("ArrayKeyNoExists","");
-                } else {
-                    return false;
-                }
+                return $this->aUrl;
             }
     }
     
-    public  function    fnFormGet(string $_sKey='', bool $_bErrorThrow=true): bool {
-            if ($this-fnFormKeyExists($_sKey)) {
+    public  function    fnFormGet(string $_sKey='') {
+            if ($this->fnFormKeyExists($_sKey)) {
                 return $this->aForm[$_sKey];
             }   else {
-                if($_bErrorThrow) {
-                    $this->fnErrorThrow("ArrayKeyNoExists","");
-                } else {
-                    return false;
-                }
+                return  $this->aForm;
             }
     }
     
-    public  function    fnRestGet(string $_sKey='', bool $_bErrorThrow=true): bool {
-            if ($this-fnRestKeyExists($_sKey)) {
+    public  function    fnRestGet(string $_sKey='') {
+            if ($this->fnRestKeyExists($_sKey)) {
                 return $this->aRest[$_sKey];
             }   else {
-                if($_bErrorThrow) {
-                    $this->fnErrorThrow("ArrayKeyNoExists","");
-                } else {
-                    return false;
-                }
-    /*
-    public  function    fnUrlUpd(string $_sKey, string $_sValue): void {
-            $this->aUrl[$_sKey] = $_sValue;
-    }
-    
-    public  function    fnFormUpd(string $_sKey, string $_sValue): void {
-            $this->aForm[$_sKey] = $_sValue;
-    }
-    
-    public  function    fnRestUpd(string $_sKey, string $_sValue): void {
-            $this->aRest[$_sKey] = $_sValue;
+                return  $this->aRest;
+            }
     }
     
     public  function    fnUrlDel(string $_sKey): void {
@@ -86,17 +102,7 @@ extends     CBase {
     
     public  function    fnRestDel(string $_sKey): void {
             unset($this->aRest[$_sKey]);
-    */
-            
-    /*
-    private static function fnUrlValid(string $sKey) {
-        if(array_key_exists(self::$aUrl, $sKey)) {
-            return true;
-        } else {
-            return false;
-        }
     }
-    */
 }
 
 ?>

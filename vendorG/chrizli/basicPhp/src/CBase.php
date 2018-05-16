@@ -16,10 +16,10 @@ class       CBase
                     $sTypeOut='ArgumentNotValidException';
                     break;
                 default:
-                    $sTypeOut='UndefinedException';
+                    $sTypeOut='MyUndefinedException';
                     break;
             }   
-            throw new\Exception($sTypeOut, $_sMsg);  
+            throw new\Exception($sTypeOut);
     }
 }
 ?>

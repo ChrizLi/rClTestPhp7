@@ -1,52 +1,54 @@
 <?php
 
+namespace   chrizli\basicPhp;
+
 class       CUserAccount 
-extends     CBase {
+extends     CBase 
+{
     private
-            $oObjectAdmin,
-            $oUserSource,
-            $aUser          = array();
+            $aUser          = array(),
+            $sDelimiter     = '\\';
         
-    public  function    __construct(
-            object          $_oObjectAdmin,
-            string          $_sUserAccountId,
-            ifUserAccount   $_oUserSource       = null
-            ): void {
-            $oObjectAdmin       =  $_oObjectAdmin;
-            if ($_oUserSource   == null) {
-                $oUserSource    =  new CActiveDirectory;
-            }   else {
-                $oUserSource    =  $_oUserSource;
-            }
-            if ($this->$oUserSource->fnUserAccountExists($_sId)) {
-                $this->aUser    =  $this->oUserSource->fnUserAccountGet($_sId);
-            }
+    public  function    __construct() {
             $this->fnInit();
     }
     
     private function    fnInit(): void {
-        
+            $a= array('sDomain'=>getenv('USERDOMAIN'), 'sUserName'=>getenv('USERNAME'), 'sNameLast'=>'Listl', 'sNameFirst'=>'Christian', 'sEmail'=>'ListlC@brother.de');
+            $this->aUser=$a;
     }
     
-    public  function    fnUserAccountIdGet(): string {
-            return      $this->a['sAccountId'];
+    public  function    fnAccountIdGet():           string {    // EU\listlchr
+            return      $this->aUser['sDomain'].$this->sDelimiter.$this->aUser['sUserName'];
     }
     
-    public  function    fnNameGet(): string {
-            return      $this->a['sNameFirst'].' '.$this->a['sNameLast'];
+    public  function    fnAccountNameGet():         string {    // listlchr
+            return      $this->aUser['sUserName'];
     }
     
-    public  function    fnNameSortGet(): string {
-            return      $this->a['sNameLast'].', '.$this->a['sNameFirst'];
+    public  function    fnAccountDomainGet():       string {    // EU
+            return      $this->aUser['sDomain'];
     }
     
-    public  function    fnNameFirstGet(): string {
-            return      $this->a['sNameFirst'];
+    public  function    fnNameGet():                string {    // Christian Listl
+            return      $this->aUser['sNameFirst'].' '.$this->aUser['sNameLast'];
     }
     
-    public  function    fnNameLastGet(): string {
-            return      $this->a['sNameLast'];
+    public  function    fnNameSortGet():            string {    // Listl, Christian
+            return      $this->aUser['sNameLast'].', '.$this->aUser['sNameFirst'];
     }
+    
+    public  function    fnNameFirstGet():           string {    // Christian
+            return      $this->aUser['sNameFirst'];
+    }
+    
+    public  function    fnNameLastGet():            string {    // Listl
+            return      $this->aUser['sNameLast'];
+    }
+    
+    public  function    fnEmailGet():               string {    // listlc@brother.de
+            return      $this->aUser['sEmail'];
+    }
+    
 }
-
 ?>

@@ -26,20 +26,32 @@ extends     CBase
             $this->aEnum = $_a;
     }
     
-    public  function    fnSet($_x) {
+    public  function    fnSet($_x): void {
             if (array_search($_x, $aEnum)===false) {
                 $this->fnErrorThrow('ArgIsNotValid');
             }   else {
-                $this->sEnum=$_x;
+                $this->xEnum=$_x;
             }
     }
     
     public  function    fnGet() {
-            return $this->sEnum;
+            return $this->xEnum;
     }
     
-    public  function    fnValid($_x) {
-            return (array_search($_x, $aEnum)===false)? false: true;
+    public  function    fnValid($_x, $_bErrorThrow==true): bool {
+            if (array_search($_x, $this->aEnum)===false) {
+                if  ($_bErrorThrow) {
+                    $this->fnErrorThrow('ArgIsNotValid');
+                }   else {
+                    return false;
+                }
+            }   else {
+                return true;
+            }
+    }
+    
+    public  function    fnEnumGet(): array {
+            return  $this->aEnum
     }
 }
 

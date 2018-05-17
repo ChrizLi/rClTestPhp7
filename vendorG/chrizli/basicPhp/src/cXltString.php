@@ -14,10 +14,13 @@
 ---- known Errors/missing features:
 ---- 
 ---------------------------------------*/
-static class    CXltString
-extends         CBase       {
+namespace   chrizli\basicPhp;
+
+class       CXltString
+extends     CBase
+{
     private 
-                static $_sDel = ","; // default delimiter for all listFunctions
+            static $_sDel = ","; // default delimiter for all listFunctions
 
     //public  function    __construct(){}
     
@@ -29,15 +32,15 @@ extends         CBase       {
             return  substr($s,  0, $n);
     }
     
-    public  static  function    fnOccurrenceCountGet(string $sList, string $sSearch): int {   
-            //      return count of occurrence for given $sSearch in $sList, returns 0 if not existing
-            $sOut   = str_replace($sSearch, '', $sList);
-            return  strLen($sList) - strLen($sOut);
+    public  static  function    fnOccurrenceCountGet(string $sNeedle, string $sHayStack): int {
+            //      return count of occurrence for given $sNeedle in $sHayStack, returns 0 if not existing
+            $sOut   = str_replace($sNeedle, '', $sHayStack);
+            return  strLen($sHayStack) - strLen($sOut);
     }
 
     public  static  function    fnOccurrencePositionGet(
-            string  $s, 
-            string  $sSearch, 
+            string  $sNeedle,
+            string  $sHaystack,
             int     $nOccureToFind, 
             bool    $bErrorThrow    =true
             ):      int {   
@@ -45,14 +48,14 @@ extends         CBase       {
             $nMaxOccure = 0;
             $nPos       = 0;
             $nCurOccure = 0;
-            $nMaxOccure = self::fnOccurrenceCountGet($s, $sSearch);
+            $nMaxOccure = self::fnOccurrenceCountGet($sNeedle, $sHaystack);
             if ($nMaxOccure > 0 and $nMaxOccure >= $nOccureToFind) {
                 $nPos   = 0;
                 while($nCurOccure < $nOccureToFind) {
                     $nCurOccure++;
-                    $nPos = striPos($s, $sSearch, $nPos+1);
+                    $nPos = striPos($sHaystack, $sNeedle, $nPos);
+                    $nPos++;
                 }
-                $nPos++;
             }
             elseIf ($nMaxOccure < $nOccureToFind and $bErrorThrow) {
                     self::fnErrorThrow("ArgumentNotValidException");
@@ -166,54 +169,12 @@ extends         CBase       {
             if     ($nOut != false)$nOut++;
             return  $nOut;
     }
-    
-    public  static  function    fnListFindNoCase(
-            string  $sList, 
-            string  $sItem,
-            string  $sDel=null
-            ):      int {   
-            //      returns Pos of $sItem if found, if not found: 0
-            $sDel   = self::fnDelGet($sDel);
-            $oAr    = self::fnListToArray($sList, $sDel); 
-            $nOut   = array_search($sItem, $oAr);
-            if     ($nOut != false)$nOut++;
-            return  $nOut;
-    }
    
     public  static  function    fnListFirstGet(string $sList, string $sDel=null): string {   
             //      returns first item in list
             $sDel   = self::fnDelGet($sDel);
-            return  = array_shift(self::fnListToArray($sList, $sDel));
+            return  array_shift(self::fnListToArray($sList, $sDel));
     }
-    
-    public  static  function    fnListIns(
-            string  $sList, 
-            string  $sItem, 
-            int     $nPos   = 0,
-            string  $sDel   = null
-            ):      string {   
-            //      insert $sItem int $sList at $nPos
-            $sDel   = self::fnDelGet($sDel);
-            if ($nPos == 1) {   
-                //  add at first pos
-                $sOut = self::fnListPrepend($sList, $sItem, $sDel);
-            }   else    {
-                if($nPos > self::fnListLen($sList, $sDel)) {   
-                    // add at last pos
-                    $sOut       = self::fnListAppend($sList, $sItem, $sDel);
-                }   else    {   
-                    // add in between
-                    $oItemAr    = array($sItem);
-                    $oAr        = self::fnListToArray($sList, $sDel);
-                    $oPre       = array_slice($oAr,  0,       $nPos-1);
-                    $oSuf       = array_slice($oAr,  $nPos-1);
-                    $oAr        = array_merge($oPre, $oItemAr, $oSuf);
-                    $sOut       = self::fnArrayToList($oAr, $sDel);
-                }
-            }
-            return  $sOut;
-    }
-    
     
     public  static  function    fnListItemEmptyDel(string $sList, string $sDel=null): string {
             //      deletes empty List entries
@@ -251,7 +212,8 @@ extends         CBase       {
     public  static  function    fnListLastGet(string $sList, string $sDel=null): string {
             //      returns last item in list
             $sDel   = self::fnDelGet($sDel);
-            return  array_pop(self::fnListToArray($sList, $sDel));
+            $a      = self::fnListToArray($sList, $sDel);
+            return  array_pop($a);
     }
     
     public  static  function    fnListLen(string $sList, string $sDel=null): int {

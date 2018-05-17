@@ -1,34 +1,95 @@
-<html>
-<head>
-</head>
-<body>
-<?
-    require_once("/php/class/cXltString.php");
-    oXltString = new CXltString();
-?>
-</body>
-<?
-    oXltString=>FnRight("abcdefg", 2);//fg
-    oXltString=>FnRight("abcdefg",-2);//cdefg
-    oXltString=>FnLeft ("abcdefg", 2);//ab
-    oXltString=>FnLeft ("abcdefg",-2);//abcde
+<?php
+declare(strict_types=1);
+require_once('_cfg.php');
+require_once (__ROOT__.'/vendor/autoload.php');
+require_once (__ROOT__.'/vendorG/chrizLi/basicPhp/src/CBase.php');
+require_once (__ROOT__.'/vendorG/chrizLi/basicPhp/src/CXltString.php');
+
+use PHPUnit\Framework\TestCase;
+use chrizli\basicPhp as cPhp;
+
+final class CXltStringTest extends TestCase
+{
+    public  function    testFnRight(): void {
+        $this->assertEquals(
+            'bc',
+            cPhp\CXltString::fnRight('abc',2)
+        );
+    }
     
-    oXltString=>FnOccurrenceCountGet("a,b,cd",",");//2
-    oXltString=>FnOccurrencePositionGet("a,b,cd",",",2);//4
+    public  function    testFnLeft(): void {
+        $this->assertEquals(
+            'ab',
+            cPhp\CXltString::fnLeft('abc',2)
+        );
+    }
     
-    oXltString=>FnListAppend    ("a,b,c","d",",");//a,b,c,d
-    oXltString=>FnListPrepend   ("b,c,d","a",",");//a,b,c,d
-    oXltString=>FnListLen       ("a,b,c,d",",");//4
-    oXltString=>FnListGetAt     ("a,b,c,d",2,",");//b
-    oXltString=>FnListDeleteAt  ("a,b,c",2,",");//a,c
-    oXltString=>FnListFindNoCase("a,b,c","b",",");//2
-    oXltString=>FnListRest      ("a,b,c",",");//b,c
-    oXltString=>FnListRestRight ("a,b,c",",");//a,b
-    oXltString=>FnListReverse   ("a,b,c",",");//c,b,a
-    oXltString=>FnListTrim      (",a,b,c,",",");//a,b,c
-    oXltString=>FnListToArray   ("a,b,c",",");//[2]
-    oXltString=>FnListRemoveDuplicates("a,b,b,c",",");//a,b,c
-    $sAr=[1=>"a",2=>"b",3=>"c"];
-    oXltString=>FnArrayToList($sAr,",");//a,b,c
-?>
-</html>
+    public  function    testFnOccurrenceCountGet(): void {
+        $this->assertEquals(
+            2,
+            cPhp\CXltString::fnOccurrenceCountGet('b', 'abcacb')
+        );
+        
+        $this->assertEquals(
+            0,
+            cPhp\CXltString::fnOccurrenceCountGet('d', 'abcacb')
+        );
+        
+        $this->assertEquals(
+            1,
+            cPhp\CXltString::fnOccurrenceCountGet('d', 'dabcacb')
+        );
+        
+        $this->assertEquals(
+            1,
+            cPhp\CXltString::fnOccurrenceCountGet('d', 'abcacbd')
+        );
+    }
+    
+    public  function    testFnOccurrencePositionGet(): void {
+        $sHay = 'abcabca';
+        $this->assertEquals(
+            1,
+            cPhp\CXltString::fnOccurrencePositionGet('a', $sHay, 1)
+        );
+        $this->assertEquals(
+            4,
+            cPhp\CXltString::fnOccurrencePositionGet('a', $sHay, 2)
+        );
+        $this->assertEquals(
+            7,
+            cPhp\CXltString::fnOccurrencePositionGet('a', $sHay, 3)
+        );
+    }
+    
+    public  function    testFnArrayToList(): void {
+        $a = array('a','b','c');
+        $this->assertEquals(
+            'a,b,c',
+            cPhp\CXltString::fnArrayToList($a)
+        );
+    }
+    
+    public  function    testFnListLastGet(): void {
+        $s = 'a,b,c';
+        $this->assertEquals(
+            'c',
+            cPhp\CXltString::fnListLastGet($s)
+        );
+    }
+    
+    /*
+    public function testCanBeCreatedFromValidEmailAddress(): void {
+        $this->assertInstanceOf(
+            Email::class,
+            Email::fromString('user@example.com')
+        );
+    }
+
+    public function testCannotBeCreatedFromInvalidEmailAddress(): void {
+        $this->expectException(InvalidArgumentException::class);
+
+        Email::fromString('invalid');
+    }
+    */
+}

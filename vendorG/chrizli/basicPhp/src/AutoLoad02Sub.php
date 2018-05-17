@@ -16,11 +16,14 @@
                 $sPathCur           = pathInfo(__FILE__)['dirname'].DIRECTORY_SEPARATOR;
                 require               $sPathCur.$sAutoLoadFileName.'.php';
                 $o                  = new CAutoLoad();
-                array_push($_aFolder, '\vendorG\chrizli\basicPhp');
+                array_push($_aFolder, '\vendorG\chrizli\basicPhp\src');
+                array_push($_aFolder, '\vendor\phpunit\phpunit\src');
+                array_push($_aFolder, '\vendor\phpunit\phpunit\src\Framework');
+                array_push($_aFolder, '\vendor\phpunit\phpunit\src\Runner');
+                array_push($_aFolder, '\vendor\phpunit\phpunit\src\TextUi');
+                array_push($_aFolder, '\vendor\phpunit\phpunit\src\Util');
                 $_aFolder           = array_unique($_aFolder);
-                forEach($_aFolder as $sFolder){
-                    $o->fnFolderAdd($sFolder);
-                }
+                $o->fnFolderAdd($_aFolder);
                 $o->fnRegister();
                 return  $o;
     }

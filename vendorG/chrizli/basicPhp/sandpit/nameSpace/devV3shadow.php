@@ -26,14 +26,14 @@
     use chrizli\test as z;
     
     fnAutoLoadInit();
-    function fnAutoLoadInit()
-    {
+    function fnAutoLoadInit() {
         define('__ROOT__', $_SERVER['DOCUMENT_ROOT']);
-        set_include_path(get_include_path() . PATH_SEPARATOR . __ROOT__ . '/chrizli/test/');
+        //set_include_path(get_include_path() . PATH_SEPARATOR . __ROOT__ . '/chrizli/test/');
+        //set_include_path(get_include_path() . PATH_SEPARATOR . __ROOT__ . '/vendorG/chrizli/basicPhp/sandpit/nameSpace');
+        //set_include_path(get_include_path() . PATH_SEPARATOR . __ROOT__ . '/vendorG/chrizli/basicPhp/sandpit/nameSpace');
     }
     
-    function fnAutoLoad(string $sClassName):string
-    {
+    function fnAutoLoad(string $sClassName):string {
         $sExt       = '.php';
         $sPathFq    = $sClassName . $sExt;
         require_once($sPathFq);
@@ -42,9 +42,10 @@
     fnAutoLoad('cclass1ns');
     fnAutoLoad('cclass2ns');
     
-    echo get_include_path().'<br>';
+    //echo get_include_path().'<br>';
     
-    $oC1= new z\cclass1ns();
+    //$oC1= new z\cclass1ns();
+    $oC1= new chrizli\test\cclass1ns();
     $oC2= new z\cclass2ns();
     
     echo $oC1->fnOut().'<br>';

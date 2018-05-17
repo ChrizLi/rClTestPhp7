@@ -1,5 +1,9 @@
 <?php
-class       CBase {   
+
+namespace   chrizli\basicPhp;
+
+class       CBase 
+{
     // baseClass for all classes
     protected function fnErrorThrow(
             string $_sType  = '', 
@@ -12,10 +16,10 @@ class       CBase {
                     $sTypeOut='ArgumentNotValidException';
                     break;
                 default:
-                    $sTypeOut='UndefinedException';
+                    $sTypeOut='MyUndefinedException';
                     break;
             }   
-            throw new\Exception($sTypeOut, $_sMsg);  
+            throw new\Exception($sTypeOut);
     }
 }
 ?>

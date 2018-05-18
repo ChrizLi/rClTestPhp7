@@ -1,6 +1,5 @@
 <?php
 
-//namespace ChrizLi/basic;
 /*--------------------------------------
 ---- 20180225V1.0.0, ListlChr, init
 ---- 
@@ -12,7 +11,6 @@
 ----------------------------------------
 ---- known Errors/missing features:
 ---- 
-
 ---------------------------------------*/
 
 namespace   chrizli\basicPhp;

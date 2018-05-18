@@ -10,65 +10,52 @@ use chrizli\basicPhp as cPhp;
 
 final class CRecordSetTest extends TestCase
 {
-    
-    public  function    testFnSetGet(): void {
-        $aKey   = array('s1', 's2');
-        $oCut   = new cPhp\CRecordSet($aKey);
-        $aValue = array('s1'=>'v1', 's2'=>'v2');
-        $oCut->fnSet($aValue);
-        $this->assertEquals(
-            'v1',
-            $oCut->fnGet('s1'),
-            'default'
-        );
-        $this->assertEquals(
-            $aValue,
-            $oCut->fnGet(),
-            'full'
-        );
-        $this->expectException(exception::class);
-        $this->assertEquals(
-            'not',
-            $oCut->fnGet('not'),
-            'not'
-        );
+    public  function testFnSetGet(): void {
+            $aCol   = array('sPhpServerId','sName','nPort');
+            $oCut   = new cPhp\CRecordSet($aCol);
+            $aExp   = array('sPhpServerId'=>'php1', 'sName'=>'Name1', 'nPort'=>'8721');
+            $oCut->fnSet($aExp);
+            $this->assertEquals(
+                $aExp,
+                $oCut->fnGet(),
+                'full'
+            );
+            $this->assertEquals(
+                'php1',
+                $oCut->fnGet('sPhpServerId'),
+                'phpServer'
+            );
+            $this->assertEquals(
+                'Name1',
+                $oCut->fnGet('sName'),
+                'name'
+            );
+            $this->assertEquals(
+                '8721',
+                $oCut->fnGet('nPort'),
+                'port'
+            );
+            $aExp   = array('sPhpServerId'=>'php2', 'sName'=>'Name2', 'nPort'=>'8722');
+            $oCut->fnSet($aExp);
+            $this->assertEquals(
+                $aExp,
+                $oCut->fnGet(),
+                'full2'
+            );
     }
     
-    public  function    testFnSetExists(): void {
-        $aKey   = array('s1', 's2');
-        $oCut   = new cPhp\CRecordSet($aKey);
-        $aValue = array('s1'=>'v1', 's2'=>'v2');
-        $oCut->fnSet($aValue);
-        $this->assertEquals(
-            true,
-            $oCut->fnKeyExists('s1'),
-            'keyTrue'
-        );
-        $this->assertEquals(
-            false,
-            $oCut->fnKeyExists('not'),
-            'keyFalse'
-        );
-        $this->assertEquals(
-            true,
-            $oCut->fnValueExists(array('s1'=>'v1')),
-            'valueTrue'
-        );
-        $this->assertEquals(
-            false,
-            $oCut->fnValueExists(array('s1'=>'v3')),
-            'valueFalse'
-        );
-        $this->expectException(exception::class);
-        $this->assertEquals(
-            false,
-            $oCut->fnValueExists(array('not'=>'v1')),
-            'keyFalse2'
-        );
+    public  function    testFnSetTooMany(): void {
+            $aCol   = array('sPhpServerId','sName');
+            $oCut   = new cPhp\CRecordSet($aCol);
+            $aExp   = array('sPhpServerId'=>'php1', 'sName'=>'Name1', 'nPort'=>'8721');
+            $oCut->fnSet($aExp);
+            $this->assertEquals(
+                array('sPhpServerId'=>'php1', 'sName'=>'Name1'),
+                $oCut->fnGet(),
+                'full'
+            );
     }
+    
 }
+
 ?>
-
-
-    
-    

@@ -10,12 +10,12 @@ class       CCampaignType
             $aa->sId    = "",
             $aa->sName  = "";
             
-    public  static  fnSet($_sId, $_sName) {
+    public  function    fnSet($_sId, $_sName): void {
             $aa->sId    = $_sId;
             $aa->sName  = $_sName;
     }
     
-    public  static  fnGet() {
+    public  function    fnGet(): array {
             return $aa;
     }
 }

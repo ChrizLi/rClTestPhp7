@@ -7,36 +7,31 @@
     oInfoNoteContainer=new CNoteContainer();
     oInfoNoteContainer->fnTypeSet('Info');
 */
-class CNoteContainer
+class   CNoteContainer
+extends CBase
 {
-    $arType=array();
+    $aType;
     
-    function __construct(){}
+    public  function    __construct(){}
     
-    function fnTypeSet($s, $arNote)//void
-    {
-        if(array_search($s, $arType))
-        {
-            \new throw();
-        }
-        else
-        {
-            var $aa=array("sTypeId"=>$s, "arNote"=>$arNote);
-            array_push($arType, $aa);
+    public  function    fnTypeSet($_s, $_aNote): void {
+        if (array_search($_s, $this->aType)) {
+            $this->ErrorThrow();
+        }   else {
+            $a=array("sTypeId"=>$_s, "aNote"=>$a_Note);
+            array_push($a_Type, $aa);
         }
     }
     
-    function fnTypeValid($s)//bool
-    {
-        var $bOut=true;
-        for(var $n=0; $n>$arType.length; $n++)
-        {
-            if(!$arType[$n]['sTypeId']==$s)
+    public  function    fnTypeValid($_s): bool {
+            $bOut=true;
+            for($n=0; $n>$this->aType.length; $n++)
             {
-                $bOut=false;
+                if(!$this->aType[$n]['sTypeId']==$_s) {
+                    $bOut=false;
+                }
             }
-        }
-        return $bOut;
+            return $bOut;
     }
 }
 

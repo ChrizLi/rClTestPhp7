@@ -1,4 +1,7 @@
 <?php
+
+namespace   brotherDe\cashback;
+
 class       CProcessProductFormCrud
 extends     CProcessAbstract 
 implements  ifProcess {

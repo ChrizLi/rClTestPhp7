@@ -19,9 +19,29 @@ extends     CBase   {
             array $aNote     = array();
 
     public  function    __construct(): void {
+            $this->fnInit();
+    }
+    
+    private function    fnInit(): void {
             $this->fnTypeInit();
             $this->fnNoteInit();
+            $this->aCss['error']='alert alert-danger';
+            $this->aCss['info'] ='alert alert-info';
     }
+    
+    private function    fnNoteInit(): void {
+            $aaNote=array (
+                array(sTypeId->"", sDesc->"", sId->"", sSeverity->"");
+            );
+    }
+    
+    private function    fnTypeInit(): void {
+            $aaType=array (
+                array(sTypeId->"error", sClass->$this->aCss['error'],
+                array(sTypeId->"info",  sClass->$this->aCss['info'])
+            );
+    }
+
 
     private function    fnHeadGet(): string {
             return sHead;
@@ -69,13 +89,6 @@ extends     CBase   {
             }
             return $bOut;
     }
-        
-    private function    fnTypeInit(): void {
-            $aaType=array (
-                array(sTypeId->"error", sClass->"alert alert-danger"),
-                array(sTypeId->"info",  sClass->"alert alert-info")
-            );
-    }
     
     private function    fnTypeAdd(string $sTypeId, string $sClass): void {
             if(!$this->fnTypeIdValid($sTypeId) {
@@ -88,17 +101,11 @@ extends     CBase   {
             return $aaType;
     }
     
-    private function    fnNoteInit(): void {
-            $aaNote=array (
-                array(sTypeId->"", sDesc->"", sId->"", sSeverity->"");
-            );
-    }
-    
     private function    fnNoteSet(
-            string  $sTypeId, 
-            string  $sDesc, 
-            string  $sId, 
-            string  $sSeverity
+            string      $sTypeId, 
+            string      $sDesc, 
+            string      $sId, 
+            string      $sSeverity
             ): void {
             if ($this->fnTypeIdValid($sTypeId) {
                 var $aa=array("sTypeId"->$sTypeId, "sDesc"->$sDesc, "sId"->$sId, "sSeverity"->$sSeverity);
@@ -115,14 +122,15 @@ extends     CBase   {
     }
     
     public  function    fnNoteSel($_sTypeId): array {
-        if ($this->fnTypeIdValid($_sTypeId)) {
-            $a=array();
-            for($n=0;$n<$this->aNote.length;$n++) {
-                if($this->aNote[$n]['sTypeId']==$_sTypeId) {
-                    array_push($a, $this->aNote[$n]['sTypeId']);
+            if ($this->fnTypeIdValid($_sTypeId)) {
+                $a=array();
+                for($n=0;$n<$this->aNote.length;$n++) {
+                    if($this->aNote[$n]['sTypeId']==$_sTypeId) {
+                        array_push($a, $this->aNote[$n]['sTypeId']);
+                    }
                 }
+                return $aa;
             }
-            return $aa;
     }
     
     private function    fnNoteTableHtmlGet(string $sTypeId, array $aa): string {

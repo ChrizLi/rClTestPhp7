@@ -6,27 +6,27 @@ class       CCampaignTypeHandler
 extends     CBase
 {
 
-    public static __construct(
-        $_oObjectAdmin,
-        $_oOutput,
-        $_oCampaignTypeModel
-    ) {}
+    public  function    __construct(
+            $_oObjectAdmin,
+            $_oOutput,
+            $_oCampaignTypeModel
+            )   {}
     
-    private static fnInit() {}
+    private function    fnInit(): void {}
     
-    private static fnDropDownPrep($_sIdCurrent) {
-        var $s      = "";
-        var $sCur   = "";
-        var $aa = $_oCampaignTypeModel->fnSel();
-        for(let $n=0; $n<$aa.length; $n++) {
-            if($aa[$n]==$_sIdCurrent){
-                $sCur = "active";
-            } else {
-                $sCur = "";
+    private function    fnDropDownPrep(string $_sIdCurrent): string {
+            $s      = "";
+            $sCur   = "";
+            $aa     = $_oCampaignTypeModel->fnSel();
+            for($n=0; $n<$count(aa); $n++) {
+                if($aa[$n]==$_sIdCurrent){
+                    $sCur = "active";
+                } else {
+                    $sCur = "";
+                }
+                $s .= "<option ".$sCur.">".$aa[$n]."</option>";
             }
-            $s .= "<option ".$sCur.">".$aa[$n]."</option>";
-        }
-        return $s;
+            return $s;
     }
 }
 

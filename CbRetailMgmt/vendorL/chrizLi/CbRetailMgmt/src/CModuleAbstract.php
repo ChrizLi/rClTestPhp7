@@ -20,7 +20,7 @@ extends     CBase
     
     private function    fnInit(): void {};
         
-    public  function    fnRun($_oRxArg): {};
+    public  function    fnRun($_oRxArg): void {};
 
 }
 

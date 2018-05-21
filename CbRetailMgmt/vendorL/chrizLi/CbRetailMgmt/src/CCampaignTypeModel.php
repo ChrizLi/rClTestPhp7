@@ -6,29 +6,29 @@ class       CCampaignTypeModel
 extends     CBase
 {
     protected
-            $aaType = array();
+            $aType = array();
 
     public  function    __construct() {
             $this->fnInit();
     }
     
-    private function    fnInit() {
+    private function    fnInit(): void {
     }
     
-    public  function    fnSel() {
+    public  function    fnSel(): array {
             // fetch from persistent storage
-            return $aaType;
+            return $this->aType;
     }
     
-    public  function    fnValid($_sId) {
-            if(array_key_exists($aaType, $_sId) {
+    public  function    fnValid($_sId): bool {
+            if (array_key_exists($this->aType, $_sId) {
                 return true;
-            } else {
+            }   else {
                 return false;
             }
     }
     
-    public  function    fnIns(CCampaignType oCampaignType) {
+    public  function    fnIns(oCampaignType): void {
             // save to persistent storage
     }
 }

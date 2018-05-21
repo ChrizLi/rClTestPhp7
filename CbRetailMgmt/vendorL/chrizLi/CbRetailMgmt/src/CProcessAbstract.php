@@ -8,22 +8,23 @@ extends     CModuleAbstract
 implements  ifProcess 
 {
     private
-            $aModule,
+            $oModule,
+            $oOutput,
             $oModuleDefault;
     
-    public  function    __construct($_oRxArg=null) {
+    public  function    __construct($_oOutput, $_oRxArg=null) {
+            $this->oOutput=$_oOutput;
             parent::__construct($_oRxArg);
     }
     
     private function    fnInit(): void {};
     
-    public  function    fnRunable($_oRxArg): bool {};
+    public  function    fnRunable(): bool {
+            return true;
+    }
     
-    public  function    fnRun($_oRxArg): void {
-            //private
-                //$oModule    = null,
-                $bRan       = false;
-            
+    public  function    fnRun(): void {
+            $bRan       = false;
             forEach($oModule as $this->aModule) {
                 if ($oModule->$this->fnRunable($_oRxArg)) {
                     $oModule->fnRun($_oRxArg);

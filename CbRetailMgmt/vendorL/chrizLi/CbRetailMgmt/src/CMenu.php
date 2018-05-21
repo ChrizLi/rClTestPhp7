@@ -17,12 +17,11 @@ extends     CBase
     private function    fnInit(): void {}
     
     private function    fnNavBar(): string {
-            $oPage.fnX();
-            return s;
+            return $oPage.fnX();
     }
     
     public  function    fnGet(): string {
-            return $sNavBar;
+            return $this->sNavBar;
     }
     
     public  function    fnSetActive(string sItem): void {

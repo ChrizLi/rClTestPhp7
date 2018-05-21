@@ -2,8 +2,8 @@
 
 namespace   brotherDe\cashback;
 
-class   CCampaignModel
-extends CBase
+class       CCampaignModel
+extends     CBase
 {
     protected 
             $a = array();
@@ -12,7 +12,7 @@ extends CBase
             $this->fnInit();
     }
     
-    private function    fnInit() {
+    private function    fnInit(): void {
             $this->a['sDsn']='BrotherDeSapDaten';
     }
     
@@ -23,7 +23,7 @@ extends CBase
             return $this->a['oSel'];
     }
     
-    private function    fnCampaignListSel() {
+    private function    fnCampaignListSel(): array {
             // return array of arrays
             return array(
                 array('nId'=>1, 'sName'=>'s1', 'bActive'=>false),

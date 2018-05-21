@@ -1,55 +1,55 @@
 <?php
 
-abstract class CNote
+abstract 
+class       CNote
+extends     CBase
 {   // abstract class
-    var $ar=array();
+    private
+            $aNote;
 
-    function __construct()//this
-    {
-        return this;
+    public  function    __construct() {
     }
         
-    function fnSet($sMsg)//void
-    {
-        var $aa=array("sMsg"=>$sMsg);
-        array_push($aa, $ar);
+    public  function    fnSet(array $_a): void {
+            array_push($this->aNote, $_a);
+            return count($this->aNote);
     }
     
-    function fnGet()//array
-    {
-        return  $ar;
+    public  function    fnGet(int $_n=null): array {
+            if ($_n==null) {
+                return  $this->aNote;
+            }   else {
+                if ($this->fnExists($_n)) {
+                    return $this->aNote[$_n];
+                }   else {
+                    $this->fnErrorThrow('ArgIsNotValid');
+                }
+            }
     }
     
-    function fnExists()//bool
-    {
-        var $bOut=true;
-        if($ar.length=0)
-        {
-            $bOut=false;
-        }
-        return $bOut;
+    public  function    fnExists(): bool {
+            if (count($this->aNote)=0) {
+                return false;
+            }
+            return true;
     }
     
-    function fnTableGet()//string
-    {
-        var $sOut='';
-        var $sItem='';
-        forEach($ar as $sItem)
-        {
-            $sOut.='<tr><td'.$sItem.'</td></tr>';
-        }
-        return $sOut;
+    public  function    fnTableGet(): string {
+            $sOut   = '';
+            $sItem  = '';
+            forEach($this->aNote as $sItem) {
+                $sOut.='<tr><td'. $sItem .'</td></tr>';
+            }
+            return $sOut;
     }
     
-    function fnListGet()//string
-    {
-        var $sOut='';
-        var $sItem='';
-        forEach($ar as $sItem)
-        {
-            $sOut.='<li>'.$sItem.'</li>';
-        }
-        return $sOut;
+    public  function    fnListGet(): string {
+            $sOut   = '';
+            $sItem  = '';
+            forEach($this->aNote as $sItem) {
+                $sOut.='<li>'. $sItem .'</li>';
+            }
+            return $sOut;
     }
 }
 

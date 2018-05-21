@@ -1,7 +1,8 @@
 <?php
 
-interface   ifOutput 
-{
+namespace   brotherDe\cashback;
+
+interface   ifOutput {
     public  fnHeadAppend    (string $s);
     public  fnHeadSet       (string $s);
     public  fnHeadGet       ();

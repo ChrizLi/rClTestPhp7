@@ -3,16 +3,16 @@ declare(strict_types=1);
 require_once('_cfg.php');
 require_once (__ROOT__.'/vendor/autoload.php');
 require_once (__ROOT__.'/vendorG/chrizLi/basicPhp/src/CBase.php');
-require_once (__ROOT__.'/vendorG/chrizLi/basicPhp/src/CRecordSet.php');
+require_once (__ROOT__.'/vendorG/chrizLi/basicPhp/src/CBaseData.php');
 
 use PHPUnit\Framework\TestCase;
 use chrizli\basicPhp as cPhp;
 
-final class CRecordSetTest extends TestCase
+final class CBaseDataTest extends TestCase
 {
     public  function testFnSetGet(): void {
             $aCol   = array('sPhpServerId','sName','nPort');
-            $oCut   = new cPhp\CRecordSet($aCol);
+            $oCut   = new cPhp\CBaseData($aCol);
             $aExp   = array('sPhpServerId'=>'php1', 'sName'=>'Name1', 'nPort'=>'8721');
             $oCut->fnSet($aExp);
             $this->assertEquals(
@@ -46,7 +46,7 @@ final class CRecordSetTest extends TestCase
     
     public  function    testFnSetTooMany(): void {
             $aCol   = array('sPhpServerId','sName');
-            $oCut   = new cPhp\CRecordSet($aCol);
+            $oCut   = new cPhp\CBaseData($aCol);
             $aExp   = array('sPhpServerId'=>'php1', 'sName'=>'Name1', 'nPort'=>'8721');
             $oCut->fnSet($aExp);
             $this->assertEquals(
@@ -55,6 +55,7 @@ final class CRecordSetTest extends TestCase
                 'full'
             );
     }
+    
     
 }
 

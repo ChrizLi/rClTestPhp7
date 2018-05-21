@@ -23,11 +23,12 @@ extends     CBase
             $aEnum;
             
     public  function    __construct(array $_a) {
+            //classic array, non-Associated
             $this->aEnum = $_a;
     }
     
     public  function    fnSet($_x): void {
-            if (array_search($_x, $aEnum)===false) {
+            if (array_search($_x, $this->aEnum)===false) {
                 $this->fnErrorThrow('ArgIsNotValid');
             }   else {
                 $this->xEnum=$_x;
@@ -35,12 +36,12 @@ extends     CBase
     }
     
     public  function    fnGet() {
-            return $this->xEnum;
+            return  $this->xEnum;
     }
     
-    public  function    fnValid($_x, $_bErrorThrow==true): bool {
+    public  function    fnValid($_x, $_bErrorThrow=true): bool {
             if (array_search($_x, $this->aEnum)===false) {
-                if  ($_bErrorThrow) {
+                if ($_bErrorThrow) {
                     $this->fnErrorThrow('ArgIsNotValid');
                 }   else {
                     return false;
@@ -51,20 +52,7 @@ extends     CBase
     }
     
     public  function    fnEnumGet(): array {
-            return  $this->aEnum
+            return  $this->aEnum;
     }
 }
-
-function fnTest() {
-
-    $oStage = new CEnum(array('dev','test','prod'));
-    print $oStage->fnGet();     // null
-    $oStage->fnSet('dev');
-    print $oStage->fnGet();     // dev
-    $oStage->fnSet('not');      // exception
-    $oStage->fnValid('dev');    // true
-    $oStage->fnValid('test');   // false
-
-}
-
 ?>

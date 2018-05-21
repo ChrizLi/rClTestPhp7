@@ -1,4 +1,7 @@
 <?php
+
+namespace   brotherDe\cashback;
+
 class       CProcessCampaignList
 extends     CProcessAbstract
 implements  ifProcess {

@@ -1,7 +1,9 @@
 <?php
 
-interface ifModule{
-    public function fnRun($_oRxArg): void;
+namespace   brotherDe\cashback;
+
+interface   ifModule{
+    public  function fnRun($_oRxArg): void;
 }
 
 ?>

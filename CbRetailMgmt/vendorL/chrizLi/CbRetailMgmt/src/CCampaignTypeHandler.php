@@ -1,6 +1,10 @@
 <?php
 
-class CCampaignTypeHandler {
+namespace   brotherDe\cashback;
+
+class       CCampaignTypeHandler
+extends     CBase
+{
 
     public static __construct(
         $_oObjectAdmin,

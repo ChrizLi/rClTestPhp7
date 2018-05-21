@@ -1,44 +1,42 @@
 <?php
+
+namespace   brotherDe\cashback;
+
 class       CModuleCampaignFormCrud
 extends     CModuleAbstract
-implements  ifModule {
+implements  ifModule 
+{
     protected
-        $oOutput,
-        $oModel;
+            $oModel;
     
-    public function __construct(
-        $_oObjectAdmin, 
-        $_oRxArg        =null, 
-        $_oOutput       =null, 
-        $_oModel        =null
-    ) {
-        parent::__construct($_oObjectAdmin, $_oRxArg);
-        if ($_oOutput        ==null) {
-            $this->oOutput  = new COutput();
-        }   else {
-            $this->oOutput  = $_oOutput;
-        }
-        if ($_oModel         ==null) {
-            $this->oModel   = new CCampaignModel();
-        }   else {
-            $this->oModel   = $_oModel;
-        }
-        $this->fnInit();
+    public  function    __construct(
+            $_oRxArg    =null, 
+            $_oOutput   =null, 
+            $_oModel    =null
+    )       {
+            if ($_oOutput        ==null) {
+                $this->oOutput  = new COutput();
+            }   else {
+                $this->oOutput  = $_oOutput;
+            }
+            if ($_oModel         ==null) {
+                $this->oModel   = new CCampaignModel();
+            }   else {
+                $this->oModel   = $_oModel;
+            }
     }
     
-    public function fnInit() {}
-    
-    public function fnRun($_oRxArg): void {
-        $oData = $this->oModel->fnGet($_oRxArg);
-        $this->oOutput->fnHeadAppend  ($this->fnHeadGet    ($_oRxArg, $oData));
-        $this->oOutput->fnRedirect    ($this->fnRedirectGet($_oRxArg, $oData));
-        $this->oOutput->fnBodyAppend  ($this->fnBodyGet    ($_oRxArg, $oData));
+    public  function    fnRun($_oRxArg): void {
+            $oData  = $this->oModel->fnGet($_oRxArg);
+            $this   -> oOutput->fnHeadAppend  ($this->fnHeadGet    ($_oRxArg, $oData));
+            $this   -> oOutput->fnRedirect    ($this->fnRedirectGet($_oRxArg, $oData));
+            $this   -> oOutput->fnBodyAppend  ($this->fnBodyGet    ($_oRxArg, $oData));
     }
     
-    private static function fnHeadAppend(): string {}
-    private static function fnRedirect  (): string {}
-    private static function fnBodyAppend(): string {
-        return "?1=1&sProcess=sProcessCampaignDataCrud";
+    private function    fnHeadAppend(): string {}
+    private function    fnRedirect  (): string {}
+    private function    fnBodyAppend(): string {
+            return "?1=1&sProcess=sProcessCampaignDataCrud";
     }
     
 }

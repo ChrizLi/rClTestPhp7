@@ -1,18 +1,20 @@
 <?php
+
+namespace   brotherDe\cashback;
+
 class       CProcessCampaignFormCrud
 extends     CProcessAbstract
-implements  ifProcess {
+implements  ifProcess 
+{
     protected
         $oOutput,
         $oModel;
 
-    public function __construct(
-        $_oObjectAdmin, 
-        $_oRxArg        =null, 
-        $_oOutput       =null, 
-        $_oModel        =null
-    ) {
-        parent::__construct($_oObjectAdmin, $_oRxArg);
+    public  function    __construct(
+            $_oRxArg    =null, 
+            $_oOutput   =null, 
+            $_oModel    =null
+    )       {
         if ($_oOutput        ==null) {
             $this->oOutput  = new COutput();
         }   else {
@@ -26,23 +28,23 @@ implements  ifProcess {
         $this->fnInit();
     }
     
-    protected function fnInit() {
-        $oModuleCampaignFormCrud = 
-            new CModuleCampaignFormCrud ($this->oObjectAdmin, $this->oRxArg, $this->oOutput, $this->oModel);
-        $this->fnModuleAdd($oModuleCampaignFormCrud);
-        $oModuleProductFormCrud  = 
-            new CModuleProductFormCrud  ($this->oObjectAdmin, $this->oRxArg, $this->oOutput, $this->oModel);
-        $this->fnModuleAdd($oModuleProductFormCrud);
-        $oModuleProductList      = 
-            new CModuleProductList      ($this->oObjectAdmin, $this->oRxArg, $this->oOutput, $this->oModel);
-        $this->fnModuleAdd($oModuleProductList);
+    protected function  fnInit() {
+            $oModuleCampaignFormCrud = 
+                new CModuleCampaignFormCrud ($this->oObjectAdmin, $this->oRxArg, $this->oOutput, $this->oModel);
+            $this->fnModuleAdd($oModuleCampaignFormCrud);
+            $oModuleProductFormCrud  = 
+                new CModuleProductFormCrud  ($this->oObjectAdmin, $this->oRxArg, $this->oOutput, $this->oModel);
+            $this->fnModuleAdd($oModuleProductFormCrud);
+            $oModuleProductList      = 
+                new CModuleProductList      ($this->oObjectAdmin, $this->oRxArg, $this->oOutput, $this->oModel);
+            $this->fnModuleAdd($oModuleProductList);
     }
     
-    public function fnRunable($_oRxArg): bool {
-        return true;
+    public  function    fnRunable($_oRxArg): bool {
+            return true;
     }
     
-    public function fnRun($_oRxArg): void {
+    public  function    fnRun($_oRxArg): void {
         
     }
 }

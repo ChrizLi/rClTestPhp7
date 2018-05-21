@@ -1,53 +1,46 @@
 <?php
 
-abstract    class       CProcessAbstract 
-            implements  ifProcess {
-    protected
-        $oObjectAdmin,
-        $oRxArg;
-    protected
-        $aModule        = array(),
-        $oModuleDefault;
+namespace   brotherDe\cashback;
+
+abstract    
+class       CProcessAbstract
+extends     CModuleAbstract
+implements  ifProcess 
+{
+    private
+            $aModule,
+            $oModuleDefault;
     
-    public function __construct(
-        $_oObjectAdmin, 
-        $_oRxArg        =null
-    ) {
-        $oObjectAdmin = $_oObjectAdmin;
-        if($_oRxArg) {
-            $this->oRxArg = $_oRxArg;
-        }   else {
-            $this->oRxArg = new CRxArg;
-        }
-        $this->fnInit();
+    public  function    __construct($_oRxArg=null) {
+            parent::__construct($_oRxArg);
     }
     
-    abstract protected function fnInit();
+    private function    fnInit(): void {};
     
-    abstract public function fnRunable($_oRxArg): bool;
+    public  function    fnRunable($_oRxArg): bool {};
     
-    public function fnRun($_oRxArg): void {
-        //private
-            //$oModule    = null,
-            $bRan       = false;
-        
-        forEach($oModule as $this->aModule) {
-            if ($oModule->$this->fnRunable($_oRxArg)) {
-                $oModule->fnRun($_oRxArg);
-                $bRan = true;
+    public  function    fnRun($_oRxArg): void {
+            //private
+                //$oModule    = null,
+                $bRan       = false;
+            
+            forEach($oModule as $this->aModule) {
+                if ($oModule->$this->fnRunable($_oRxArg)) {
+                    $oModule->fnRun($_oRxArg);
+                    $bRan = true;
+                }
             }
-        }
-        if(!$bRan) {
-            $this->oModuleDefault->fnRun($_oRxArg);
-        }
+            if(!$bRan) {
+                $this->oModuleDefault->fnRun($_oRxArg);
+            }
     }
     
-    public function fnModuleAdd(ifModule $_oModule, $_bDefault=false) {
-        if($_bDefault) {
-            $this->oModuleDefault = $_oModule;
-        }   else {
-            array_push($this->aModule, $_oModule);
-        }
+    public function     fnModuleAdd(ifModule $_oModule, $_bDefault=false) {
+            if($_bDefault) {
+                $this->oModuleDefault = $_oModule;
+            }   else {
+                array_push($this->aModule, $_oModule);
+            }
     }
 }
 

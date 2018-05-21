@@ -1,66 +1,68 @@
 <?php
+
+namespace   brotherDe\cashback;
+
 class       CModuleCampaignList 
 extends     CModuleAbstract
-implements  ifModule {
+implements  ifModule 
+{
     protected
-        $oObjectAdmin,
-        $oOutput,
-        $oModel,
-        $oRxArg;
+            $oModel,
+            $oRxArg;
     protected
-        $oData;
+            $oData;
     
-    public function __construct(
-        $_oObjectAdmin, 
-        $_oRxArg        =null, 
-        $_oOutput       =null, 
-        $_oModel        =null
-    ) {
-        parent::__construct($_oObjectAdmin, $_oRxArg);
-        if ($_oOutput        ==null) {
-            $this->oOutput  = new COutput();
-        }   else {
-            $this->oOutput  = $_oOutput;
-        }
-        if ($_oModel         ==null) {
-            $this->oModel   = new CCampaignModel();
-        }   else {
-            $this->oModel   = $_oModel;
-        }
-        $this->fnInit();
+    public  function    __construct( 
+            $_oRxArg    =null, 
+            $_oOutput   =null, 
+            $_oModel    =null
+    )       {
+            if ($_oOutput        ==null) {
+                $this->oOutput  = new COutput();
+            }   else {
+                $this->oOutput  = $_oOutput;
+            }
+            if ($_oModel         ==null) {
+                $this->oModel   = new CCampaignModel();
+            }   else {
+                $this->oModel   = $_oModel;
+            }
     }
     
-    protected function fnInit() {}
+    private function    fnInit() {}
     
-    public function fnRun($_oRxArg): void {
-        $oData = $this->oModel->fnGet($_oRxArg);
-        $this->oOutput->fnHeadAppend  ($this->fnHeadGet    ($_oRxArg, $oData));
-        $this->oOutput->fnRedirect    ($this->fnRedirectGet($_oRxArg, $oData));
-        $this->oOutput->fnBodyAppend  ($this->fnBodyGet    ($_oRxArg, $oData));
+    public  function    fnRun($_oRxArg): void {
+            $oData = $this->oModel->fnGet($_oRxArg);
+            $this->oOutput->fnHeadAppend  ($this->fnHeadGet    ($_oRxArg, $oData));
+            $this->oOutput->fnRedirect    ($this->fnRedirectGet($_oRxArg, $oData));
+            $this->oOutput->fnBodyAppend  ($this->fnBodyGet    ($_oRxArg, $oData));
     }
     
-    private function fnHeadGet():string {}
+    private function    fnHeadGet():string {}
     
-    private function fnRedirectGet():string {}
+    private function    fnRedirectGet():string {}
     
-    private function fnBodyGet():string {
-        return $this->fnTableHeadGet($this->oData).$this->fnTableBodyGet($this->oData).$this->fnTableFootGet($this->oData);
+    private function    fnBodyGet():string {
+            return  
+                    $this->fnTableHeadGet($this->oData).
+                    $this->fnTableBodyGet($this->oData).
+                    $this->fnTableFootGet($this->oData);
     }
     
-    private function fnTableHeadGet($_oData): string {
-        return "<tr><th>Id</th><th>Name</th>";
+    private function    fnTableHeadGet($_oData): string {
+            return "<tr><th>Id</th><th>Name</th>";
     }
     
-    private function fnTableBodyGet($_oData): string {
-        $s="";
-        for($n=0;$n<$oData.length;$n++) {
+    private function    fnTableBodyGet($_oData): string {
+            $s="";
+            for($n=0;$n<$oData.length;$n++) {
             $s .= "<tr><td>".$oData[$n]["sId"]."</td><td>".$oData[$n]["sName"]."</td></tr>";
-        }
-        return $s;
+            }
+            return $s;
     }
     
-    private function fnTableFootGet($_oData): string {
-        return 'foot';
+    private function    fnTableFootGet($_oData): string {
+            return 'foot';
     }
 }
 

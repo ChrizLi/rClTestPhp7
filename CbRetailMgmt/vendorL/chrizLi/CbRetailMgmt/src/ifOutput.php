@@ -1,12 +1,14 @@
 <?php
 
-interface ifOutput {
-    public static fnHeadAppend  (string $s) {}
-    public static fnHeadSet     (string $s) {}
-    public static fnBodyAppend  (string $s) {}
-    public static fnBodySet     (string $s) {}
-    public static fnRedirectSet (string $s) {}
-    
+interface   ifOutput 
+{
+    public  fnHeadAppend    (string $s);
+    public  fnHeadSet       (string $s);
+    public  fnHeadGet       ();
+    public  fnBodyAppend    (string $s);
+    public  fnBodySet       (string $s);
+    public  fnBodyGet       ();
+    public  fnRedirectSet   (string $s);
 }
 
 ?>

@@ -1,26 +1,31 @@
 <?php
 
-class CMenu{
+namespace   brotherDe\cashback;
+
+class       CMenu
+extends     CBase
+{
     // html NavMenu via Bootstrap
-    var $sNavBar = "";
+    private
+            $sNavBar = "";
     
-    public static __construct( $_oPage){
-        $oPage = $_oPage; 
-        self::fnInit();
+    public  function    __construct( $_oPage) {
+            $oPage = $_oPage; 
+            $this->fnInit();
     }
     
-    private static fnInit() {}
+    private function    fnInit(): void {}
     
-    private static fnNavBar() {
-        $oPage.fnX();
-        return s;
+    private function    fnNavBar(): string {
+            $oPage.fnX();
+            return s;
     }
     
-    public static fnGet() {
-        return $sNavBar;
+    public  function    fnGet(): string {
+            return $sNavBar;
     }
     
-    public static fnSetActive(string sItem):void {
+    public  function    fnSetActive(string sItem): void {
     
     }
     

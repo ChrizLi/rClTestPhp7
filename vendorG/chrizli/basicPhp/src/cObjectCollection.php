@@ -1,92 +1,75 @@
-<? php
+<?php
     // 20180401,    ListlChr,   init
     // class holds collection of all provided objects (no object will be created)
     // provides option to easily get list of same instances
     // provides option to return singletons
-    
-    var $aaObject=array();
+        
+class       CObjectCollection
+extends     CBase   {
+    private
+            $aObject=array();
 
-    function __construct()
-    {
-        fnAdd(this);
-        return this;
+    public  function    __construct(): void {
+            $this->fnAdd(this);
     }
 
-    function fnAdd($oObject, $sId)
-    {
-        $bOut=fnOjectAdd
-        (
-            $oObject,
-            $sId
-        )
-        return $bOut;
+    public  function    fnAdd(object $oObject, string $sId) {
+            $bOut=$this->fnOjectAdd(
+                $oObject,
+                $sId
+            );
+            return $bOut;
     }    
      
-    function fnObjectAdd($oObject, $sId)
-    {
-        var $bOut=true;
-        if($sId=='')
-        {
-            $sId=fnClassNameGet($oObject)
-        }
-        if(!fnIdExists($sId)
-        {
-            $aaClass[$sId]=$oObject;
-        }
-        else
-        {
-            $bOut=false;
-        }
-        $aaClass[$sId]=$oObject;
-        return $bOut;
+    private function    fnObjectAdd(object $oObject, string $sId) {
+            $bOut=true;
+            if($sId=='') {
+                $sId=$this->fnClassNameGet($oObject)
+            }
+            if(! $this->fnIdExists($sId) {
+                $this->aClass[$sId]=$oObject;
+            } else {
+                $bOut=false;
+            }
+            $aClass[$sId]=$oObject;
+            return $bOut;
     }
 
-    function fnDel($sId)
-    {
-        array_delete($aa, $sId);
+    public  function    fnDel(string $sId) {
+            array_delete($aa, $sId);
     }
         
-    function fnUpd($sId, $oObject)
-    {
-        $aa[$sId]=$oObject;
+    public  function    fnUpd(string $sId, object $oObject): void {
+            $aa[$sId]=$oObject;
     }
     
-    function fnIdExists($sId)
-    {
-        var $bOut=false;
-        if(array_key_exists($aaClass, $sId))
-        {
-            $bOut=true;
-        }
-        return $bOut;
+    public  function fnIdExists(string $sId): bool {
+            if(array_key_exists($aaClass, $sId)) {
+                return true;
+            }
+            return false;
     }
 
-    function fnSel()
-    {
-        return $aaClass;
+    public  function    fnSel(): array {
+            return $aClass;
     }
 
-    function fnGet($sId)
-    {
-        return $aaClass[$sId];
+    public  function    fnGet(string $sId): array {
+            return $aClass[$sId];
     }
 
-    function fnIdGet($oObject)
-    {
-        return array_search($aaClass, $oObject);
+    private function    fnIdGet(object $oObject): string {
+            return array_search($aaClass, $oObject);
     }
     
-    function fnClassNameGet($oObject)
-    {
-        var $sOut=getPathToClass($oObject);
-        var $aa=explode($sOut, '/');
-        return array_popr($aa);
-    }
+    private function    fnClassNameGet(object $oObject): array {
+            $sOut=getPathToClass($oObject);
+            $aa=explode($sOut, '/');
+            return array_popr($aa);
 
-    protected function getDir()
-    {
-         $reflector = new ReflectionClass(get_class($this));
-         return dirname($reflector->getFileName());
+    protected function  fnDirGet(): string {
+            $reflector = new ReflectionClass(get_class($this));
+            return dirname($reflector->getFileName());
     }
-
+}
 ?>

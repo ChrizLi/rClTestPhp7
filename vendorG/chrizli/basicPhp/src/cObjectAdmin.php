@@ -1,62 +1,67 @@
 <?php
+class       CObjectAdmin 
+extends     CBase           {
+    private static 
+            $aObject    = array();
 
-class CLoad {
-
-    private static $aaObject    =array();
-
-    public static function __construct() {
+    public  function    __construct(): void {
+            $this->fnInit()
     }
     
-    private static function fnIns(
-        any    $_o, 
-        string $_sId       ="",
-        bool   $_bOverwrite=false
-    ) {
-        var $sId    =  "";
-        if( $_sId   == "") {
-            $sId    =  $_o.sName;
-        } else {
-            $sId    =  $_sId;
-        }
+    private function    fnInit(): void {}
+    
+    private function    fnIns(
+            any         $_o, 
+            string      $_sId        = "",
+            bool        $_bOverwrite = false
+            ): void {
+            $sId        =  "";
+            if( $_sId   == "") {
+                $sId    =  $_o.sName;
+            }   else {
+                $sId    =  $_sId;
+            }
 
-        if(array_key_exists($sId, $aaObject) && !$_bOverwrite) {
-            //ErrorThrow
-        } else {
-            array_push($aaObject, $sId, $_o);
-        }
+            if(array_key_exists($sId, $aObject) && !$_bOverwrite) {
+                //ErrorThrow
+            }   else {
+                array_push($aObject, $sId, $_o);
+            }
     }
     
-    public static function fnObjectGet(
-        string     $_sClass,
-        any        $_o         = "",
-        bool       $_bGlobal   = true,
-        string     $_sId       = "",
-        struct     $_aaArg     = ()
-    ) {
-        var $o  =  "";
-        if ($_o == "") {
-            self::fnCreate($_sClass, $_bGlobal, $_aaArg);
-        } else {
-            $o = $_o;
-        }
-        self::fnIns($o, string: $_sId);
+    public  function    fnObjectGet(
+            string      $_sClass,
+            any         $_o         = null,
+            bool        $_bGlobal   = true,
+            string      $_sId       = '',
+            array       $_aaArg     = array()
+            ): any {
+            $o      =  '';
+            if ($_o == "") {
+                $this->fnCreate($_sClass, $_bGlobal, $_aaArg);
+            }   else {
+                $o  = $_o;
+            }
+            $this->fnIns($o, $_sId);
     }
     
-    private static function fnCreate(
-        string $_sClass,
-        bool   $_bGlobal   = true,
-        array  $_aaArg     = ()
-    ) {
-        var $aaArg = array();
-        if( $_aaArg.length() == 0 ) {
-            array_push($aaArg, "oObjectAdmin", this);
-        }
-        if( $_bGlobal ) {
-            // search/create from global
-        } else {
-            // search/create from local
-        }
-        return $
+    private function    fnCreate(
+            string      $_sClass,
+            bool        $_bGlobal   = true,
+            array       $_aaArg     = array()
+            ): void {
+            $aaArg = array();
+            if( $_aaArg.length() == 0 ) {
+                array_push($aaArg, "oObjectAdmin", this);
+            }
+            if( $_bGlobal ) {
+                // search/create from global
+                return "global";
+            } else {
+                // search/create from local
+                return "local";
+            }
+            return "end";
     }
 }
 

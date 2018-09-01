@@ -1,12 +1,13 @@
 <? php
 
-class cNoteType
+class   CNoteType
+extends CBase
 {
-    $sType='';
+    private
+            $sType='';
 
-    function __construct(){}
+    public  function    __construct(){}
     
-    function fnSet
 }
 
 ?>

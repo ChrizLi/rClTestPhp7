@@ -1,43 +1,37 @@
 <?php
 
-class CNoteAssy
+class   CNoteAssy
+extends CBase
 {   // combination of CNote and NoteType
 
-    var $sTypeId='';
-    var $oNote='';
+    $sTypeId,
+    $oNote;
 
-    function __construct()
-    {
-        $oNote=new CNote();
-        return this;
+    public  function    __construct() {
+            $oNote=new CNote();
+            return this;
     }
     
-    function fnTypeSet($s)//void
-    {
-        $sTypeId=$s;
+    private function    fnTypeSet($_s): void {
+            $this->sTypeId=$_s;
     }
     
-    function fnTypeGet()//array
-    {
-        return $sTypeId;
+    public  function    fnTypeGet(): array {
+            return $sTypeId;
     }
     
-    function fnNoteObjectSet($o)
-    {
-        $oNote=$o;
+    public  function    fnNoteObjectSet($_o) {
+            $this->oNote=$_o;
     }
     
-    function fnNoteSet()//void
-    {
-        $oNote=>
+    public  function    fnNoteSet($x): void {
+            $oNote
     }
     
-    function fnNoteGet()//ar
-    {
+    public  function    fnNoteGet(): array {
     }
     
-    function fnNoteExists()//bool
-    {
+    public  function    fnNoteExists(): bool {
     }
 }
 ?>

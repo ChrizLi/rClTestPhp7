@@ -1,33 +1,36 @@
 <?php
 
-class CCampaignTypeModel {
+namespace   brotherDe\cashback;
 
-    var $aaType = array();
+class       CCampaignTypeModel
+extends     CBase
+{
+    protected
+            $aType = array();
 
-    public static __construct() {
-        self::fnInit();
+    public  function    __construct() {
+            $this->fnInit();
     }
     
-    private static fnInit() {
+    private function    fnInit(): void {
     }
     
-    public static fnSel() {
-        // fetch from persistent storage
-        return $aaType;
+    public  function    fnSel(): array {
+            // fetch from persistent storage
+            return $this->aType;
     }
     
-    public static fnValid($_sId) {
-        if(array_key_exists($aaType, $_sId) {
-            return true;
-        } else {
-            return false;
-        }
+    public  function    fnValid($_sId): bool {
+            if (array_key_exists($this->aType, $_sId) {
+                return true;
+            }   else {
+                return false;
+            }
     }
     
-    public static fnIns(CCampaignType oCampaignType) {
-        // save to persistent storage
+    public  function    fnIns(oCampaignType): void {
+            // save to persistent storage
     }
-
 }
 
 ?>

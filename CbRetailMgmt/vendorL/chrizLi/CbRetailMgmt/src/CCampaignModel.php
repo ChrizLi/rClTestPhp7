@@ -1,29 +1,39 @@
 <?php
 
-class CModel {
+namespace   brotherDe\cashback;
 
-    var $aa = array();
+class       CCampaignModel
+extends     CBase
+{
+    protected 
+            $a = array();
 
-    public static __construct() {
-        self::fnInit();
+    public  function    __construct() {
+            $this->fnInit();
     }
     
-    private static fnInit() {
-        array_push($aa, "sDsn", "BrotherDeSapDaten");
+    private function    fnInit(): void {
+            $this->a['sDsn']='BrotherDeSapDaten';
     }
     
-    public static fnSel() {
-        if ($aa.oSel == undefined) {
-            $aa.oSel = self::fnCampaignListSel();
-        }
-        return $aa.oSel;
+    public  function    fnSel() {
+            if ($this->a['oSel'] == undefined) {
+                $this->a['oSel'] = $this->fnCampaignListSel();
+            }
+            return $this->a['oSel'];
     }
     
-    private static fnCampaignListSel() {
-        // Tsql.spCampaignListSel
+    private function    fnCampaignListSel(): array {
+            // return array of arrays
+            return array(
+                array('nId'=>1, 'sName'=>'s1', 'bActive'=>false),
+                array('nId'=>2, 'sName'=>'s2', 'bActive'=>true),
+                array('nId'=>3, 'sName'=>'s3', 'bActive'=>true),
+            );
     }
     
-    public static fnIns() {
+    public  function    fnIns() {
+        
     }
 
 }

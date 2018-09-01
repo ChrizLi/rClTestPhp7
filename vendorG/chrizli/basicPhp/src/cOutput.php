@@ -9,199 +9,167 @@
 ---- known errors /missing features:
 ---- 
 ----------------------------------------------------------*/
+class       COutput
+extends     CBase   {
+    private 
+            $sHead           = "",
+            $sBody           = "",
+            $sUrlRedirect    = "",
+            array $aType     = array(),
+            array $aNote     = array();
 
-    private static $sHead           = "";
-    private static $sBody           = "";
-    private static $sUrlRedirect    = "";
-    private static $aaType          = "";
-    private static $aaNote          = "";
+    public  function    __construct(): void {
+            $this->fnInit();
+    }
+    
+    private function    fnInit(): void {
+            $this->fnTypeInit();
+            $this->fnNoteInit();
+            $this->aCss['error']='alert alert-danger';
+            $this->aCss['info'] ='alert alert-info';
+    }
+    
+    private function    fnNoteInit(): void {
+            $aaNote=array (
+                array(sTypeId->"", sDesc->"", sId->"", sSeverity->"");
+            );
+    }
+    
+    private function    fnTypeInit(): void {
+            $aaType=array (
+                array(sTypeId->"error", sClass->$this->aCss['error'],
+                array(sTypeId->"info",  sClass->$this->aCss['info'])
+            );
+    }
 
-    private static function __construct()
-    {
-        fnTypeInit();
-        fnNoteInit();
-        return  this;
+
+    private function    fnHeadGet(): string {
+            return sHead;
+    }
+    
+    private function    fnHeadConcat(string $s): void {
+            $sHead .= $s;
     }
 
-    private static function fnHeadGet()
-    {
-        return sHead;
+    private function    fnHeadReset(string $s): void {
+            $sHead   = $s;
     }
     
-    private static function fnHeadConcat($s)
-    {
-        $sHead .= $s;
-    }
-
-    private static function fnHeadReset($s)
-    {
-        $sHead   = $s;
+    private function    fnBodyGet(): string {
+            return  $sBody;
     }
     
-    private static function fnBodyGet()
-    {
-        return $sBody;
+    private function    fnBodyConcat(string $s): void {
+            $sBody .= $s;
     }
     
-    private static function fnBodyConcat($s)
-    {
-        $sBody .= $s;
+    private function    fnBodyReset(string $s): void {
+            $sBody   = $s;
     }
     
-    private static function fnBodyReset($s)
-    {
-        $sBody   = $s;
+    private function    fnUrlRedirectSet(string $s): void {
+            $sUrlRedirect = $s;
     }
     
-    private static function fnUrlRedirectSet($s)
-    {
-        $sUrlRedirect = $s;
+    private function    fnUrlRedirectGet(): string {
+            return $sUrlRedirect;
     }
     
-    private static function fnUrlRedirectGet()
-    {
-        return $sUrlRedirect;
+    private function    fnUrlRedirectExists(): bool {
+            return $sUrlRedirect.length=0? false: true;
     }
     
-    private static function fnUrlRedirectExists()
-    {
-        return ($sUrlRedirect.length 1=0);
-    }
-    
-    private static function fnTypeIdValid($sTypeId)
-    {
-        var $bOut   = false;
-        if (var $n=0; $n<aaType.length; $n++)
-        {
-            if(aaType[$n]['sTypeId'] == $sTypeId)
-            {
-                $bOut = true;
-                break;
-            }
-        }
-        return $bOut;
-    }
-        
-    private static function fnTypeInit()//void
-    {
-        $aaType=array
-        (
-            array(sTypeId->"error", sClass->"alert alert-danger"),
-            array(sTypeId->"info",  sClass->"alert alert-info")
-        );
-    }
-    
-    private static function fnTypeAdd($sTypeId, $sClass)//void
-    {
-        if(!self::fnTypeIdValid($sTypeId)
-        {
-            var $aa = array(sTypeId->$sTypeId, sClass->$sClass);
-            array_push($aaType, $aa);
-        }
-    }
-    
-    private static function fnTypeSel()//array
-    {
-        return $aaType;
-    }
-    
-    private static function fnNoteInit()//void
-    {
-        $aaNote=array
-        (
-            array(sTypeId->"", sDesc->"", sId->"", sSeverity->"");
-        );
-    }
-    
-    private static function fnNoteSet($sTypeId, $sDesc, $sId, $sSeverity)//void
-    {
-        if(self::fnTypeIdValid($sTypeId)
-        {
-            var $aa=array("sTypeId"->$sTypeId, "sDesc"->$sDesc, "sId"->$sId, "sSeverity"->$sSeverity);
-            array_push($aaNote, $aa);
-        }
-    }
-        
-    private static function fnNoteExists($sTypeId)//bool
-    {
-        var $bOut=false;
-        if (self::fnNoteSel($sTypeId).length>0)
-        {
-            $bOut=true;
-        }
-        return $bOut;
-    }
-    
-    private static function fnNoteSel($sTypeId)//associated array
-    {
-        if(self::fnTypeIdValid($sTypeId))
-        {
-            var $aa=array();
-            for(var $n=0;$n<$aaNote.length;$n++)
-            {
-                if($aaNote[$n]['sTypeId']==$sTypeId)
-                {
-                    array_push($aa, $aaNote[$n]['sTypeId']);
+    private function    fnTypeIdValid(string $sTypeId): bool {
+            $bOut   = false;
+            if (var $n=0; $n<aaType.length; $n++) {
+                if(aaType[$n]['sTypeId'] == $sTypeId) {
+                    $bOut = true;
+                    break;
                 }
             }
-        }
-        else
-        {
-            throw \new error("invalid arg");
-        }
-        return $aa;
+            return $bOut;
     }
     
-    private static function fnNoteTableHtmlGet($sTypeId, $aa)//string
-    {
-        if (self::fnTypeIdValid($sTypeId)
-        {
-            var $aaa = self::fnNoteSel($sTypeId);
-            if($aa.length==0)
-            {
-                $aa=();//list of all cols of aaNote
+    private function    fnTypeAdd(string $sTypeId, string $sClass): void {
+            if(!$this->fnTypeIdValid($sTypeId) {
+                var $aa = array(sTypeId->$sTypeId, sClass->$sClass);
+                array_push($aaType, $aa);
             }
-            $sOut = "";
-            $sItem= "";
-            $sOut = '<table id=sNote_'''.$sTypeId.'>''';
-            for(var $nNote; $nNote> $aaa.length; $nNote++)
-            {
-                $sOut .='<tr>';
-                forEach($aa as $sKey => $sValue)
-                {
-                    $sOut. = '<td id='.$sKey.'>'.$aaa[$nNote][$sValue].'</td>';
-                }
-                $sOut .='<tr>';
+    }
+    
+    private function    fnTypeSel(): array {
+            return $aaType;
+    }
+    
+    private function    fnNoteSet(
+            string      $sTypeId, 
+            string      $sDesc, 
+            string      $sId, 
+            string      $sSeverity
+            ): void {
+            if ($this->fnTypeIdValid($sTypeId) {
+                var $aa=array("sTypeId"->$sTypeId, "sDesc"->$sDesc, "sId"->$sId, "sSeverity"->$sSeverity);
+                array_push($aaNote, $aa);
             }
-            $sOut.='</table>';
-        }
-        return $sOut;
     }
         
-    private static function fnBodyAllGet()//string
-    {   // output for all body data (or urlRedirect)
-        // priority if redirect exists (do redirect and nothing else)
-        var $sOut="";
-        if(self::fnUrlRedirectExists())
-        {
-            sOut="<meta='' redirect='".sUrlRedirect."'";
-        }
-        else
-        {
-            for(var $nType=0; $nType< $aaType.length; $nType++)
-            {
-                for(var $nNote=0; $nNote< $aaNote.length; $nNote++)
-                {
-                    if($aaNote[$nNote]==$aaType[$nType]
-                    {
-                        $sOut.='<div class='.$aaNote[$nNote]['sClass'].'>'.self::fnNoteTableHtmlGet($aaNote[$nNote]['sTypeId']);
+    private function    fnNoteExists(string $sTypeId): bool {
+            $bOut=false;
+            if ($this->fnNoteSel($sTypeId).length>0) {
+                $bOut=true;
+            }
+            return $bOut;
+    }
+    
+    public  function    fnNoteSel($_sTypeId): array {
+            if ($this->fnTypeIdValid($_sTypeId)) {
+                $a=array();
+                for($n=0;$n<$this->aNote.length;$n++) {
+                    if($this->aNote[$n]['sTypeId']==$_sTypeId) {
+                        array_push($a, $this->aNote[$n]['sTypeId']);
                     }
-                    $sOut.='<br>';
                 }
+                return $aa;
             }
-            $sOut.=self::fnBodyGet();
-        }
-        return $sOut;
     }
     
+    private function    fnNoteTableHtmlGet(string $sTypeId, array $aa): string {
+            if ($this->fnTypeIdValid($sTypeId) {
+                $aaa = $this->fnNoteSel($sTypeId);
+                if($aa.length==0) {
+                    $aa=();//list of all cols of aaNote
+                }
+                $sOut = "";
+                $sItem= "";
+                $sOut = '<table id=sNote_'''.$sTypeId.'>''';
+                for(var $nNote; $nNote> $aaa.length; $nNote++) {
+                    $sOut .='<tr>';
+                    forEach($aa as $sKey => $sValue) {
+                        $sOut. = '<td id='.$sKey.'>'.$aaa[$nNote][$sValue].'</td>';
+                    }
+                    $sOut .='<tr>';
+                }
+            }
+    }
+    
+    private function    fnBodyAllGet(): string {   
+            // output for all body data (or urlRedirect)
+            // priority if redirect exists (do redirect and nothing else)
+            $sOut="";
+            if($this->fnUrlRedirectExists()) {
+                sOut="<meta='' redirect='".sUrlRedirect."'";
+            }   else    {
+                for(var $nType=0; $nType< $aaType.length; $nType++) {
+                    for(var $nNote=0; $nNote< $aaNote.length; $nNote++) {
+                        if($aaNote[$nNote]==$aaType[$nType] {
+                            $sOut.='<div class='.$aaNote[$nNote]['sClass'].'>'.$this->fnNoteTableHtmlGet($aaNote[$nNote]['sTypeId']);
+                        }
+                        $sOut.='<br>';
+                    }
+                }
+            }
+    }
+
+}
+   
 ?>

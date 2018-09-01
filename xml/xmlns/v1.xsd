@@ -1,0 +1,60 @@
+<?xml version="1.0"?>;
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="person">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="gender"       type="xs:string">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="unknown">
+                        <xs:enumeration value="male">
+                        <xs:enumeration value="female">
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="titleprefix"  type="xs:string">
+                <xs:simpleType>
+                    <xs:minlength   value="0">
+                    <xs:maxlength   value="64">
+                </xs:simpleType>
+            </xd:element>
+            <xs:element name="firstname"    type="xs:string">
+                <xs:simpleType>
+                    <xs:minlength   value="0">
+                    <xs:maxlength   value="64">
+                </xs:simpleType>
+            </xd:element>
+            <xs:element name="middlename"   type="xs:string">
+            <xs:element name="lastname"     type="xs:string"/>
+            <xs:element name="titlesuffix"  type="xs:string"/>
+            <xs:element name="birthyear"    type="xs:integer">
+                <xs:simpleType>
+                    <xs:restriction base:"xs:integer">
+                        <xs:minInclusive value="1900">
+                        <xs:maxInclusive value="2050">
+                    </xs:restriction>
+                </xd:simpleType>
+            <xs:element>
+            <xs:element name="birthmonth"   type="xs:integer">
+                <xs:simpleType>
+                    <xs:restriction base:"xs:integer">
+                        <xs:minInclusive value="1">
+                        <xs:maxInclusive value="12">
+                    </xs:restriction>
+                </xd:simpleType>
+            <xs:element>
+            <xs:element name="birthday"     type="xs:integer">
+                <xs:simpleType>
+                    <xs:restriction base:"xs:integer">
+                        <xs:minInclusive value="1">
+                        <xs:maxInclusive value="31">
+                    </xs:restriction>
+                </xd:simpleType>
+            <xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+</xs:schema>

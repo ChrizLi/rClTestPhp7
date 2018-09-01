@@ -1,0 +1,62 @@
+<!doctype html>
+<!------------------------------------
+---- 20160708v1.0, ListlChr, Init
+----
+----------------------------------------
+---- what this code does:
+---- add event by js (no mod of html part itself
+----------------------------------------
+---- missing code/known errors:
+----
+---------------------------------------->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="jQuery"></script>
+    <script>
+            $("#btnButton1").click(function()
+                {
+                    alert("pushed");
+                };
+                
+        function fnAlert(sMsg){alert(sMsg);};
+        
+        $("#btnButton2").click(function(){var e=fnAlert("btn2")};
+        
+        $("#btnButton3").click(fnAlert("btn3")};
+        
+        function fnHandlerAdd4()
+        {
+            $("#btnButton4").click(fnAlert("btn4")};
+            $("#btnButton5").click(fnAlert("btn5")};
+        };
+        
+        $("btnButton6").on("click",function(){var e=fnAlert("btn6")});
+        $("btnButton7").on("click",fnAlert("btn7"));
+        
+        function fnHandlerAdd8(el,ev)
+        {
+            $(el).on(ev,fnAlert(el+":"+ev));
+        };
+        
+        var e=fnHandlerAdd4;
+        var e=fnHandlerAdd8("btnButton8","click");
+    </script>
+</head>
+<body>
+    <header></header>
+    <main></main>
+        <div id="btnButton1">Button1</div>
+        <div id="btnButton2">Button2</div>
+        <div id="btnButton3">Button3</div>
+        <div id="btnButton4">Button4</div>
+        <div id="btnButton5">Button5</div>
+        <div id="btnButton6">Button6</div>
+        <div id="btnButton7">Button7</div>
+        <div id="btnButton8">Button8</div>
+    <footer></footer>
+</body>
+</html>
+

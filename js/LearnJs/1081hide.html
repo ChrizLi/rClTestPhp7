@@ -1,0 +1,52 @@
+<!doctype html>
+<!------------------------------------
+---- 20160712v1.0, ListlChr, Init
+----
+----------------------------------------
+---- what this code does:
+---- 
+----------------------------------------
+---- missing code/known errors:
+----
+---------------------------------------->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="jQuery"></script>
+    <script src="Bootstrap"></script>
+    <script>
+        function fnMain(){
+            var e = fnAddHandler();
+        }
+        
+        function fnAddHandler(){
+            document.getElementById("body").onload = fnX;
+            //body.addEventListener("load",fnX);
+            document.getElementById("btnToggle").onClick=fnToggleHide("div1");
+            //div1.addEventListener("click",fnToggleHide("div1");
+        
+        function fnToggleHide(sId){
+            var e = document.getElementById(sId);
+            if (e.style.display == 'block')
+                e.style.display =  'none';
+            else
+                e.style.display =  'block';
+        }
+        
+        var e = fnMain();
+    </script>
+</head>
+<body>
+    <header></header>
+    <main>
+        <div id="div1">
+            content of div1
+        </div>
+        <button type="button" id="btnToogle">Hide!</input>
+    </main>
+    <footer></footer>
+</body>
+</html>
+

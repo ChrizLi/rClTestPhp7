@@ -1,6 +1,5 @@
 <?php
-
-//----------------------------------------------------------
+/*----------------------------------------------------------
 ---- 20180305V1.0.0,    ListlChr,   Init
 ---- 
 ------------------------------------------------------------
@@ -12,14 +11,18 @@
 ------------------------------------------------------------
 ---- known errors /missing features:
 ---- 
-----------------------------------------------------------//
-class   CObjectFactory 
-extends CBase   {
+----------------------------------------------------------*/
+
+namespace   chrizli\basicPhp;
+
+class       CObjectFactory 
+extends     CBase
+{
     private static 
             $aClass         = array();
             $oObjectAdmin   = null;
 
-    static  function    __construct(object $_oObjectAdmin): void {
+    static  function    __construct(object $_oObjectAdmin) {
             self::fnInit();
             self::fnObjectAdminSet($_oObjectAdmin);
     }

@@ -2,12 +2,16 @@
     // 20180401,    ListlChr,   init
     // class holds collection of all provided objects (no object will be created)
     // provides option to easily get list of same instances
+
+namespace   chrizli\basicPhp;
+
 class       CObjectCollection02
-extends     CBase {
+extends     CBase
+{
     private 
             $aObject    = array();
 
-    public  function    __construct(): void {
+    public  function    __construct() {
             $this->fnAdd($this);
     }
     
@@ -21,9 +25,9 @@ extends     CBase {
      
     public  function    fnAdd(
             object      $_oObject,
-            string      $_sId       = ''
+            string      $_sId       = null
             ):  object {
-            if ($_sId   ==  '') {
+            if ($_sId   ==  null) {
                 $_sId   =   $this->fnClassNameGet($_oObject);
             }
             if ($this->fnIdExists($_sId) {
@@ -41,9 +45,8 @@ extends     CBase {
     private function    fnClassNameGet(object $_oObject): string {
             return      array_popr(explode(getPathToClass($_oObject), '/'));
     }
-    public  function    fnObjectExists(object $_o): bool {
-            return      array_search($_o, $this->aObject)==false? false: true; 
+    public  function    fnObjectExists(object $_oObject): bool {
+            return      array_search($_oObject, $this->aObject)==false? false: true; 
     }
-
 }
 ?>

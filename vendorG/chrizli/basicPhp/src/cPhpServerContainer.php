@@ -1,13 +1,17 @@
 <?php
-class   CPhpServer
-extends CBase
-{
-    private
-            CObjectAdmin    $oObjectAdmin,
-            CStageBase      $oStageBase,
-            array           $aStageCandidate = fnStageCandidateInit();
 
-    public  function    __construct(object $oObjectAdmin, object $_oStageBase=null): void {
+namespace   chrizli\basicPhp;
+
+class       CPhpServer
+extends     CContainerObject
+{
+    /*
+    private
+            $oObjectAdmin,
+            $oStageBase,
+            $aStageCandidate = fnStageCandidateInit();
+
+    public  function    __construct(object $_oObjectAdmin, object $_oStageBase=null) {
             $oObjectAdmin   = $_oObjectAdmin;
             $oStageBase     = $this->oObjectAdmin->fnObjectGet('CStageBase', $_oStageBase);
     }
@@ -32,15 +36,15 @@ extends CBase
     }
     
     public  function    fnServerPortGet() {
-            return $_Server['SERVER_PORT'];
+            return $_SERVER['SERVER_PORT'];
     }
     
-    public  static  function    fnServerStageGet(string $sServer, int $nPort): string {
-            if $sServer =="" $sServer=fnServerNameGet();
-            if $nPort   =="" $nPort  =fnServerPortGet();
-            $sServer = fnServerNameNormalize($sServer);
+    public  static  function    fnServerStageGet(string $_sServer, int $_nPort): string {
+            if $_sServer =="" $_sServer=fnServerNameGet();
+            if $_nPort   =="" $_nPort  =fnServerPortGet();
+            $_sServer = $this->fnServerNameNormalize($_sServer);
             
-            if ($sServer == "BigW10N61014") {
+            if ($_sServer == "BigW10N61014") {
                 switch($nPort) {
                     case 8531:
                     case 8601:
@@ -56,20 +60,20 @@ extends CBase
                         $sOut = "prod";
                 }
             }
-            if ($sServer == "TestMyBeip") {
+            if ($_sServer == "TestMyBeip") {
                 $sOut = "test";
             }
-            if ($sServer == "MyBeip") {
+            if ($_sServer == "MyBeip") {
                 $sOut = "prod";
             }
-            if ($sServer == "BigINet") {
+            if ($_sServer == "BigINet") {
                 $sOut = "prod";
             }   
             return $sOut;
     }
     
-    public  static  function    fnServerNameNormalize(string $s): string {
-            switch($s) {
+    public  static  function    fnServerNameNormalize(string $_s): string {
+            switch($_s) {
                 case "10.5.129.52":
                 case "EuBigWb67152":
                     $sOut="TestMyBeip";
@@ -89,8 +93,8 @@ extends CBase
             return $sStageCandidateDi;
     }
     
-    public static function fnServerStageIsDev(string $sServer, int $nPort): bool {
-            $s = $this->fnServerStageGet($sServer, $nPort);
+    public static   function    fnServerStageIsDev(string $_sServer, int $_nPort): bool {
+            $s = $this->fnServerStageGet($_sServer, $_nPort);
             if ($s = "dev")
             { $b = true}
             else
@@ -98,8 +102,8 @@ extends CBase
             return $b;
     }
     
-    public  static  function    fnServerStageIsTest(string $sServer, bool $nPort): bool {
-            $s = fnServerStageGet($sServer, $nPort);
+    public  static  function    fnServerStageIsTest(string $_sServer, bool $_nPort): bool {
+            $s = $this->fnServerStageGet($_sServer, $_nPort);
             if ($s = "test")
             { $b = true}
             else
@@ -107,8 +111,8 @@ extends CBase
             return $b;
     }
     
-    public  static  function    fnServerStageIsProd(string $sServer, int $nPort): bool {
-            $s = fnServerStageGet($sServer, $nPort);
+    public  static  function    fnServerStageIsProd(string $_sServer, int $_nPort): bool {
+            $s = $this->fnServerStageGet($_sServer, $_nPort);
             if ($s = "prod")
             { $b = true}
             else
@@ -132,5 +136,6 @@ extends CBase
             //return current scriptfileName
             return $_SERVER['PHP_SELF'];
     }
+    */
 }
 ?>

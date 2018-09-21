@@ -4,7 +4,11 @@ namespace   chrizli\basicPhp;
 
 class       CContainerObject
 extends     CContainer
-{   
+{
+    public  function    __construct(bool $_bTypeAssoc=true) {
+            parent::__construct($_bTypeAssoc);
+    }
+    
     public  function    fnValueValid(string $_sValue, string $_sKey): bool {
             return array_search($_sValue, array_column($this->aItem, $_sKey));
     }

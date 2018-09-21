@@ -9,20 +9,20 @@
 ---- known errors /missing features:
 ---- 
 ----------------------------------------------------------*/
-class       COutput
-extends     CBase   {
-    private 
-            $sHead           = "",
-            $sBody           = "",
-            $sUrlRedirect    = "",
-            array $aType     = array(),
-            array $aNote     = array();
 
-    public  function    __construct(): void {
-            $this->fnInit();
-    }
-    
-    private function    fnInit(): void {
+namespace   chrizli\basicPhp;
+
+class       COutput
+extends     CBase
+{
+    private 
+            $sHead          = '',
+            $sBody          = '',
+            $sUrlRedirect   = '',
+            $aType          = array(),
+            $aNote          = array();
+
+    public  function    __construct() {
             $this->fnTypeInit();
             $this->fnNoteInit();
             $this->aCss['error']='alert alert-danger';
@@ -47,28 +47,28 @@ extends     CBase   {
             return sHead;
     }
     
-    private function    fnHeadConcat(string $s): void {
-            $sHead .= $s;
+    private function    fnHeadConcat(string $_s): void {
+            $sHead .= $_s;
     }
 
-    private function    fnHeadReset(string $s): void {
-            $sHead   = $s;
+    private function    fnHeadReset(string $_s): void {
+            $sHead   = $_s;
     }
     
     private function    fnBodyGet(): string {
             return  $sBody;
     }
     
-    private function    fnBodyConcat(string $s): void {
-            $sBody .= $s;
+    private function    fnBodyConcat(string $_s): void {
+            $sBody .= $_s;
     }
     
-    private function    fnBodyReset(string $s): void {
-            $sBody   = $s;
+    private function    fnBodyReset(string $_s): void {
+            $sBody   = $_s;
     }
     
-    private function    fnUrlRedirectSet(string $s): void {
-            $sUrlRedirect = $s;
+    private function    fnUrlRedirectSet(string $_s): void {
+            $sUrlRedirect = $_s;
     }
     
     private function    fnUrlRedirectGet(): string {
@@ -79,10 +79,10 @@ extends     CBase   {
             return $sUrlRedirect.length=0? false: true;
     }
     
-    private function    fnTypeIdValid(string $sTypeId): bool {
+    private function    fnTypeIdValid(string $_sTypeId): bool {
             $bOut   = false;
             if (var $n=0; $n<aaType.length; $n++) {
-                if(aaType[$n]['sTypeId'] == $sTypeId) {
+                if(aaType[$n]['sTypeId'] == $_sTypeId) {
                     $bOut = true;
                     break;
                 }
@@ -90,9 +90,9 @@ extends     CBase   {
             return $bOut;
     }
     
-    private function    fnTypeAdd(string $sTypeId, string $sClass): void {
-            if(!$this->fnTypeIdValid($sTypeId) {
-                var $aa = array(sTypeId->$sTypeId, sClass->$sClass);
+    private function    fnTypeAdd(string $_sTypeId, string $_sClass): void {
+            if(!$this->fnTypeIdValid($_sTypeId) {
+                var $aa = array(sTypeId->$_sTypeId, sClass->$_sClass);
                 array_push($aaType, $aa);
             }
     }
@@ -102,20 +102,20 @@ extends     CBase   {
     }
     
     private function    fnNoteSet(
-            string      $sTypeId, 
-            string      $sDesc, 
-            string      $sId, 
-            string      $sSeverity
+            string      $_sTypeId, 
+            string      $_sDesc, 
+            string      $_sId, 
+            string      $_sSeverity
             ): void {
-            if ($this->fnTypeIdValid($sTypeId) {
-                var $aa=array("sTypeId"->$sTypeId, "sDesc"->$sDesc, "sId"->$sId, "sSeverity"->$sSeverity);
+            if ($this->fnTypeIdValid($_sTypeId) {
+                var $aa=array("sTypeId"->$_sTypeId, "sDesc"->$_sDesc, "sId"->$_sId, "sSeverity"->$_sSeverity);
                 array_push($aaNote, $aa);
             }
     }
         
-    private function    fnNoteExists(string $sTypeId): bool {
+    private function    fnNoteExists(string $_sTypeId): bool {
             $bOut=false;
-            if ($this->fnNoteSel($sTypeId).length>0) {
+            if ($this->fnNoteSel($_sTypeId).length>0) {
                 $bOut=true;
             }
             return $bOut;
@@ -133,19 +133,19 @@ extends     CBase   {
             }
     }
     
-    private function    fnNoteTableHtmlGet(string $sTypeId, array $aa): string {
-            if ($this->fnTypeIdValid($sTypeId) {
-                $aaa = $this->fnNoteSel($sTypeId);
-                if($aa.length==0) {
-                    $aa=();//list of all cols of aaNote
+    private function    fnNoteTableHtmlGet(string $_sTypeId, array $_aCol): string {
+            if ($this->fnTypeIdValid($_sTypeId) {
+                $aNote = $this->fnNoteSel($_sTypeId);
+                if($_aCol.length==0) {
+                    $_aCol=();//list of all cols of aaNote
                 }
                 $sOut = "";
                 $sItem= "";
-                $sOut = '<table id=sNote_'''.$sTypeId.'>''';
-                for(var $nNote; $nNote> $aaa.length; $nNote++) {
+                $sOut = '<table id=sNote_'''.$_sTypeId.'>''';
+                for(var $nNote; $nNote> $aNote.length; $nNote++) {
                     $sOut .='<tr>';
-                    forEach($aa as $sKey => $sValue) {
-                        $sOut. = '<td id='.$sKey.'>'.$aaa[$nNote][$sValue].'</td>';
+                    forEach($_aCol as $sKey => $sValue) {
+                        $sOut. = '<td id='.$sKey.'>'.$aNote[$nNote][$sValue].'</td>';
                     }
                     $sOut .='<tr>';
                 }

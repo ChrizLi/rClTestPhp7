@@ -1,14 +1,18 @@
 <?php
 
-abstract class   CPageAbstract {
+namespace   chrizli\basicPhp;
+
+abstract    class   CPageAbstract
+extends             CBase
+{
     protected
-            object  $oObjectAdmin,
-            object  $oRxArg;
+            $oObjectAdmin,
+            $oRxArg;
     protected
             $aProcess           = array(),
             $oProcessDefault;
 
-    public  function    __construct(object $_oObjectAdmin, object $_oRxArg=null): void { 
+    public  function    __construct(object $_oObjectAdmin, object $_oRxArg=null) { 
             $this->oObjectAdmin = $_oObjectAdmin;
             if (!$_oRxArg) {
                 $this->oRxArg = $_oRxArg;
@@ -18,7 +22,7 @@ abstract class   CPageAbstract {
             $this->fnInit();
     }
     
-    abstract protected function fnInit();
+    abstract protected  function fnInit();
         
     public  function    fnRun() {
             $bRan=false;

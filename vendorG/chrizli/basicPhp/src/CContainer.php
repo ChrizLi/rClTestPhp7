@@ -19,19 +19,19 @@ extends     CBase
     
     public  function    fnAdd($_o, string $_sId=null) {
             if ($this->bTypeAssoc) {
-                if($_sId==null) {
+                if($_sId == null) {
                     $this->fnErrorThrow('ArgNotValid');
                 }   else {
-                    $this->aItem[$_sId]=$_o;
+                    $this->aItem[$_sId] = $_o;
                 }
             }   else {
-                $this->aItem[]=$_o;
+                $this->aItem[] = $_o;
                 return count($this->aItem)-1;
             }
     }
     
-    public  function    fnGet($_oId=null) {
-            if ($_oId==null) {
+    public  function    fnGet($_oId = null) {
+            if ($_oId == null) {
                 return $this->aItem;
             }   else {
                 return $this->aItem[$_oId];
@@ -42,12 +42,13 @@ extends     CBase
             unset($this->aItem[$_oId]);
     }
     
-    public  function    fnSet(array $_a): void {
-            $this->aItem=$_a;
-    }
-    
-    public  function    fnReset(): void {
-            $this->aItem=array();
+    public  function    fnReset($_o=null): void {
+            //  resets existing container with given or to null
+            if ($_o==null) {
+                $this->aItem=array();
+            }   else {
+                $this->aItem=$_o;
+            }
     }
     
     public  function    fnValid($_o): bool {

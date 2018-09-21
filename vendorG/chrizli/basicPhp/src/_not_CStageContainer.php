@@ -1,17 +1,20 @@
 <?php
 
+namespace   chrizli\basicPhp;
+
 class       CStageContainer
-extends     CBase       {
+extends     CBase
+{
     private 
-            CStageBase  $oStageBase, 
-            CStage[]    $aStage,
-            string[]    $aStageId;
+            $oStageBase, 
+            $aStage,
+            $aStageId;
 
     public  function    __construct(
             object      $_oObjectAdmin,
-            any         $_oStageBase    = null,
+            object      $_oStageBase    = null,
             bool        $_bDefault      = true
-            ):  void    {
+            ) {
             if ($_oObjectAdmin  == null {
                 $oObjectAdmin   = new CObjectAdmin();
             }   else    {
@@ -67,7 +70,7 @@ extends     CBase       {
                 if ($this->fnIdValid(string $_sId)) {
                     return $this->aStage[$_sId];
                 }   else    {
-                    $this-fnErrorThrow('ArgNotValid','ArgNotValid');
+                    $this->fnErrorThrow('ArgNotValid','ArgNotValid');
                 }
             }
     }

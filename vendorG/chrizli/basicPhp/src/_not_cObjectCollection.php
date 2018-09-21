@@ -3,13 +3,16 @@
     // class holds collection of all provided objects (no object will be created)
     // provides option to easily get list of same instances
     // provides option to return singletons
-        
-class       CObjectCollection
-extends     CBase   {
-    private
-            $aObject=array();
 
-    public  function    __construct(): void {
+namespace   chrizli\basicPhp;
+    
+class       CObjectCollection
+extends     CBase
+{
+    private
+            $aObject    = array();
+
+    public  function    __construct() {
             $this->fnAdd(this);
     }
 

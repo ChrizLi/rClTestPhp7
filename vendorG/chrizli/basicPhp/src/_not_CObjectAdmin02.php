@@ -1,15 +1,19 @@
 <?php
+
+namespace   chrizli\basicPhp;
+
 class       CObjectAdmin 
-extends     CBase {
+extends     CBase 
+{
     private 
-            object      $oObjectFactory,
-            object      $oObjectCollection,
-            $aObject    = array();
+            $oObjectFactory,
+            $oObjectCollection,
+            $aObject            = array();
 
     public  function    __construct(
             $_oObjectFactory            = null,
             $_oObjectCollection         = null
-            ): void     {
+            ) {
             if ($_oObjectFactory        == null) {
             $this->oObjectFactory       =  new CObjectFactory02;
             }   else {

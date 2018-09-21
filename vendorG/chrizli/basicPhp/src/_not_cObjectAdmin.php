@@ -1,10 +1,14 @@
 <?php
+
+namespace   chrizli\basicPhp;
+
 class       CObjectAdmin 
-extends     CBase           {
+extends     CBase           
+{
     private static 
             $aObject    = array();
 
-    public  function    __construct(): void {
+    public  function    __construct() {
             $this->fnInit()
     }
     

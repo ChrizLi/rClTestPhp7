@@ -1,5 +1,7 @@
 <?php
 
+namespace   chrizli\basicPhp;
+
 interface ifUserAccount {
     public function fnUserAccountList   ():             array;
     

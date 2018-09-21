@@ -12,13 +12,17 @@
 ---- known errors /missing features:
 ---- 
 ----------------------------------------------------------*/
-class       CObjectFactory02 
-extends     CBase {
-    private
-            object  $oObjectAdmin,
-            string  $sObjectAdminName   = 'oObjectAdmin';
 
-    public  function    __construct(object $_oObjectAdmin): void {
+namespace   chrizli\basicPhp;
+
+class       CObjectFactory02 
+extends     CBase
+{
+    private
+            $oObjectAdmin,
+            $sObjectAdminName   = 'oObjectAdmin';
+
+    public  function    __construct(object $_oObjectAdmin) {
             $oObjectAdmin = $_oObjectAdmin;
             $this->fnInit();
     }

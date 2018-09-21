@@ -79,18 +79,18 @@ final class CContainerTest extends TestCase
             );
     }
     
-    public  function testFnSet(): void {
+    public  function testFnResetNew(): void {
             $oCut = new cPhp\CContainer(true);
             $oCut->fnAdd('Object1', 'Id1');
             $a      = array('id2'=>'Object2');
-            $oCut->fnSet($a);
+            $oCut->fnReset($a);
             $this->assertEquals(
                 $a,
                 $oCut->fnGet()
             );
     }
     
-    public  function testFnReset(): void {
+    public  function testFnResetClean(): void {
             $oCut = new cPhp\CContainer(true);
             $oCut->fnAdd('Object1', 'Id1');
             $oCut->fnReset();

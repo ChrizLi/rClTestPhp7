@@ -1,0 +1,7 @@
+/*
+    nContactId
+    sNameFirst
+    sNameLast
+    sNickName
+    dBirth
+*/

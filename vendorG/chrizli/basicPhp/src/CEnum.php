@@ -29,7 +29,7 @@ extends     CBase
     
     public  function    fnSet($_x): void {
             if (array_search($_x, $this->aEnum)===false) {
-                $this->fnErrorThrow('ArgIsNotValid');
+                $this->fnErrorThrow('ArgNotValid');
             }   else {
                 $this->xEnum=$_x;
             }
@@ -42,7 +42,7 @@ extends     CBase
     public  function    fnValid($_x, $_bErrorThrow=true): bool {
             if (array_search($_x, $this->aEnum)===false) {
                 if ($_bErrorThrow) {
-                    $this->fnErrorThrow('ArgIsNotValid');
+                    $this->fnErrorThrow('ArgNotValid');
                 }   else {
                     return false;
                 }

@@ -16,7 +16,9 @@ extends     CModelAbstract
     }
     
     protected
-            function    fnPersistentSel(){}
+            function    fnPersistentSel(){
+    //      call sql to fetch all rows, no args for filtering here        
+    }
     
     public  function    fnSel(){
             $this->fnDataInit();
@@ -25,12 +27,15 @@ extends     CModelAbstract
     
     public  function    fnRowByIdGet(int $_nId){
             $this->fnDataInit();
-            return      $this->qData[$_nId];
+            if (fnIdValid($_nId)){
+                return      $this->qData[$_nId];
+            }
     }
     
     public  function    fnIdValid(
-            int         $_nId, 
-            bool        $_bErrorThrow   = true):bool {
+            int         $_nId,
+            bool        $_bErrorThrow   = true
+            ):  bool    {
             $this->fnDataInit();
             if (inArray($_nId, $this->aId)){
                 return  true;

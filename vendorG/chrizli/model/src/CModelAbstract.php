@@ -1,10 +1,8 @@
 <?php
 
-class   CModel
-extends CBase
+abstract    class   CModel
+            extends CBase
 {
-        protected   CDsn    $oDsn;
-                
         public      function    __constructor(CDsn $_oDsn) {
                     $this->oDsn = $_oDsn;
         }
@@ -15,7 +13,7 @@ extends CBase
         
         public      function    getODsn(): string {
                     return      $this->oDsn;
-        }
+        }    
 }
 
 ?>

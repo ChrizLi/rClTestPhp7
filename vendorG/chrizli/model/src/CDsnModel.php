@@ -1,26 +1,25 @@
 <?php
-    class   CDsnModel
-    extends CBase
-    {
-        private
-                    $aData;
-        public      function    __construct () {
-        }
 
-        private     function    fnDataInit(){
-        }
-        
-        private     function    fnPersistentSel(){
-            var     $aRecord    = new CDsnModel;
-            $aRecord->fnIdSet               (1);
-            $aRecord->fnKeySet              ('MySqlDev');
-            $aRecord->fnCodeStageBaseIdSet  (1);
-            arrayPush($this->aData, $aRecord);
-            var     $aRecord    = new CDsnModel;
-            $aRecord->fnIdSet               (2);
-            $aRecord->fnKeySet              ('MySqlTest');
-            $aRecord->fnCodeStageBaseIdSet  (2)
-            arrayPush($this->aData, $aRecord);
-        }
+class   CDsnModel
+extends CBase
+{
+    private aDsn;
+
+    public  function    __constructor(){}
+    
+    private function    fnDataInit(){
+        this->aDsn = $this->fnPersistentSel();
     }
+    
+    private function    fnPersistentSel(){
+        var a = array();
+        var st;
+        st->nId     = 1;
+        st->sKey    = 'BrotherDeSapDaten';
+        st->sDsn    = st->sKey;
+        arrayAppend(a, st);
+        return a;
+    }
+
+}
 ?>

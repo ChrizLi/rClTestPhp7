@@ -12,7 +12,10 @@ extends     CBase       {
             $a['sStageId']      = '';
             
             
-    public  function    __construct(object $_oObjectAdmin, object $_oStageBase=null): void {
+    public  function    __construct(
+            object $_oObjectAdmin, 
+            object $_oStageBase=null
+    ): void {
             $this->oObjectAdmin = $_oObjectAdmin;
             if  ($_oStageBase==null) {
                 $this->oStage = new CStageBase;

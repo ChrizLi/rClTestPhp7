@@ -4,20 +4,7 @@ namespace   chrizli\basicPhp;
 
 class       CEnum
 extends     CBase
-{   
-/*--------------------------------------
----- 20180517V1.0.0,  ListlChr,   init
-----
-----------------------------------------
----- what this code does:
----- -  holds single value based on given Enum
----- -  sample:
----- new CEnum(array('a','b','c'); fnSet('a'); fnValid('a');
-----
-----------------------------------------
----- missing feature/known errors:
----- 
---------------------------------------*/
+{
     private
             $xEnum,
             $aEnum;

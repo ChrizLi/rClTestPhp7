@@ -1,10 +1,10 @@
 <?php
 
-class   CDsn
+Class   CDsn
 extends CBase
 {
-    protected
-                $sDsn;
+        protected
+                    $sDsn;
                     
         public      function    __constructor(string $_sDsn){
                     fnSet($_sDsn);

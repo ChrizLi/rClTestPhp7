@@ -1,7 +1,6 @@
 <?php
 
-abstract    class   CPageAbstract
-{
+abstract class   CPageAbstract {
     protected
             object  $oObjectAdmin,
             object  $oRxArg;
@@ -9,20 +8,17 @@ abstract    class   CPageAbstract
             $aProcess           = array(),
             $oProcessDefault;
 
-    public  function    __construct(
-            object $_oObjectAdmin, 
-            object $_oRxArg=null
-    ): void { 
+    public  function    __construct(object $_oObjectAdmin, object $_oRxArg=null): void { 
             $this->oObjectAdmin = $_oObjectAdmin;
             if (!$_oRxArg) {
-                $this->oRxArg   = $_oRxArg;
+                $this->oRxArg = $_oRxArg;
             }   else {
-                $this->oRxArg   = new CRxArg;
+                $this->oRxArg = new CRxArg;
             }
             $this->fnInit();
     }
     
-    abstract protected  function fnInit();
+    abstract protected function fnInit();
         
     public  function    fnRun() {
             $bRan=false;
